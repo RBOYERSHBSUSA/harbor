@@ -100,7 +100,6 @@ from typing import List, Dict, Optional, Tuple
 from quickbooks.objects.deposit import Deposit, DepositLine, DepositLineDetail
 from quickbooks.objects.account import Account
 from module2_database import get_db_manager
-from module2_oauth import get_qbo_client
 from shared.structured_logging import get_logger, StructuredLogger, EventType, Severity
 from shared.observability_interface import get_metrics_collector
 from shared.idempotency import (
