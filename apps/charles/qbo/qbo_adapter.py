@@ -136,6 +136,7 @@ from shared.deposit_stamp import (
     DepositStampManager,
     generate_deposit_memo
 )
+from apps.charles.qbo.qbo_service_interface import QBOServiceInterface
 
 
 class QBOIntegrationModule:
@@ -144,16 +145,24 @@ class QBOIntegrationModule:
     Handles deposit creation from payout batches
     """
     
-    def __init__(self, company_id: str, sync_run_id: Optional[str] = None, workspace_id: str = None):
+    def __init__(
+        self,
+        company_id: str,
+        qbo_service: QBOServiceInterface,
+        sync_run_id: Optional[str] = None,
+        workspace_id: str = None
+    ):
         """
         Initialize QBO integration
 
         Args:
             company_id: Company UUID (legacy)
+            qbo_service: Harbor-owned QBO service boundary
             sync_run_id: Optional sync run ID for log correlation
             workspace_id: Workspace ID (Phase 2+, required for proper scoping)
         """
         self.company_id = company_id
+        self.qbo_service = qbo_service
         self.sync_run_id = sync_run_id or str(uuid.uuid4())
         self.db_manager = get_db_manager()
 
