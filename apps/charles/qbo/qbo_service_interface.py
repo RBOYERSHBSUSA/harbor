@@ -15,6 +15,13 @@ class QBOServiceInterface(Protocol):
       - read OAuth tables
     """
 
+    @property
+    def company_id(self) -> str:
+        ...
+
+    def request(self, method: str, url: str, **kwargs: Any) -> Any:
+        ...
+
     def fetch_payments(self, *args: Any, **kwargs: Any) -> Any:
         ...
 

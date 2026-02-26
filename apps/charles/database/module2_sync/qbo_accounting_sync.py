@@ -34,8 +34,7 @@ import sqlite3
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
-import requests
-
+from apps.charles.qbo.qbo_service_interface import QBOServiceInterface
 from module3_canonicalization.qbo_accounting_canonicalizer import (
     QBOAccountingCanonicalizer,
 )
@@ -69,7 +68,7 @@ def _get_qbo_base_url(config: CharlesConfig) -> str:
 
 
 def _query_qbo_page(
-    qbo_client: Any,
+    qbo_service: QBOServiceInterface,
     config: CharlesConfig,
     entity_type: str,
     since_updated_at: Optional[datetime] = None,
@@ -82,7 +81,7 @@ def _query_qbo_page(
     Uses direct HTTP requests (same pattern as qbo_adapter.py).
 
     Args:
-        qbo_client: Authenticated QuickBooks client (python-quickbooks)
+        qbo_service: Authenticated QuickBooks client (python-quickbooks)
         config: Validated CharlesConfig instance
         entity_type: QBO entity name ('Payment', 'RefundReceipt', etc.)
         since_updated_at: Optional filter for incremental sync
@@ -93,7 +92,7 @@ def _query_qbo_page(
         Tuple of (list of QBO objects, count returned on this page)
     """
     base_url = _get_qbo_base_url(config)
-    realm_id = qbo_client.company_id
+    realm_id = qbo_service.company_id
 
     # Build QBO query with pagination
     where_clause = ""
@@ -109,14 +108,17 @@ def _query_qbo_page(
     )
 
     url = f'{base_url}/v3/company/{realm_id}/query'
-    headers = {
-        'Authorization': f'Bearer {qbo_client.auth_client.access_token}',
-        'Accept': 'application/json',
-        'Content-Type': 'application/text',
-    }
     params = {'query': query, 'minorversion': '65'}
 
-    response = requests.get(url, headers=headers, params=params)
+    response = qbo_service.request(
+        "GET",
+        url,
+        headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/text',
+        },
+        params=params,
+    )
     response.raise_for_status()
 
     data = response.json()
@@ -126,7 +128,7 @@ def _query_qbo_page(
 
 
 def _fetch_qbo_account_map(
-    qbo_client: Any,
+    qbo_service: QBOServiceInterface,
     config: Optional['CharlesConfig'] = None,
 ) -> Dict[str, str]:
     """
@@ -138,7 +140,7 @@ def _fetch_qbo_account_map(
     if config is None:
         config = get_config()
 
-    accounts = _query_qbo_objects(qbo_client, 'Account', config=config)
+    accounts = _query_qbo_objects(qbo_service, 'Account', config=config)
     return {str(a.get('Id', '')): a.get('Name', '') for a in accounts if a.get('Id')}
 
 
@@ -160,7 +162,7 @@ def _enrich_deposit_account_names(
 
 
 def _query_qbo_objects(
-    qbo_client: Any,
+    qbo_service: QBOServiceInterface,
     entity_type: str,
     since_updated_at: Optional[datetime] = None,
     config: Optional[CharlesConfig] = None,
@@ -172,7 +174,7 @@ def _query_qbo_objects(
     Per governance requirements: silent truncation is a CRITICAL FAILURE.
 
     Args:
-        qbo_client: Authenticated QuickBooks client (python-quickbooks)
+        qbo_service: Authenticated QuickBooks client (python-quickbooks)
         entity_type: QBO entity name ('Payment', 'RefundReceipt', 'CreditMemo', 'Deposit')
         since_updated_at: Optional filter for incremental sync
         config: CharlesConfig instance (loaded from get_config() if not provided)
@@ -188,7 +190,7 @@ def _query_qbo_objects(
 
     while True:
         page, page_count = _query_qbo_page(
-            qbo_client, config, entity_type, since_updated_at,
+            qbo_service, config, entity_type, since_updated_at,
             start_position=start_position,
             max_results=_QBO_MAX_PAGE_SIZE,
         )
@@ -203,7 +205,7 @@ def _query_qbo_objects(
 
 
 def _fetch_qbo_object_by_id(
-    qbo_client: Any,
+    qbo_service: QBOServiceInterface,
     entity_type: str,
     qbo_id: str,
     config: Optional[CharlesConfig] = None,
@@ -215,7 +217,7 @@ def _fetch_qbo_object_by_id(
     _query_qbo_page). Returns the object dict, or None if not found.
 
     Args:
-        qbo_client: Authenticated QuickBooks client (python-quickbooks)
+        qbo_service: Authenticated QuickBooks client (python-quickbooks)
         entity_type: QBO entity name ('RefundReceipt', 'CreditMemo', etc.)
         qbo_id: QBO object ID
         config: CharlesConfig instance (loaded from get_config() if not provided)
@@ -224,18 +226,21 @@ def _fetch_qbo_object_by_id(
         config = get_config()
 
     base_url = _get_qbo_base_url(config)
-    realm_id = qbo_client.company_id
+    realm_id = qbo_service.company_id
 
     query = f"SELECT * FROM {entity_type} WHERE Id = '{qbo_id}'"
     url = f'{base_url}/v3/company/{realm_id}/query'
-    headers = {
-        'Authorization': f'Bearer {qbo_client.auth_client.access_token}',
-        'Accept': 'application/json',
-        'Content-Type': 'application/text',
-    }
     params = {'query': query, 'minorversion': '65'}
 
-    response = requests.get(url, headers=headers, params=params)
+    response = qbo_service.request(
+        "GET",
+        url,
+        headers={
+            'Accept': 'application/json',
+            'Content-Type': 'application/text',
+        },
+        params=params,
+    )
     response.raise_for_status()
 
     data = response.json()
@@ -245,7 +250,7 @@ def _fetch_qbo_object_by_id(
 
 def _backfill_deposit_referenced_refunds(
     cursor: sqlite3.Cursor,
-    qbo_client: Any,
+    qbo_service: QBOServiceInterface,
     canonicalizer: 'QBOAccountingCanonicalizer',
     account_map: Dict[str, str],
     workspace_id: str,
@@ -302,7 +307,7 @@ def _backfill_deposit_referenced_refunds(
             )
             try:
                 qbo_obj = _fetch_qbo_object_by_id(
-                    qbo_client, txn_type, str(txn_id), config=config
+                    qbo_service, txn_type, str(txn_id), config=config
                 )
             except Exception as e:
                 logger.warning(
@@ -336,7 +341,7 @@ def _backfill_deposit_referenced_refunds(
 
 def run_qbo_accounting_sync(
     workspace_id: str,
-    qbo_client: Any,
+    qbo_service: QBOServiceInterface,
     db_conn: sqlite3.Connection,
     since_updated_at: Optional[datetime] = None,
     initiation_source: str = "manual",
@@ -356,7 +361,7 @@ def run_qbo_accounting_sync(
 
     Args:
         workspace_id: Workspace identifier for data isolation
-        qbo_client: Authenticated QuickBooks client (from module2_oauth)
+        qbo_service: Authenticated QuickBooks client (from module2_oauth)
         db_conn: SQLite connection (transaction managed here)
         since_updated_at: Optional filter for incremental sync
         initiation_source: How sync was initiated (manual, scheduled, api)
@@ -375,7 +380,7 @@ def run_qbo_accounting_sync(
             transaction, marks the sync as failed, and propagates.
     """
     config = get_config()
-    company_id = qbo_client.company_id
+    company_id = qbo_service.company_id
 
     # --- Lifecycle: Acquire sync_run_id and lock ---
     sync_manager = get_sync_manager(db_conn, company_id)
@@ -427,11 +432,11 @@ def run_qbo_accounting_sync(
         cursor = db_conn.cursor()
 
         # Fetch QBO account map once to resolve account IDs to names
-        account_map = _fetch_qbo_account_map(qbo_client, config=config)
+        account_map = _fetch_qbo_account_map(qbo_service, config=config)
 
         # --- Payments ---
         payments = _query_qbo_objects(
-            qbo_client, 'Payment', since_updated_at, config=config,
+            qbo_service, 'Payment', since_updated_at, config=config,
         )
         _enrich_deposit_account_names(payments, account_map)
         counts['payments_fetched'] = len(payments)
@@ -453,7 +458,7 @@ def run_qbo_accounting_sync(
 
         # --- RefundReceipts ---
         refund_receipts = _query_qbo_objects(
-            qbo_client, 'RefundReceipt', since_updated_at, config=config,
+            qbo_service, 'RefundReceipt', since_updated_at, config=config,
         )
         _enrich_deposit_account_names(refund_receipts, account_map)
         counts['refund_receipts_fetched'] = len(refund_receipts)
@@ -475,7 +480,7 @@ def run_qbo_accounting_sync(
 
         # --- CreditMemos ---
         credit_memos = _query_qbo_objects(
-            qbo_client, 'CreditMemo', since_updated_at, config=config,
+            qbo_service, 'CreditMemo', since_updated_at, config=config,
         )
         _enrich_deposit_account_names(credit_memos, account_map)
         counts['credit_memos_fetched'] = len(credit_memos)
@@ -497,7 +502,7 @@ def run_qbo_accounting_sync(
 
         # --- Deposits ---
         deposits = _query_qbo_objects(
-            qbo_client, 'Deposit', since_updated_at, config=config,
+            qbo_service, 'Deposit', since_updated_at, config=config,
         )
         _enrich_deposit_account_names(deposits, account_map)
         counts['deposits_fetched'] = len(deposits)
@@ -519,7 +524,7 @@ def run_qbo_accounting_sync(
 
         # --- Backfill missing refunds/credit memos referenced in deposits ---
         backfilled = _backfill_deposit_referenced_refunds(
-            cursor, qbo_client, canonicalizer, account_map,
+            cursor, qbo_service, canonicalizer, account_map,
             workspace_id, observed_at, config,
         )
         counts['refund_receipts_backfilled'] = backfilled
