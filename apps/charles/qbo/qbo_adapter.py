@@ -567,13 +567,8 @@ class QBOIntegrationModule:
         query = f"SELECT * FROM Deposit WHERE TxnDate = '{settlement_date}'"
         url = f'{base_url}/v3/company/{qbo_realm_id}/query?query={query}&minorversion=65'
 
-        headers = {
-            'Authorization': f'Bearer {self.qbo_client.auth_client.access_token}',
-            'Accept': 'application/json'
-        }
-
         try:
-            response = requests.get(url, headers=headers)
+            response = self.qbo_service.request("GET", url, headers={'Accept': 'application/json'})
 
             if response.status_code != 200:
                 self.logger.warn(
@@ -1051,13 +1046,15 @@ class QBOIntegrationModule:
 
         def make_api_call() -> str:
             """Inner function for API call with proper error classification."""
-            headers = {
-                'Authorization': f'Bearer {self.qbo_client.auth_client.access_token}',
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-
-            response = requests.post(url, headers=headers, json=deposit_data)
+            response = self.qbo_service.request(
+                "POST",
+                url,
+                headers={
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                json=deposit_data
+            )
 
             if response.status_code == 200:
                 result = response.json()
