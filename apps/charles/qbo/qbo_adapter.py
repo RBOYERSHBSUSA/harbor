@@ -174,7 +174,7 @@ class QBOIntegrationModule:
         self.workspace_id = workspace_id
 
         # Phase 3: Use workspace_id for OAuth (dual-mode API)
-        self.qbo_client = get_qbo_client(workspace_id=workspace_id)
+        self.qbo_client = self.qbo_service
         # Defer config loading - will be loaded with correct processor_type in create_deposit_for_payout
         # This allows the adapter to be instantiated before we know which processor we're working with
         self.config = None
