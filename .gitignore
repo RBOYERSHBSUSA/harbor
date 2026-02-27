@@ -10,3 +10,4 @@ logs/
 
 # Phase artifacts (local only)
 PHASE_4B1_STEP*.diff
+apps/charles/data/

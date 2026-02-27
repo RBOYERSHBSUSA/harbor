@@ -175,7 +175,8 @@ class SyncRunManager:
                 payouts_failed INTEGER DEFAULT 0,
                 payouts_ambiguous INTEGER DEFAULT 0,
                 payouts_skipped INTEGER DEFAULT 0,
-                duration_ms INTEGER
+                duration_ms INTEGER,
+                FOREIGN KEY (workspace_id) REFERENCES workspaces(id) ON DELETE CASCADE
             )
         """)
 
@@ -185,7 +186,8 @@ class SyncRunManager:
                 workspace_id TEXT PRIMARY KEY,
                 sync_run_id TEXT NOT NULL,
                 locked_at TEXT NOT NULL,
-                FOREIGN KEY (sync_run_id) REFERENCES sync_runs(sync_run_id)
+                FOREIGN KEY (workspace_id) REFERENCES workspaces(id) ON DELETE CASCADE,
+                FOREIGN KEY (sync_run_id) REFERENCES sync_runs(sync_run_id) ON DELETE CASCADE
             )
         """)
 

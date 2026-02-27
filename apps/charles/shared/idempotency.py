@@ -141,7 +141,8 @@ class IdempotencyManager:
                 created_at TEXT NOT NULL,
                 completed_at TEXT,
                 error_message TEXT,
-                UNIQUE(workspace_id, processor_type, external_event_id)
+                UNIQUE(workspace_id, processor_type, external_event_id),
+                FOREIGN KEY (workspace_id) REFERENCES workspaces(id) ON DELETE CASCADE
             )
         """)
 
