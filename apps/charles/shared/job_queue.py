@@ -845,7 +845,7 @@ class JobQueue:
                     if sync_run_id:
                         # Checklist Item 7: Lock cleanup on recovery
                         cursor.execute("""
-                            DELETE FROM company_sync_locks
+                            DELETE FROM workspace_sync_locks
                             WHERE sync_run_id = ?
                         """, [sync_run_id])
 
@@ -920,7 +920,7 @@ class JobQueue:
                     if sync_run_id:
                         # Checklist Item 7: Lock cleanup on recovery
                         cursor.execute("""
-                            DELETE FROM company_sync_locks
+                            DELETE FROM workspace_sync_locks
                             WHERE sync_run_id = ?
                         """, [sync_run_id])
 
@@ -979,7 +979,7 @@ class JobQueue:
         try:
             orphaned_locks = cursor.execute("""
                 SELECT L.sync_run_id, L.workspace_id
-                FROM company_sync_locks L
+                FROM workspace_sync_locks L
                 WHERE NOT EXISTS (
                     SELECT 1 FROM sync_jobs J
                     WHERE J.sync_run_id = L.sync_run_id
@@ -996,7 +996,7 @@ class JobQueue:
 
             # Checklist Item 20: Orphaned locks deleted within recovery cycle
             cursor.execute("""
-                DELETE FROM company_sync_locks
+                DELETE FROM workspace_sync_locks
                 WHERE sync_run_id = ?
             """, [sync_run_id])
 
@@ -1045,7 +1045,7 @@ class JobQueue:
                       AND J.status = ?
                   )
                   AND NOT EXISTS (
-                      SELECT 1 FROM company_sync_locks L
+                      SELECT 1 FROM workspace_sync_locks L
                       WHERE L.sync_run_id = WS.active_sync_run_id
                   )
             """, [JobStatus.RUNNING.value]).fetchall()
@@ -1102,7 +1102,7 @@ class JobQueue:
                       AND J.status = ?
                   )
                   AND NOT EXISTS (
-                      SELECT 1 FROM company_sync_locks L
+                      SELECT 1 FROM workspace_sync_locks L
                       WHERE L.sync_run_id = S.sync_run_id
                   )
             """, [JobStatus.RUNNING.value]).fetchall()

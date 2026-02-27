@@ -155,20 +155,21 @@ class QBOIntegrationModule:
         Initialize QBO integration
 
         Args:
-            company_id: Company UUID (legacy)
+            company_id: Company UUID (legacy metadata)
             qbo_service: Harbor-owned QBO service boundary
             sync_run_id: Optional sync run ID for log correlation
-            workspace_id: Workspace ID (Phase 2+, required for proper scoping)
+            workspace_id: Explicit workspace scope (required)
         """
+        if not workspace_id:
+            raise ValueError(
+                "workspace_id is required for QBOIntegrationModule. "
+                "Caller must provide explicit workspace scope."
+            )
+
         self.company_id = company_id
         self.qbo_service = qbo_service
         self.sync_run_id = sync_run_id or str(uuid.uuid4())
         self.db_manager = get_db_manager()
-
-        # Phase 3: Resolve workspace_id first (needed for OAuth)
-        if workspace_id is None:
-            from workspace_helpers import get_workspace_id_from_company_id
-            workspace_id = get_workspace_id_from_company_id(company_id)
 
         self.workspace_id = workspace_id
 
@@ -189,10 +190,10 @@ class QBOIntegrationModule:
         # Initialize idempotency manager per IDEMPOTENCY_IMPLEMENTATION_CONTRACT
         # Phase 2: Use consolidated DB connection, pass workspace_id
         company_conn = self.db_manager.get_connection()
-        self.idempotency = get_idempotency_manager(company_conn, company_id, workspace_id=self.workspace_id)
+        self.idempotency = get_idempotency_manager(company_conn, company_id, self.workspace_id)
 
         # Initialize sync manager per SYNC_RUN_LIFECYCLE_CONTRACT
-        self.sync_manager = get_sync_manager(company_conn, company_id)
+        self.sync_manager = get_sync_manager(company_conn, self.workspace_id, company_id)
 
         # Cleanup on startup per contracts
         # Cleanup stale pending operations (IDEMPOTENCY §10.1)

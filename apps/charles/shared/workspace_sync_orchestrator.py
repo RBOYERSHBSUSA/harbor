@@ -397,7 +397,7 @@ class WorkspaceSyncOrchestrator:
 
         # Delegate to SyncRunManager (LOCKED Phase 3 infrastructure)
         try:
-            sync_manager = SyncRunManager(self.conn, company_id)
+            sync_manager = SyncRunManager(self.conn, self.workspace_id, company_id)
             sync_run = sync_manager.start_sync(initiation_source)
 
             # Update workspace_sync_state with active sync_run_id

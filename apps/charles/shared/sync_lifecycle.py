@@ -27,7 +27,6 @@ from typing import Optional, Dict, Any, List
 from dataclasses import dataclass, field
 
 from shared.structured_logging import get_logger, EventType
-from workspace_helpers import get_workspace_id_from_company_id
 
 
 class SyncState(Enum):
@@ -123,7 +122,7 @@ class SyncRunManager:
     - All events are logged (§11)
 
     Usage:
-        manager = SyncRunManager(db_connection, company_id)
+        manager = SyncRunManager(db_connection, workspace_id, company_id)
 
         # Start a new sync
         sync_run = manager.start_sync(initiation_source="manual")
@@ -140,21 +139,18 @@ class SyncRunManager:
         manager.complete_sync(sync_run.sync_run_id, stats)
     """
 
-    def __init__(self, db_connection: sqlite3.Connection, company_id: str):
+    def __init__(self, db_connection: sqlite3.Connection, workspace_id: str, company_id: str):
         """
         Initialize sync run manager.
 
         Args:
             db_connection: SQLite connection to company database
+            workspace_id: Workspace ID (used for lock scoping and logging)
             company_id: Company ID
         """
         self.conn = db_connection
+        self.workspace_id = workspace_id
         self.company_id = company_id
-        # Resolve workspace_id from company_id for logging
-        workspace_id = get_workspace_id_from_company_id(company_id)
-        if not workspace_id:
-            # Fallback to company_id if resolution fails (should not happen in normal operation)
-            workspace_id = company_id
         self.logger = get_logger(service="sync_lifecycle", workspace_id=workspace_id, company_id=company_id)
         self._ensure_tables_exist()
 
@@ -166,6 +162,7 @@ class SyncRunManager:
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS sync_runs (
                 sync_run_id TEXT PRIMARY KEY,
+                workspace_id TEXT NOT NULL,
                 company_id TEXT NOT NULL,
                 state TEXT NOT NULL,
                 started_at TEXT NOT NULL,
@@ -182,20 +179,23 @@ class SyncRunManager:
             )
         """)
 
-        # Company locks table for concurrency control (§7)
+        # Workspace locks table for concurrency control (§7)
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS company_sync_locks (
-                company_id TEXT PRIMARY KEY,
+            CREATE TABLE IF NOT EXISTS workspace_sync_locks (
+                workspace_id TEXT PRIMARY KEY,
                 sync_run_id TEXT NOT NULL,
                 locked_at TEXT NOT NULL,
                 FOREIGN KEY (sync_run_id) REFERENCES sync_runs(sync_run_id)
             )
         """)
 
-        # Index for finding active syncs
+        # Drop legacy index if present
+        cursor.execute("DROP INDEX IF EXISTS idx_sync_runs_company_state")
+
+        # Index for finding active syncs (workspace-scoped)
         cursor.execute("""
-            CREATE INDEX IF NOT EXISTS idx_sync_runs_company_state
-            ON sync_runs(company_id, state)
+            CREATE INDEX IF NOT EXISTS idx_sync_runs_workspace_state
+            ON sync_runs(workspace_id, state)
         """)
 
         self.conn.commit()
@@ -212,19 +212,19 @@ class SyncRunManager:
 
     def _acquire_lock(self, sync_run_id: str) -> bool:
         """
-        Acquire company lock per §7.1.
+        Acquire workspace lock per §7.1.
 
         Returns:
-            True if lock acquired, False if company already has active sync
+            True if lock acquired, False if workspace already has active sync
         """
         cursor = self.conn.cursor()
         now = self._get_timestamp()
 
         # Check for existing lock
         cursor.execute("""
-            SELECT sync_run_id, locked_at FROM company_sync_locks
-            WHERE company_id = ?
-        """, (self.company_id,))
+            SELECT sync_run_id, locked_at FROM workspace_sync_locks
+            WHERE workspace_id = ?
+        """, (self.workspace_id,))
 
         existing = cursor.fetchone()
 
@@ -240,7 +240,7 @@ class SyncRunManager:
                 # Active lock exists
                 self.logger.warn(
                     EventType.WARNING_DETECTED,
-                    f"Sync already in progress for company {self.company_id}",
+                    f"Sync already in progress for workspace {self.workspace_id}",
                     warning_type="concurrent_sync_rejected",
                     existing_sync_run_id=existing_sync_id
                 )
@@ -249,9 +249,9 @@ class SyncRunManager:
         # Acquire new lock
         try:
             cursor.execute("""
-                INSERT INTO company_sync_locks (company_id, sync_run_id, locked_at)
+                INSERT INTO workspace_sync_locks (workspace_id, sync_run_id, locked_at)
                 VALUES (?, ?, ?)
-            """, (self.company_id, sync_run_id, now))
+            """, (self.workspace_id, sync_run_id, now))
             self.conn.commit()
             return True
         except sqlite3.IntegrityError:
@@ -260,12 +260,12 @@ class SyncRunManager:
             return False
 
     def _release_lock(self, sync_run_id: str) -> None:
-        """Release company lock."""
+        """Release workspace lock."""
         cursor = self.conn.cursor()
         cursor.execute("""
-            DELETE FROM company_sync_locks
-            WHERE company_id = ? AND sync_run_id = ?
-        """, (self.company_id, sync_run_id))
+            DELETE FROM workspace_sync_locks
+            WHERE workspace_id = ? AND sync_run_id = ?
+        """, (self.workspace_id, sync_run_id))
         self.conn.commit()
 
     def _release_stale_lock(self, stale_sync_id: str) -> None:
@@ -295,7 +295,7 @@ class SyncRunManager:
 
         # Release lock
         cursor.execute("""
-            DELETE FROM company_sync_locks WHERE sync_run_id = ?
+            DELETE FROM workspace_sync_locks WHERE sync_run_id = ?
         """, (stale_sync_id,))
 
         self.conn.commit()
@@ -335,9 +335,9 @@ class SyncRunManager:
         cursor = self.conn.cursor()
         cursor.execute("""
             INSERT INTO sync_runs (
-                sync_run_id, company_id, state, started_at, phase_started_at, initiation_source
-            ) VALUES (?, ?, ?, ?, ?, ?)
-        """, (sync_run_id, self.company_id, SyncState.INITIATED.value, now_str, now_str, initiation_source))
+                sync_run_id, workspace_id, company_id, state, started_at, phase_started_at, initiation_source
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (sync_run_id, self.workspace_id, self.company_id, SyncState.INITIATED.value, now_str, now_str, initiation_source))
         self.conn.commit()
 
         sync_run = SyncRun(
@@ -783,8 +783,8 @@ class SyncRunManager:
 
         cursor.execute(f"""
             SELECT sync_run_id FROM sync_runs
-            WHERE company_id = ? AND state NOT IN ({placeholders})
-        """, (self.company_id, *terminal_values))
+            WHERE workspace_id = ? AND state NOT IN ({placeholders})
+        """, (self.workspace_id, *terminal_values))
 
         incomplete = cursor.fetchall()
         count = 0
@@ -800,7 +800,7 @@ class SyncRunManager:
 
             # Release any lock
             cursor.execute("""
-                DELETE FROM company_sync_locks WHERE sync_run_id = ?
+                DELETE FROM workspace_sync_locks WHERE sync_run_id = ?
             """, (sync_run_id,))
 
             count += 1
@@ -818,15 +818,16 @@ class SyncRunManager:
         return count
 
 
-def get_sync_manager(db_connection: sqlite3.Connection, company_id: str) -> SyncRunManager:
+def get_sync_manager(db_connection: sqlite3.Connection, workspace_id: str, company_id: str) -> SyncRunManager:
     """
     Factory function to create a SyncRunManager.
 
     Args:
         db_connection: SQLite connection to company database
+        workspace_id: Workspace ID (used for lock scoping and logging)
         company_id: Company ID
 
     Returns:
         Configured SyncRunManager instance
     """
-    return SyncRunManager(db_connection, company_id)
+    return SyncRunManager(db_connection, workspace_id, company_id)

@@ -65,7 +65,7 @@ class IdempotencyManager:
     Manages idempotency keys and checks per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1.
 
     Usage:
-        manager = IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+        manager = IdempotencyManager(db_connection, company_id, workspace_id)
 
         # Generate v2 key
         key = generate_idempotency_key_v2("deposit", workspace_id, "stripe", "po_abc123")
@@ -95,15 +95,15 @@ class IdempotencyManager:
     # Timeout for pending operations (§6.3) - 30 minutes
     PENDING_TIMEOUT_MINUTES = 30
 
-    def __init__(self, db_connection: sqlite3.Connection, company_id: str, service: str = "idempotency", workspace_id: str = None):
+    def __init__(self, db_connection: sqlite3.Connection, company_id: str, workspace_id: str, service: str = "idempotency"):
         """
         Initialize idempotency manager.
 
         Args:
             db_connection: SQLite connection to company database
-            company_id: Company ID for logging and legacy compatibility
+            company_id: Company ID for logging metadata and legacy compatibility
+            workspace_id: Workspace ID (REQUIRED for scoping per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1)
             service: Service name for logging
-            workspace_id: Workspace ID (REQUIRED per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1)
 
         Raises:
             ValueError: If workspace_id is None or empty (fail closed per contract)
@@ -687,7 +687,7 @@ def get_idempotency_manager(
     Raises:
         ValueError: If workspace_id is None or empty (fail closed per contract)
     """
-    return IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+    return IdempotencyManager(db_connection, company_id, workspace_id)
 
 
 def generate_idempotency_key(

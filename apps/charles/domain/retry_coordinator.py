@@ -68,7 +68,6 @@ from shared.error_taxonomy import (
     DataIntegrityError,
 )
 from processors.stripe_pull import StripePullClient
-from workspace_helpers import get_workspace_id_from_company_id
 
 
 class StripeProcessor(ProcessorBase):
@@ -89,6 +88,7 @@ class StripeProcessor(ProcessorBase):
         company_id: str = "",
         sync_run_id: str = "",
         db_path: Optional[str] = None,
+        workspace_id: str = None,
         **kwargs
     ):
         """
@@ -99,13 +99,18 @@ class StripeProcessor(ProcessorBase):
             company_id: Charles company ID (for canonical model)
             sync_run_id: Current sync run ID (for logging correlation)
             db_path: Database path for raw data persistence (Phase 2)
+            workspace_id: Explicit workspace scope (required)
         """
+        if not workspace_id:
+            raise ValueError(
+                "workspace_id is required for StripeProcessor. "
+                "Caller must provide explicit workspace scope."
+            )
+
         self.api_key = api_key
         self.company_id = company_id
 
         # Initialize structured logger per MINIMUM_LOGGING_CONTRACT
-        # Phase 5.3: Store workspace_id for observability hooks
-        workspace_id = get_workspace_id_from_company_id(company_id) or company_id
         self.workspace_id = workspace_id
         self.logger = get_logger(
             service="stripe_processor",

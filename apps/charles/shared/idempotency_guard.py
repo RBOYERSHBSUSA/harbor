@@ -30,10 +30,9 @@ from shared.idempotency import (
     IdempotencyStatus,
     IdempotencyResult,
     generate_idempotency_key_v2,
-    generate_idempotency_key,
+    _generate_legacy_key,
 )
 from shared.structured_logging import get_logger, EventType
-from workspace_helpers import get_workspace_id_from_company_id
 
 
 @dataclass
@@ -109,13 +108,16 @@ def require_idempotency(
             # STEP 1: Extract required components from self
             # =========================================================
 
-            # Get company_id from self
-            if not hasattr(self, 'company_id'):
+            # Get workspace_id from self (REQUIRED for scoping)
+            if not hasattr(self, 'workspace_id'):
                 raise IdempotencyGuardError(
-                    f"@require_idempotency decorator requires 'company_id' attribute on {self.__class__.__name__}. "
-                    "Add 'self.company_id' to class __init__."
+                    f"@require_idempotency decorator requires 'workspace_id' attribute on {self.__class__.__name__}. "
+                    "Add 'self.workspace_id' to class __init__."
                 )
-            company_id = self.company_id
+            workspace_id = self.workspace_id
+
+            # Get company_id from self (optional, used for logging metadata only)
+            company_id = getattr(self, 'company_id', None)
 
             # Get idempotency manager from self
             if not hasattr(self, 'idempotency'):
@@ -126,8 +128,6 @@ def require_idempotency(
             idempotency_manager: IdempotencyManager = self.idempotency
 
             # Get logger from self (optional but recommended)
-            # Phase 5.1: Resolve workspace_id for logging
-            workspace_id = get_workspace_id_from_company_id(company_id) or company_id
             logger = getattr(self, 'logger', None) or get_logger(
                 service="idempotency_guard",
                 workspace_id=workspace_id,
@@ -191,8 +191,8 @@ def require_idempotency(
             idem_result: IdempotencyResult = idempotency_manager.check_idempotency(idempotency_key)
 
             # If v2 key not found, check legacy v1 key for backward compat
-            if idem_result.status == IdempotencyStatus.NOT_EXISTS:
-                legacy_key = generate_idempotency_key(
+            if idem_result.status == IdempotencyStatus.NOT_EXISTS and company_id:
+                legacy_key = _generate_legacy_key(
                     operation_type=operation_type,
                     company_id=company_id,
                     external_id=str(external_id)

@@ -7,3 +7,6 @@ venv/
 .DS_Store
 *.sqlite3
 logs/
+
+# Phase artifacts (local only)
+PHASE_4B1_STEP*.diff

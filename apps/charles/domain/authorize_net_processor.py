@@ -78,7 +78,6 @@ from shared.error_taxonomy import (
     MAX_RETRY_ATTEMPTS,
     BACKOFF_SCHEDULE_SECONDS,
 )
-from workspace_helpers import get_workspace_id_from_company_id
 
 
 # Authorize.net transaction types that represent settled payments
@@ -152,6 +151,7 @@ class AuthorizeNetProcessor(ProcessorBase):
         company_id: str = "",
         sync_run_id: str = "",
         sandbox: bool = False,
+        workspace_id: str = None,
         **kwargs
     ):
         """
@@ -163,7 +163,14 @@ class AuthorizeNetProcessor(ProcessorBase):
             company_id: Charles company ID (for canonical model)
             sync_run_id: Current sync run ID (for logging correlation)
             sandbox: If True, use sandbox API endpoint
+            workspace_id: Explicit workspace scope (required)
         """
+        if not workspace_id:
+            raise ValueError(
+                "workspace_id is required for AuthorizeNetProcessor. "
+                "Caller must provide explicit workspace scope."
+            )
+
         self.api_login_id = api_key
         self.transaction_key = transaction_key or kwargs.get('transaction_key', '')
         self.company_id = company_id
@@ -171,7 +178,6 @@ class AuthorizeNetProcessor(ProcessorBase):
         self.api_url = self.SANDBOX_URL if sandbox else self.PRODUCTION_URL
 
         # Initialize structured logger per MINIMUM_LOGGING_CONTRACT
-        workspace_id = get_workspace_id_from_company_id(company_id) or company_id
         self.workspace_id = workspace_id
         self.logger = get_logger(
             service="authorize_net_processor",

@@ -1,0 +1,1720 @@
+=== workspace_id ===
+apps/charles/domain/canonical_facts.py:55:    workspace_id: str,
+apps/charles/domain/canonical_facts.py:65:    - ID is derived EXACTLY as: SHA256(workspace_id | processor | processor_transaction_id | event_type)
+apps/charles/domain/canonical_facts.py:73:        workspace_id: Workspace identifier
+apps/charles/domain/canonical_facts.py:82:    key_string = f"{workspace_id}|{processor}|{processor_transaction_id}|{event_type}"
+apps/charles/domain/canonical_facts.py:97:    workspace_id: str
+apps/charles/domain/canonical_facts.py:122:    workspace_id: str,
+apps/charles/domain/canonical_facts.py:135:    - CE-06 (Deterministic): ID is SHA256(workspace_id|processor|processor_transaction_id|event_type)
+apps/charles/domain/canonical_facts.py:141:        workspace_id: Workspace identifier
+apps/charles/domain/canonical_facts.py:162:        workspace_id=workspace_id,
+apps/charles/domain/canonical_facts.py:194:            workspace_id,
+apps/charles/domain/canonical_facts.py:220:        workspace_id,
+apps/charles/domain/canonical_facts.py:256:    workspace_id: str,
+apps/charles/domain/canonical_facts.py:269:    - CE-06 (Deterministic): ID is SHA256(workspace_id|processor|processor_transaction_id|event_type)
+apps/charles/domain/canonical_facts.py:275:        workspace_id: Workspace identifier
+apps/charles/domain/canonical_facts.py:296:        workspace_id=workspace_id,
+apps/charles/domain/canonical_facts.py:321:            workspace_id,
+apps/charles/domain/canonical_facts.py:347:        workspace_id,
+apps/charles/domain/canonical_facts.py:384:    workspace_id: str,
+apps/charles/domain/canonical_facts.py:394:        workspace_id: Workspace identifier
+apps/charles/domain/canonical_facts.py:402:        WHERE workspace_id = ? AND processor_payout_id = ?
+apps/charles/domain/canonical_facts.py:404:    """, (workspace_id, processor_payout_id))
+apps/charles/domain/authorize_net_processor.py:81:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/domain/authorize_net_processor.py:174:        workspace_id = get_workspace_id_from_company_id(company_id) or company_id
+apps/charles/domain/authorize_net_processor.py:175:        self.workspace_id = workspace_id
+apps/charles/domain/authorize_net_processor.py:178:            workspace_id=workspace_id,
+apps/charles/domain/authorize_net_processor.py:314:                            self.workspace_id,
+apps/charles/domain/authorize_net_processor.py:320:                            self.workspace_id,
+apps/charles/domain/canonical_events.py:109:    workspace_id: str
+apps/charles/domain/canonical_events.py:173:    workspace_id: str,
+apps/charles/domain/canonical_events.py:184:    - workspace_id (data isolation)
+apps/charles/domain/canonical_events.py:190:        workspace_id: Workspace identifier
+apps/charles/domain/canonical_events.py:201:        workspace_id,
+apps/charles/domain/canonical_events.py:229:    def __init__(self, workspace_id: str, processor: str):
+apps/charles/domain/canonical_events.py:234:            workspace_id: Workspace identifier for data isolation
+apps/charles/domain/canonical_events.py:237:        self.workspace_id = workspace_id
+apps/charles/domain/canonical_events.py:251:        - ID is derived EXACTLY as: SHA256(workspace_id|processor|processor_transaction_id|event_type)
+apps/charles/domain/canonical_events.py:265:        key_string = f"{self.workspace_id}|{self.processor}|{processor_transaction_id}|{event_type}"
+apps/charles/domain/canonical_events.py:330:            self.workspace_id,
+apps/charles/domain/canonical_events.py:338:        # ID is SHA256(workspace_id|processor|processor_transaction_id|event_type)
+apps/charles/domain/canonical_events.py:491:            self.workspace_id,
+apps/charles/domain/canonical_events.py:608:            self.workspace_id,
+apps/charles/domain/canonical_events.py:681:            WHERE workspace_id = ?
+apps/charles/domain/canonical_events.py:684:        """, (self.workspace_id, self.processor, idempotency_key))
+apps/charles/domain/canonical_events.py:724:                workspace_id,
+apps/charles/domain/canonical_events.py:750:            self.workspace_id,
+apps/charles/domain/canonical_events.py:832:    workspace_id: str,
+apps/charles/domain/canonical_events.py:843:        workspace_id: Workspace identifier
+apps/charles/domain/canonical_events.py:851:        WHERE workspace_id = ? AND processor_payout_id = ?
+apps/charles/domain/canonical_events.py:853:    """, (workspace_id, processor_payout_id))
+apps/charles/domain/canonical_events.py:883:    workspace_id: str,
+apps/charles/domain/canonical_events.py:895:        workspace_id: Workspace identifier
+apps/charles/domain/canonical_events.py:904:        WHERE workspace_id = ?
+apps/charles/domain/canonical_events.py:908:    """, (workspace_id, processor, processor_transaction_id))
+apps/charles/domain/qbo_accounting_canonicalizer.py:86:    workspace_id: str
+apps/charles/domain/qbo_accounting_canonicalizer.py:101:            'workspace_id': self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:119:    workspace_id: str,
+apps/charles/domain/qbo_accounting_canonicalizer.py:129:    - canonical_id = SHA256(workspace_id | source_system | source_object_type | source_object_id | observation_type)
+apps/charles/domain/qbo_accounting_canonicalizer.py:134:        workspace_id: Workspace identifier
+apps/charles/domain/qbo_accounting_canonicalizer.py:144:        workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:175:    def __init__(self, workspace_id: str):
+apps/charles/domain/qbo_accounting_canonicalizer.py:180:            workspace_id: Workspace identifier for data isolation
+apps/charles/domain/qbo_accounting_canonicalizer.py:182:        self.workspace_id = workspace_id
+apps/charles/domain/qbo_accounting_canonicalizer.py:201:            workspace_id=self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:254:                workspace_id=self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:334:            workspace_id=self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:402:                workspace_id=self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:487:            workspace_id=self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:548:                workspace_id=self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:627:            workspace_id=self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:752:                workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:781:            self.workspace_id,
+apps/charles/domain/qbo_accounting_canonicalizer.py:833:    workspace_id: str,
+apps/charles/domain/qbo_accounting_canonicalizer.py:843:        workspace_id: Workspace identifier
+apps/charles/domain/qbo_accounting_canonicalizer.py:851:        WHERE workspace_id = ?
+apps/charles/domain/qbo_accounting_canonicalizer.py:855:    """, (workspace_id, source_system))
+apps/charles/domain/qbo_accounting_canonicalizer.py:862:    workspace_id: str,
+apps/charles/domain/qbo_accounting_canonicalizer.py:872:        workspace_id: Workspace identifier
+apps/charles/domain/qbo_accounting_canonicalizer.py:882:        workspace_id=workspace_id,
+apps/charles/domain/sync_manager.py:229:    workspace_id: str,
+apps/charles/domain/sync_manager.py:242:        workspace_id: Workspace for data isolation
+apps/charles/domain/sync_manager.py:257:            WHERE workspace_id = ?
+apps/charles/domain/sync_manager.py:261:        """, (workspace_id, processor_type, processor_customer_id, qbo_customer_id))
+apps/charles/domain/sync_manager.py:272:    workspace_id: str,
+apps/charles/domain/sync_manager.py:284:        workspace_id: Workspace for data isolation
+apps/charles/domain/sync_manager.py:298:            WHERE workspace_id = ?
+apps/charles/domain/sync_manager.py:301:        """, (workspace_id, processor_type, processor_customer_id))
+apps/charles/domain/sync_manager.py:312:    workspace_id: str,
+apps/charles/domain/sync_manager.py:333:        workspace_id: Workspace for data isolation
+apps/charles/domain/sync_manager.py:359:                id, workspace_id, processor_type, processor_customer_id,
+apps/charles/domain/sync_manager.py:364:            ON CONFLICT(workspace_id, processor_type, processor_customer_id, qbo_customer_id)
+apps/charles/domain/sync_manager.py:371:            workspace_id,
+apps/charles/domain/sync_manager.py:384:            f"(source={match_source}, workspace={workspace_id})"
+apps/charles/domain/sync_manager.py:442:        workspace_id: Optional[str] = None,
+apps/charles/domain/sync_manager.py:451:            workspace_id: Workspace ID for data isolation (optional)
+apps/charles/domain/sync_manager.py:456:        self.workspace_id = workspace_id
+apps/charles/domain/sync_manager.py:853:        db_conn/workspace_id, prior confirmed pairs are checked for each candidate.
+apps/charles/domain/sync_manager.py:896:        if (processor_customer_id and self.db_conn and self.workspace_id):
+apps/charles/domain/sync_manager.py:899:                workspace_id=self.workspace_id,
+apps/charles/domain/sync_manager.py:1192:        workspace_id: str = None,
+apps/charles/domain/sync_manager.py:1203:            workspace_id: Workspace ID (Phase 2+, required for data scoping)
+apps/charles/domain/sync_manager.py:1211:        self.workspace_id = workspace_id  # Phase 2: required for INSERT operations
+apps/charles/domain/sync_manager.py:1212:        self.company_id = company_id or workspace_id  # Fallback for backward compatibility
+apps/charles/domain/sync_manager.py:1221:            workspace_id=workspace_id
+apps/charles/domain/sync_manager.py:1298:                # v2 Key format: payout_sync:ws:{workspace_id}:{processor}:{processor_payout_id}
+apps/charles/domain/sync_manager.py:1304:                    workspace_id=self.workspace_id,
+apps/charles/domain/sync_manager.py:1552:                    id, workspace_id, processor, processor_payout_id,
+apps/charles/domain/sync_manager.py:1560:                self.workspace_id,  # Phase 2: workspace scoping
+apps/charles/domain/sync_manager.py:1620:                            id, workspace_id, canonical_event_id, processor_payment_id,
+apps/charles/domain/sync_manager.py:1626:                        self.workspace_id,
+apps/charles/domain/sync_manager.py:1706:            workspace_id=self.workspace_id,
+apps/charles/domain/sync_manager.py:1735:                id, workspace_id, processor, processor_event_id, event_type, event_category,
+apps/charles/domain/sync_manager.py:1741:            self.workspace_id,
+apps/charles/domain/sync_manager.py:1757:            workspace_id=self.workspace_id,
+apps/charles/domain/sync_manager.py:1827:            workspace_id=self.workspace_id,
+apps/charles/domain/sync_manager.py:1848:                id, workspace_id, processor, processor_event_id, event_type, event_category,
+apps/charles/domain/sync_manager.py:1854:            self.workspace_id,
+apps/charles/domain/sync_manager.py:1867:            workspace_id=self.workspace_id,
+apps/charles/domain/sync_manager.py:1974:                        workspace_id=self.workspace_id,
+apps/charles/domain/sync_manager.py:2013:                id, workspace_id, canonical_fact_id, processor_payment_id,
+apps/charles/domain/sync_manager.py:2019:            self.workspace_id,
+apps/charles/domain/sync_manager.py:2072:                id, workspace_id, canonical_fact_id, processor_payment_id,
+apps/charles/domain/sync_manager.py:2077:            self.workspace_id,
+apps/charles/domain/retry_coordinator.py:71:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/domain/retry_coordinator.py:107:        # Phase 5.3: Store workspace_id for observability hooks
+apps/charles/domain/retry_coordinator.py:108:        workspace_id = get_workspace_id_from_company_id(company_id) or company_id
+apps/charles/domain/retry_coordinator.py:109:        self.workspace_id = workspace_id
+apps/charles/domain/retry_coordinator.py:112:            workspace_id=workspace_id,
+apps/charles/domain/retry_coordinator.py:123:            workspace_id=workspace_id,
+apps/charles/domain/payment_matcher.py:411:                INSERT INTO matching_outcomes (id, workspace_id, canonical_fact_id, match_type, match_confidence, workflow_status)
+apps/charles/domain/payment_matcher.py:412:                VALUES (lower(hex(randomblob(16))), (SELECT workspace_id FROM canonical_facts WHERE id = ?), ?, 'unmatched', 0, 'pending')
+apps/charles/domain/payment_matcher.py:444:                INSERT INTO matching_outcomes (id, workspace_id, canonical_fact_id, processor_payment_id,
+apps/charles/domain/payment_matcher.py:446:                VALUES (lower(hex(randomblob(16))), (SELECT workspace_id FROM canonical_facts WHERE id = ?), ?, ?,
+apps/charles/domain/payment_matcher.py:505:            INSERT INTO matching_outcomes (id, workspace_id, canonical_fact_id, processor_payment_id,
+apps/charles/domain/payment_matcher.py:507:            VALUES (lower(hex(randomblob(16))), (SELECT workspace_id FROM canonical_facts WHERE id = ?), ?, ?,
+apps/charles/domain/payment_matcher.py:571:    - Uses v2 idempotency key: match_resolve:ws:{workspace_id}:{processor}:{review_id}
+apps/charles/domain/payment_matcher.py:620:    # workspace_id comes from the idempotency_manager (already validated at construction)
+apps/charles/domain/payment_matcher.py:623:        workspace_id=idempotency_manager.workspace_id,
+apps/charles/domain/payment_matcher.py:672:               mr.match_candidates, mr.workspace_id,
+apps/charles/domain/payment_matcher.py:698:    workspace_id = review_row[5]
+apps/charles/domain/payment_matcher.py:723:            INSERT INTO matching_outcomes (id, workspace_id, canonical_fact_id, processor_payment_id,
+apps/charles/domain/payment_matcher.py:735:            workspace_id,
+apps/charles/domain/payment_matcher.py:747:        if selected_qbo_payment_id and processor_customer_id and workspace_id:
+apps/charles/domain/payment_matcher.py:766:                    workspace_id=workspace_id,
+apps/charles/domain/match_payout.py:228:    def __init__(self, conn: sqlite3.Connection, workspace_id: str):
+apps/charles/domain/match_payout.py:230:        self.workspace_id = workspace_id
+apps/charles/domain/match_payout.py:386:            (id, workspace_id, initiated_by, initiated_at,
+apps/charles/domain/match_payout.py:391:            match_run_id, self.workspace_id, user_id,
+apps/charles/domain/match_payout.py:401:                (id, match_run_id, workspace_id, accounting_fact_id,
+apps/charles/domain/match_payout.py:407:                _generate_id(), match_run_id, self.workspace_id,
+apps/charles/domain/match_payout.py:437:            SELECT id, workspace_id, event_type, source_object_type,
+apps/charles/domain/match_payout.py:443:            WHERE workspace_id = ?
+apps/charles/domain/match_payout.py:446:        """, (self.workspace_id,))
+apps/charles/domain/match_payout.py:453:            SELECT id, workspace_id, event_type, source_object_type,
+apps/charles/domain/match_payout.py:458:            WHERE workspace_id = ?
+apps/charles/domain/match_payout.py:461:        """, (self.workspace_id,))
+apps/charles/domain/match_payout.py:467:            SELECT id, workspace_id, event_type, source_object_type,
+apps/charles/domain/match_payout.py:472:            WHERE workspace_id = ?
+apps/charles/domain/match_payout.py:475:        """, (self.workspace_id,))
+apps/charles/domain/match_payout.py:492:            WHERE workspace_id = ?
+apps/charles/domain/match_payout.py:495:        """, (self.workspace_id,))
+apps/charles/domain/match_payout.py:511:            WHERE workspace_id = ?
+apps/charles/domain/match_payout.py:514:        """, (self.workspace_id,))
+apps/charles/domain/match_payout.py:1013:        workspace_id: str,
+apps/charles/domain/match_payout.py:1034:            (id, match_run_id, workspace_id, ach_batch_id,
+apps/charles/domain/match_payout.py:1038:            intent_id, match_run_id, workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:116:        workspace_id: str,
+apps/charles/domain/processors/raw_data_persistence.py:125:            workspace_id: Workspace identifier for isolation
+apps/charles/domain/processors/raw_data_persistence.py:130:        self.workspace_id = workspace_id
+apps/charles/domain/processors/raw_data_persistence.py:179:                workspace_id=self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:192:                workspace_id=self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:216:                    workspace_id=self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:231:                    workspace_id=self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:245:                    workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:258:                self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:281:                workspace_id=self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:303:                workspace_id=self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:321:                workspace_id=self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:338:        Per §4.1: duplicate if same workspace_id + processor + object_type +
+apps/charles/domain/processors/raw_data_persistence.py:346:            WHERE workspace_id = ?
+apps/charles/domain/processors/raw_data_persistence.py:352:            self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:380:                WHERE workspace_id = ?
+apps/charles/domain/processors/raw_data_persistence.py:386:                self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:428:                WHERE workspace_id = ?
+apps/charles/domain/processors/raw_data_persistence.py:434:                self.workspace_id,
+apps/charles/domain/processors/raw_data_persistence.py:477:                WHERE workspace_id = ?
+apps/charles/domain/processors/raw_data_persistence.py:484:                self.workspace_id,
+apps/charles/domain/processors/stripe_pull.py:100:        - workspace_id: Workspace identifier for metrics (immutable)
+apps/charles/domain/processors/stripe_pull.py:127:        'workspace_id',
+apps/charles/domain/processors/stripe_pull.py:138:        workspace_id: str = "",
+apps/charles/domain/processors/stripe_pull.py:148:            workspace_id: Workspace ID for metrics
+apps/charles/domain/processors/stripe_pull.py:159:        object.__setattr__(self, 'workspace_id', workspace_id)
+apps/charles/domain/processors/stripe_pull.py:166:        if db_path and sync_run_id and workspace_id:
+apps/charles/domain/processors/stripe_pull.py:169:                workspace_id=workspace_id,
+apps/charles/domain/processors/stripe_pull.py:248:                        self.workspace_id,
+apps/charles/domain/processors/stripe_pull.py:254:                        self.workspace_id,
+apps/charles/domain/processors/processor_transactions_ingestion.py:300:    workspace_id: str
+apps/charles/domain/processors/processor_transactions_ingestion.py:304:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_ingestion.py:317:        workspace_id: Workspace to backfill
+apps/charles/domain/processors/processor_transactions_ingestion.py:332:        WHERE workspace_id = ?
+apps/charles/domain/processors/processor_transactions_ingestion.py:335:    params: List = [workspace_id, processor]
+apps/charles/domain/processors/processor_transactions_ingestion.py:381:                workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_ingestion.py:402:        workspace_id=workspace_id
+apps/charles/domain/processors/processor_transactions_ingestion.py:411:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_ingestion.py:422:        workspace_id: Workspace ID
+apps/charles/domain/processors/processor_transactions_ingestion.py:435:        WHERE id = ? AND workspace_id = ?
+apps/charles/domain/processors/processor_transactions_ingestion.py:436:    """, (raw_event_id, workspace_id))
+apps/charles/domain/processors/processor_transactions_ingestion.py:467:            workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_ingestion.py:488:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_ingestion.py:507:                workspace_id,
+apps/charles/domain/processors/processor_transactions_ingestion.py:526:            workspace_id,
+apps/charles/domain/processors/processor_transactions_ingestion.py:552:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_ingestion.py:561:        workspace_id: Workspace to backfill
+apps/charles/domain/processors/processor_transactions_ingestion.py:573:            workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:84:    workspace_id: str
+apps/charles/domain/processors/processor_transactions_sync.py:98:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:110:        workspace_id: Workspace to sync
+apps/charles/domain/processors/processor_transactions_sync.py:178:                result = _insert_stripe_charge(cursor, workspace_id, charge)
+apps/charles/domain/processors/processor_transactions_sync.py:220:                result = _insert_stripe_refund_direct(cursor, workspace_id, refund)
+apps/charles/domain/processors/processor_transactions_sync.py:236:            workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:247:            workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:259:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:292:                id, workspace_id, processor, processor_transaction_id,
+apps/charles/domain/processors/processor_transactions_sync.py:299:            workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:325:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:346:                id, workspace_id, processor, processor_transaction_id,
+apps/charles/domain/processors/processor_transactions_sync.py:352:            workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:376:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:390:        workspace_id: Workspace to sync
+apps/charles/domain/processors/processor_transactions_sync.py:461:                    cursor, workspace_id, txn, batch_id, settlement_date
+apps/charles/domain/processors/processor_transactions_sync.py:471:                    cursor, workspace_id, batch, batch_total
+apps/charles/domain/processors/processor_transactions_sync.py:480:            workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:491:            workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:637:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:685:                id, workspace_id, processor, processor_transaction_id,
+apps/charles/domain/processors/processor_transactions_sync.py:692:            workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:726:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:751:                id, workspace_id, processor, processor_transaction_id,
+apps/charles/domain/processors/processor_transactions_sync.py:757:            workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:783:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:794:        workspace_id: Workspace to sync
+apps/charles/domain/processors/processor_transactions_sync.py:808:        WHERE workspace_id = ?
+apps/charles/domain/processors/processor_transactions_sync.py:809:    """, (workspace_id,))
+apps/charles/domain/processors/processor_transactions_sync.py:827:            WHERE workspace_id = ? AND processor = ?
+apps/charles/domain/processors/processor_transactions_sync.py:828:        """, (workspace_id, proc_type))
+apps/charles/domain/processors/processor_transactions_sync.py:836:                workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:862:                workspace_id=workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:873:        _update_sync_state(cursor, workspace_id, proc_type, result)
+apps/charles/domain/processors/processor_transactions_sync.py:883:    workspace_id: str,
+apps/charles/domain/processors/processor_transactions_sync.py:893:        WHERE workspace_id = ? AND processor = ?
+apps/charles/domain/processors/processor_transactions_sync.py:894:    """, (workspace_id, processor))
+apps/charles/domain/processors/processor_transactions_sync.py:907:            WHERE workspace_id = ? AND processor = ?
+apps/charles/domain/processors/processor_transactions_sync.py:915:            workspace_id,
+apps/charles/domain/processors/processor_transactions_sync.py:922:                id, workspace_id, processor, first_sync_at, last_sync_at,
+apps/charles/domain/processors/processor_transactions_sync.py:927:            workspace_id,
+apps/charles/domain/processors/stripe_replay.py:78:        'workspace_id',
+apps/charles/domain/processors/stripe_replay.py:86:        workspace_id: str,
+apps/charles/domain/processors/stripe_replay.py:95:            workspace_id: Workspace identifier for data isolation
+apps/charles/domain/processors/stripe_replay.py:101:        object.__setattr__(self, 'workspace_id', workspace_id)
+apps/charles/domain/processors/stripe_replay.py:105:            workspace_id=workspace_id,
+apps/charles/domain/processors/stripe_replay.py:155:                workspace_id=self.workspace_id,
+apps/charles/domain/processors/stripe_replay.py:169:            workspace_id=self.workspace_id,
+apps/charles/qbo/qbo_adapter.py:152:        workspace_id: str = None
+apps/charles/qbo/qbo_adapter.py:161:            workspace_id: Workspace ID (Phase 2+, required for proper scoping)
+apps/charles/qbo/qbo_adapter.py:168:        # Phase 3: Resolve workspace_id first (needed for OAuth)
+apps/charles/qbo/qbo_adapter.py:169:        if workspace_id is None:
+apps/charles/qbo/qbo_adapter.py:170:            from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/qbo/qbo_adapter.py:171:            workspace_id = get_workspace_id_from_company_id(company_id)
+apps/charles/qbo/qbo_adapter.py:173:        self.workspace_id = workspace_id
+apps/charles/qbo/qbo_adapter.py:175:        # Phase 3: Use workspace_id for OAuth (dual-mode API)
+apps/charles/qbo/qbo_adapter.py:184:            workspace_id=self.workspace_id,
+apps/charles/qbo/qbo_adapter.py:190:        # Phase 2: Use consolidated DB connection, pass workspace_id
+apps/charles/qbo/qbo_adapter.py:192:        self.idempotency = get_idempotency_manager(company_conn, company_id, workspace_id=self.workspace_id)
+apps/charles/qbo/qbo_adapter.py:217:        v2 Format: {operation_type}:ws:{workspace_id}:{processor}:{external_id}
+apps/charles/qbo/qbo_adapter.py:221:            workspace_id=self.workspace_id,
+apps/charles/qbo/qbo_adapter.py:274:                "SELECT deposit_stamp FROM payout_batches WHERE id = ? AND workspace_id = ?",
+apps/charles/qbo/qbo_adapter.py:275:                (payout_id, self.workspace_id)
+apps/charles/qbo/qbo_adapter.py:299:                   WHERE id = ? AND workspace_id = ? AND (deposit_stamp IS NULL OR deposit_stamp = '')""",
+apps/charles/qbo/qbo_adapter.py:300:                (stamp, payout_id, self.workspace_id)
+apps/charles/qbo/qbo_adapter.py:306:                "SELECT deposit_stamp FROM payout_batches WHERE id = ? AND workspace_id = ?",
+apps/charles/qbo/qbo_adapter.py:307:                (payout_id, self.workspace_id)
+apps/charles/qbo/qbo_adapter.py:331:        1. company_configuration table (legacy full config, by workspace_id)
+apps/charles/qbo/qbo_adapter.py:332:        2. processor_config table (AUTHORITATIVE - by workspace_id OR company_id)
+apps/charles/qbo/qbo_adapter.py:343:        # Phase 2: Filter by workspace_id
+apps/charles/qbo/qbo_adapter.py:345:        SELECT * FROM company_configuration WHERE workspace_id = ?
+apps/charles/qbo/qbo_adapter.py:346:        """, (self.workspace_id,))
+apps/charles/qbo/qbo_adapter.py:355:        # Try by workspace_id first, then fall back to company_id
+apps/charles/qbo/qbo_adapter.py:356:        # (handles migration period where workspace_id may be NULL)
+apps/charles/qbo/qbo_adapter.py:362:          AND (workspace_id = ? OR (workspace_id IS NULL AND company_id = ?))
+apps/charles/qbo/qbo_adapter.py:363:        ORDER BY workspace_id DESC NULLS LAST
+apps/charles/qbo/qbo_adapter.py:365:        """, (processor_type, self.workspace_id, self.company_id))
+apps/charles/qbo/qbo_adapter.py:462:                AND acct.workspace_id = cf.workspace_id
+apps/charles/qbo/qbo_adapter.py:467:        WHERE cf.processor_payout_id = ? AND cf.workspace_id = ?
+apps/charles/qbo/qbo_adapter.py:470:        """, (processor_payout_id, self.workspace_id))
+apps/charles/qbo/qbo_adapter.py:491:                AND acct.workspace_id = cf.workspace_id
+apps/charles/qbo/qbo_adapter.py:496:        WHERE cf.processor_payout_id IN ({placeholders}) AND cf.workspace_id = ?
+apps/charles/qbo/qbo_adapter.py:499:        """, (*processor_payout_ids, self.workspace_id))
+apps/charles/qbo/qbo_adapter.py:821:            # Phase 2: Include workspace_id (NOT NULL in consolidated DB schema)
+apps/charles/qbo/qbo_adapter.py:824:                    id, workspace_id, payout_batch_id, processor_payout_id, plan_type,
+apps/charles/qbo/qbo_adapter.py:829:                self.workspace_id,  # Phase 2: workspace scoping
+apps/charles/qbo/qbo_adapter.py:1126:            # Phase 2: Include workspace_id (NOT NULL in consolidated DB schema)
+apps/charles/qbo/qbo_adapter.py:1129:                    id, workspace_id, qbo_id, qbo_type, posting_plan_id, payout_batch_id,
+apps/charles/qbo/qbo_adapter.py:1135:                self.workspace_id,  # Phase 2: workspace scoping
+apps/charles/qbo/qbo_adapter.py:1187:        # Phase 2: Filter by workspace_id
+apps/charles/qbo/qbo_adapter.py:1188:        cursor.execute("SELECT processor_payout_id FROM payout_batches WHERE id = ? AND workspace_id = ?", (payout_id, self.workspace_id))
+apps/charles/qbo/qbo_adapter.py:1293:            # Phase 2: Include workspace_id (NOT NULL in consolidated DB schema)
+apps/charles/qbo/qbo_adapter.py:1297:                    id, workspace_id, qbo_id, qbo_type, posting_plan_id, payout_batch_id,
+apps/charles/qbo/qbo_adapter.py:1303:                self.workspace_id,  # Phase 2: workspace scoping
+apps/charles/qbo/qbo_adapter.py:1453:                self.workspace_id,
+apps/charles/qbo/qbo_adapter.py:1459:                self.workspace_id,
+apps/charles/qbo/qbo_adapter.py:1478:                self.workspace_id,
+apps/charles/qbo/qbo_adapter.py:1524:        # Phase 2: Filter by workspace_id
+apps/charles/qbo/qbo_adapter.py:1525:        cursor.execute("SELECT * FROM payout_batches WHERE id = ? AND workspace_id = ?", (payout_id, self.workspace_id))
+apps/charles/domain/replay/forensics.py:52:    workspace_id: str
+apps/charles/domain/replay/forensics.py:66:            'workspace_id': self.workspace_id,
+apps/charles/domain/replay/forensics.py:170:        workspace_id: str,
+apps/charles/domain/replay/forensics.py:179:            workspace_id: Workspace identifier
+apps/charles/domain/replay/forensics.py:193:            WHERE workspace_id = ?
+apps/charles/domain/replay/forensics.py:197:        """, (workspace_id, sync_run_id))
+apps/charles/domain/replay/forensics.py:216:        workspace_id: str,
+apps/charles/domain/replay/forensics.py:227:            workspace_id: Workspace identifier
+apps/charles/domain/replay/forensics.py:242:                WHERE workspace_id = ?
+apps/charles/domain/replay/forensics.py:246:            """, (workspace_id, object_type, object_id, sync_run_id))
+apps/charles/domain/replay/forensics.py:252:                WHERE workspace_id = ?
+apps/charles/domain/replay/forensics.py:257:            """, (workspace_id, object_type, object_id))
+apps/charles/domain/replay/forensics.py:267:            workspace_id=row['workspace_id'],
+apps/charles/domain/replay/forensics.py:281:        workspace_id: str,
+apps/charles/domain/replay/forensics.py:291:            workspace_id: Workspace identifier
+apps/charles/domain/replay/forensics.py:304:            WHERE workspace_id = ?
+apps/charles/domain/replay/forensics.py:308:        """, (workspace_id, object_type, object_id))
+apps/charles/domain/replay/forensics.py:324:        workspace_id: str,
+apps/charles/domain/replay/forensics.py:337:            workspace_id: Workspace identifier
+apps/charles/domain/replay/forensics.py:352:            WHERE workspace_id = ?
+apps/charles/domain/replay/forensics.py:355:        """, (workspace_id, processor_payment_id))
+apps/charles/domain/replay/forensics.py:369:            workspace_id, 'charge', processor_payment_id, sync_run_id
+apps/charles/domain/replay/forensics.py:376:                workspace_id, 'payout', payout_id, sync_run_id
+apps/charles/domain/replay/forensics.py:383:                workspace_id, 'customer', customer_id, sync_run_id
+apps/charles/domain/replay/forensics.py:391:        workspace_id: str,
+apps/charles/domain/replay/forensics.py:405:            workspace_id: Workspace identifier
+apps/charles/domain/replay/forensics.py:419:            workspace_id, 'payout', payout_id, sync_run_id
+apps/charles/domain/replay/forensics.py:425:            workspace_id, 'balance_transactions_list', btxn_list_id, sync_run_id
+apps/charles/domain/replay/forensics.py:458:                WHERE workspace_id = ?
+apps/charles/domain/replay/forensics.py:460:            """, [workspace_id] + trace.charge_ids)
+apps/charles/domain/replay/forensics.py:471:        workspace_id: str,
+apps/charles/domain/replay/forensics.py:480:            workspace_id: Workspace identifier
+apps/charles/domain/replay/forensics.py:486:        summaries = self.list_raw_objects(workspace_id, sync_run_id)
+apps/charles/domain/replay/forensics.py:491:        workspace_id: str,
+apps/charles/domain/replay/forensics.py:503:            workspace_id: Workspace identifier
+apps/charles/domain/replay/orchestrator.py:73:    workspace_id: str
+apps/charles/domain/replay/orchestrator.py:82:            'workspace_id': self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:95:    workspace_id: str
+apps/charles/domain/replay/orchestrator.py:121:            'workspace_id': self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:173:        workspace_id: str,
+apps/charles/domain/replay/orchestrator.py:181:            workspace_id: Workspace identifier for isolation
+apps/charles/domain/replay/orchestrator.py:185:        self.workspace_id = workspace_id
+apps/charles/domain/replay/orchestrator.py:188:            workspace_id=workspace_id,
+apps/charles/domain/replay/orchestrator.py:208:            workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:215:            self.workspace_id, sync_run_id
+apps/charles/domain/replay/orchestrator.py:234:            workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:261:            self.workspace_id, sync_run_id
+apps/charles/domain/replay/orchestrator.py:298:            workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:307:            workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:323:                self.workspace_id, sync_run_id
+apps/charles/domain/replay/orchestrator.py:329:                workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:337:                workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:367:                        workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:378:                        workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:390:                    workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:430:            workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:457:            self.workspace_id, sync_run_id
+apps/charles/domain/replay/orchestrator.py:507:                                workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:524:                                workspace_id=self.workspace_id,
+apps/charles/domain/replay/orchestrator.py:542:            WHERE workspace_id = ?
+apps/charles/domain/replay/orchestrator.py:545:        """, (self.workspace_id, sync_run_id))
+apps/charles/domain/replay/orchestrator.py:665:            WHERE ce.workspace_id = ?
+apps/charles/domain/replay/orchestrator.py:666:        """, (self.workspace_id,))
+apps/charles/domain/processor_canonicalizer.py:43:    workspace_id: str,
+apps/charles/domain/processor_canonicalizer.py:51:    canonical_id = SHA256(workspace_id | processor | transaction_type | processor_transaction_id)
+apps/charles/domain/processor_canonicalizer.py:54:        workspace_id,
+apps/charles/domain/processor_canonicalizer.py:71:    def __init__(self, workspace_id: str):
+apps/charles/domain/processor_canonicalizer.py:72:        self.workspace_id = workspace_id
+apps/charles/domain/processor_canonicalizer.py:105:            self.workspace_id, processor, transaction_type, processor_transaction_id,
+apps/charles/domain/processor_canonicalizer.py:153:                id, workspace_id, raw_event_id, processor,
+apps/charles/domain/processor_canonicalizer.py:166:            self.workspace_id,
+apps/charles/database/module2_sync/qbo_accounting_sync.py:16:- All logs include sync_run_id and workspace_id
+apps/charles/database/module2_sync/qbo_accounting_sync.py:256:    workspace_id: str,
+apps/charles/database/module2_sync/qbo_accounting_sync.py:279:        WHERE workspace_id = ? AND event_type = 'deposit_observed'
+apps/charles/database/module2_sync/qbo_accounting_sync.py:280:    """, (workspace_id,))
+apps/charles/database/module2_sync/qbo_accounting_sync.py:343:    workspace_id: str,
+apps/charles/database/module2_sync/qbo_accounting_sync.py:359:    - Logs with sync_run_id and workspace_id
+apps/charles/database/module2_sync/qbo_accounting_sync.py:363:        workspace_id: Workspace identifier for data isolation
+apps/charles/database/module2_sync/qbo_accounting_sync.py:393:        workspace_id=workspace_id,
+apps/charles/database/module2_sync/qbo_accounting_sync.py:403:        f"workspace_id={workspace_id} "
+apps/charles/database/module2_sync/qbo_accounting_sync.py:431:        canonicalizer = QBOAccountingCanonicalizer(workspace_id)
+apps/charles/database/module2_sync/qbo_accounting_sync.py:528:            workspace_id, observed_at, config,
+apps/charles/database/module2_sync/qbo_accounting_sync.py:573:            f"workspace_id={workspace_id} "
+apps/charles/database/module2_sync/qbo_accounting_sync.py:598:            f"Phase 3B accounting sync FAILED: workspace_id={workspace_id} error={e}",
+apps/charles/domain/ach_reconciliation.py:112:    workspace_id: str
+apps/charles/domain/ach_reconciliation.py:152:    def __init__(self, db_connection, workspace_id: str, company_id: str):
+apps/charles/domain/ach_reconciliation.py:158:            workspace_id: Workspace ID for scoping
+apps/charles/domain/ach_reconciliation.py:162:        self.workspace_id = workspace_id
+apps/charles/domain/ach_reconciliation.py:166:            workspace_id=workspace_id,
+apps/charles/domain/ach_reconciliation.py:208:              AND cf.workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:211:        """, (processor_payout_id, self.workspace_id))
+apps/charles/domain/ach_reconciliation.py:279:            WHERE pb.workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:289:        """, (self.workspace_id, window_start.isoformat(), deposit_date.isoformat()))
+apps/charles/domain/ach_reconciliation.py:534:            WHERE workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:537:        """, (self.workspace_id,))
+apps/charles/domain/ach_reconciliation.py:552:                workspace_id=row_dict['workspace_id'],
+apps/charles/domain/ach_reconciliation.py:593:            WHERE qbo_deposit_id = ? AND workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:594:        """, (qbo_deposit_id, self.workspace_id))
+apps/charles/domain/ach_reconciliation.py:640:                id, workspace_id, qbo_deposit_id, qbo_deposit_date,
+apps/charles/domain/ach_reconciliation.py:645:            item_id, self.workspace_id, qbo_deposit_id,
+apps/charles/domain/ach_reconciliation.py:665:            workspace_id=self.workspace_id,
+apps/charles/domain/ach_reconciliation.py:681:            WHERE id = ? AND workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:682:        """, (item_id, self.workspace_id))
+apps/charles/domain/ach_reconciliation.py:693:            workspace_id=row_dict['workspace_id'],
+apps/charles/domain/ach_reconciliation.py:772:            WHERE id = ? AND workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:781:            self.workspace_id
+apps/charles/domain/ach_reconciliation.py:787:            WHERE processor_payout_id = ? AND workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:788:        """, (selected_batch_id, self.workspace_id))
+apps/charles/domain/ach_reconciliation.py:809:            WHERE processor_payout_id = ? AND workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:814:            self.workspace_id
+apps/charles/domain/ach_reconciliation.py:824:                WHERE processor_payout_id = ? AND workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:826:        """, (now.isoformat(), selected_batch_id, self.workspace_id))
+apps/charles/domain/ach_reconciliation.py:880:            WHERE id = ? AND workspace_id = ?
+apps/charles/domain/ach_reconciliation.py:887:            self.workspace_id
+apps/charles/database/workspace_context.py:30:    workspace_id: str
+apps/charles/database/workspace_context.py:45:    workspace_id: str
+apps/charles/database/workspace_context.py:70:    workspace_id: str
+apps/charles/database/workspace_context.py:88:    workspace_id: str
+apps/charles/database/workspace_context.py:104:    workspace_id: str
+apps/charles/database/workspace_context.py:143:    - All operations scoped to workspace_id
+apps/charles/database/workspace_context.py:146:        ctx = WorkspaceContext.from_workspace_id(workspace_id, db_path)
+apps/charles/database/workspace_context.py:158:        Private constructor. Use WorkspaceContext.from_workspace_id() instead.
+apps/charles/database/workspace_context.py:181:    def from_workspace_id(cls, workspace_id: str, db_path: Optional[str] = None) -> 'WorkspaceContext':
+apps/charles/database/workspace_context.py:183:        Construct WorkspaceContext from workspace_id.
+apps/charles/database/workspace_context.py:186:            workspace_id: Workspace identifier
+apps/charles/database/workspace_context.py:204:                "SELECT * FROM workspaces WHERE workspace_id = ?",
+apps/charles/database/workspace_context.py:205:                (workspace_id,)
+apps/charles/database/workspace_context.py:209:                raise WorkspaceContextError(f"Workspace not found: {workspace_id}")
+apps/charles/database/workspace_context.py:212:                workspace_id=workspace_row['workspace_id'],
+apps/charles/database/workspace_context.py:225:                "SELECT * FROM licenses WHERE workspace_id = ?",
+apps/charles/database/workspace_context.py:226:                (workspace_id,)
+apps/charles/database/workspace_context.py:230:                raise WorkspaceContextError(f"No license found for workspace: {workspace_id}")
+apps/charles/database/workspace_context.py:234:                workspace_id=license_row['workspace_id'],
+apps/charles/database/workspace_context.py:250:    def workspace_id(self) -> str:
+apps/charles/database/workspace_context.py:252:        return self._workspace.workspace_id
+apps/charles/database/workspace_context.py:301:                    "SELECT * FROM qbo_credentials WHERE workspace_id = ? AND qbo_app_id = ? AND status = 'active'",
+apps/charles/database/workspace_context.py:302:                    (self.workspace_id, qbo_app_id)
+apps/charles/database/workspace_context.py:306:                    "SELECT * FROM qbo_credentials WHERE workspace_id = ? AND status = 'active' LIMIT 1",
+apps/charles/database/workspace_context.py:307:                    (self.workspace_id,)
+apps/charles/database/workspace_context.py:316:                workspace_id=row['workspace_id'],
+apps/charles/database/workspace_context.py:351:                    "SELECT * FROM processor_connections WHERE workspace_id = ? AND processor_type = ? AND processor_account_id = ? AND status = 'active'",
+apps/charles/database/workspace_context.py:352:                    (self.workspace_id, processor_type, processor_account_id)
+apps/charles/database/workspace_context.py:356:                    "SELECT * FROM processor_connections WHERE workspace_id = ? AND processor_type = ? AND status = 'active' LIMIT 1",
+apps/charles/database/workspace_context.py:357:                    (self.workspace_id, processor_type)
+apps/charles/database/workspace_context.py:366:                workspace_id=row['workspace_id'],
+apps/charles/database/workspace_context.py:394:                "SELECT * FROM processor_connections WHERE workspace_id = ? AND status = 'active'",
+apps/charles/database/workspace_context.py:395:                (self.workspace_id,)
+apps/charles/database/workspace_context.py:401:                    workspace_id=row['workspace_id'],
+apps/charles/database/workspace_context.py:431:                "SELECT * FROM company_configuration WHERE workspace_id = ?",
+apps/charles/database/workspace_context.py:432:                (self.workspace_id,)
+apps/charles/database/workspace_context.py:441:                workspace_id=row['workspace_id'],
+apps/charles/database/workspace_context.py:507:            f"WorkspaceContext(workspace_id={self.workspace_id}, "
+apps/charles/database/module2_database.py:56:    All queries should be workspace-scoped using workspace_id.
+apps/charles/database/module2_database.py:74:        All queries should filter by workspace_id for data isolation.
+apps/charles/database/module2_database.py:90:    def get_workspace_connection(self, workspace_id: str) -> sqlite3.Connection:
+apps/charles/database/module2_database.py:96:        Caller MUST filter queries by workspace_id.
+apps/charles/database/module2_database.py:99:            workspace_id: Workspace identifier
+apps/charles/database/module2_database.py:102:            SQLite connection (caller must scope queries by workspace_id)
+apps/charles/database/module2_database.py:111:        cursor.execute("SELECT workspace_id FROM workspaces WHERE workspace_id = ?", (workspace_id,))
+apps/charles/database/module2_database.py:116:            raise ValueError(f"Workspace {workspace_id} not found in database")
+apps/charles/database/module2_database.py:124:        DEPRECATED: Post-Phase 2, use get_workspace_connection(workspace_id) instead.
+apps/charles/database/module2_database.py:139:        cursor.execute("SELECT workspace_id FROM companies WHERE id = ?", (company_id,))
+apps/charles/database/module2_database.py:146:        # Return connection - caller should use workspace_id from companies table
+apps/charles/database/module2_database.py:224:            workspace_id TEXT NOT NULL,
+apps/charles/database/module2_database.py:459:            workspace_id TEXT NOT NULL,
+apps/charles/database/module2_database.py:505:            workspace_id TEXT NOT NULL,
+apps/charles/database/module2_database.py:515:            UNIQUE(workspace_id, processor_type, processor_customer_id, qbo_customer_id)
+apps/charles/database/module2_database.py:522:        ON confirmed_match_pairs(workspace_id, processor_type, processor_customer_id)
+apps/charles/database/module2_database.py:527:        ON confirmed_match_pairs(workspace_id, qbo_customer_id)
+apps/charles/database/module2_database.py:600:    def apply_migrations(self, company_id: str = None, workspace_id: str = None) -> None:
+apps/charles/database/module2_database.py:611:            workspace_id: Workspace ID (deprecated)
+apps/charles/database/module2_database.py:655:    logger = get_logger(service="database_startup", workspace_id="system")
+apps/charles/database/workspace_helpers.py:5:Bridge functions to help transition from company_id-based code to workspace_id-based code.
+apps/charles/database/workspace_helpers.py:10:- company_id is legacy; workspace_id is the canonical identifier
+apps/charles/database/workspace_helpers.py:21:def resolve_workspace_id(
+apps/charles/database/workspace_helpers.py:22:    workspace_id: Optional[str],
+apps/charles/database/workspace_helpers.py:29:    Per PHASE 3 REFINEMENT R1: All workspace_id resolution must use this function.
+apps/charles/database/workspace_helpers.py:33:        workspace_id: Direct workspace ID (preferred)
+apps/charles/database/workspace_helpers.py:38:        Resolved workspace_id
+apps/charles/database/workspace_helpers.py:44:        workspace_id = resolve_workspace_id(
+apps/charles/database/workspace_helpers.py:45:            workspace_id=None,
+apps/charles/database/workspace_helpers.py:50:    if workspace_id is None and company_id is None:
+apps/charles/database/workspace_helpers.py:51:        raise ValueError(f"{caller}: Must provide either workspace_id or company_id")
+apps/charles/database/workspace_helpers.py:53:    if workspace_id is None:
+apps/charles/database/workspace_helpers.py:55:        workspace_id = get_workspace_id_from_company_id(company_id)
+apps/charles/database/workspace_helpers.py:57:        if workspace_id is None:
+apps/charles/database/workspace_helpers.py:58:            raise ValueError(f"{caller}: Could not resolve workspace_id from company_id={company_id}")
+apps/charles/database/workspace_helpers.py:60:        # Emit deprecation warning (Per R1) - AFTER workspace_id resolution
+apps/charles/database/workspace_helpers.py:61:        logger = get_logger(service="workspace_helpers", workspace_id=workspace_id)
+apps/charles/database/workspace_helpers.py:64:            f"{caller} called with company_id - use workspace_id instead",
+apps/charles/database/workspace_helpers.py:70:    return workspace_id
+apps/charles/database/workspace_helpers.py:73:def get_workspace_id_from_company_id(company_id: str, db_path: Optional[str] = None) -> Optional[str]:
+apps/charles/database/workspace_helpers.py:75:    Get workspace_id for a given company_id (legacy bridge function).
+apps/charles/database/workspace_helpers.py:77:    Post-Phase 2: companies table has workspace_id FK.
+apps/charles/database/workspace_helpers.py:78:    This function allows legacy code using company_id to get the workspace_id.
+apps/charles/database/workspace_helpers.py:85:        workspace_id or None if company not found
+apps/charles/database/workspace_helpers.py:95:            "SELECT workspace_id FROM companies WHERE id = ?",
+apps/charles/database/workspace_helpers.py:99:        return row['workspace_id'] if row else None
+apps/charles/database/workspace_helpers.py:106:    Get company info including workspace_id (legacy bridge function).
+apps/charles/database/workspace_helpers.py:108:    Returns company details with workspace_id for legacy code that needs both.
+apps/charles/database/workspace_helpers.py:115:        Dict with company_id, company_name, qbo_realm_id, workspace_id or None
+apps/charles/database/workspace_helpers.py:125:            "SELECT id, company_name, qbo_realm_id, workspace_id FROM companies WHERE id = ?",
+apps/charles/database/workspace_helpers.py:136:                'workspace_id': row['workspace_id']
+apps/charles/database/workspace_helpers.py:143:def get_active_workspace_id(db_path: Optional[str] = None) -> Optional[str]:
+apps/charles/database/workspace_helpers.py:145:    Get the active workspace_id (for single-workspace systems).
+apps/charles/database/workspace_helpers.py:147:    Post-Phase 2: Returns workspace_id of the first active workspace.
+apps/charles/database/workspace_helpers.py:154:        workspace_id or None
+apps/charles/database/workspace_helpers.py:164:            "SELECT workspace_id FROM workspaces WHERE status = 'active' ORDER BY created_at ASC LIMIT 1"
+apps/charles/database/workspace_helpers.py:167:        return row['workspace_id'] if row else None
+apps/charles/database/workspace_helpers.py:172:def get_workspace_info(workspace_id: str, db_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
+apps/charles/database/workspace_helpers.py:177:        workspace_id: Workspace identifier
+apps/charles/database/workspace_helpers.py:193:                w.workspace_id,
+apps/charles/database/workspace_helpers.py:201:            JOIN licenses l ON l.workspace_id = w.workspace_id
+apps/charles/database/workspace_helpers.py:202:            WHERE w.workspace_id = ?
+apps/charles/database/workspace_helpers.py:204:            (workspace_id,)
+apps/charles/database/workspace_helpers.py:210:                'workspace_id': row['workspace_id'],
+apps/charles/shared/phase6_7_invariants.py:82:    workspace_id: str,
+apps/charles/shared/phase6_7_invariants.py:92:        workspace_id: Workspace to check
+apps/charles/shared/phase6_7_invariants.py:101:    logger = get_logger(service='invariants', workspace_id=workspace_id)
+apps/charles/shared/phase6_7_invariants.py:109:            WHERE workspace_id = ?
+apps/charles/shared/phase6_7_invariants.py:110:        """, [workspace_id]).fetchone()
+apps/charles/shared/phase6_7_invariants.py:127:            WHERE workspace_id = ?
+apps/charles/shared/phase6_7_invariants.py:129:        """, [workspace_id]).fetchone()['count']
+apps/charles/shared/phase6_7_invariants.py:134:                f"INVARIANT VIOLATION (INV-WS-1): Workspace {workspace_id} in 'running' state "
+apps/charles/shared/phase6_7_invariants.py:143:                workspace_id=workspace_id,
+apps/charles/shared/phase6_7_invariants.py:161:    workspace_id: str,
+apps/charles/shared/phase6_7_invariants.py:171:        workspace_id: Workspace to check
+apps/charles/shared/phase6_7_invariants.py:177:    logger = get_logger(service='invariants', workspace_id=workspace_id)
+apps/charles/shared/phase6_7_invariants.py:185:            WHERE workspace_id = ?
+apps/charles/shared/phase6_7_invariants.py:186:        """, [workspace_id]).fetchone()
+apps/charles/shared/phase6_7_invariants.py:201:            WHERE workspace_id = ?
+apps/charles/shared/phase6_7_invariants.py:203:        """, [workspace_id]).fetchone()['count']
+apps/charles/shared/phase6_7_invariants.py:208:                f"INVARIANT VIOLATION (INV-WS-2): Workspace {workspace_id} in '{ws_state}' state "
+apps/charles/shared/phase6_7_invariants.py:216:                workspace_id=workspace_id,
+apps/charles/shared/phase6_7_invariants.py:261:    logger = get_logger(service='invariants', workspace_id='system')
+apps/charles/shared/phase6_7_invariants.py:266:            SELECT status, claimed_by, workspace_id
+apps/charles/shared/phase6_7_invariants.py:286:        workspace_id = job_row['workspace_id']
+apps/charles/shared/phase6_7_invariants.py:295:                workspace_id=workspace_id,
+apps/charles/shared/phase6_7_invariants.py:311:                workspace_id=workspace_id,
+apps/charles/shared/phase6_7_invariants.py:356:    logger = get_logger(service='invariants', workspace_id='system')
+apps/charles/shared/phase6_7_invariants.py:455:    logger = get_logger(service='invariants', workspace_id='system')
+apps/charles/shared/phase6_7_invariants.py:460:            SELECT WS.workspace_id, WS.active_sync_run_id
+apps/charles/shared/phase6_7_invariants.py:465:                  WHERE J.workspace_id = WS.workspace_id
+apps/charles/shared/phase6_7_invariants.py:472:            orphan_ids = [row['workspace_id'] for row in orphaned_workspaces]
+apps/charles/shared/phase6_7_invariants.py:485:                orphaned_workspace_ids=orphan_ids,
+apps/charles/shared/phase6_7_invariants.py:525:    logger = get_logger(service='invariants', workspace_id='system')
+apps/charles/shared/phase6_7_invariants.py:532:            SELECT workspace_id, state, last_sync_started_at, active_sync_run_id
+apps/charles/shared/phase6_7_invariants.py:541:                workspace_id = ws_row['workspace_id']
+apps/charles/shared/phase6_7_invariants.py:546:                    f"TRIPWIRE VIOLATION (TRIPWIRE-TIMEOUT): Workspace {workspace_id} "
+apps/charles/shared/phase6_7_invariants.py:556:                    workspace_id=workspace_id,
+apps/charles/shared/phase6_7_invariants.py:586:            'orphaned_workspaces': [workspace_ids],
+apps/charles/shared/phase6_7_invariants.py:587:            'long_running_workspaces': [workspace_ids],
+apps/charles/shared/phase6_7_invariants.py:603:            SELECT WS.workspace_id
+apps/charles/shared/phase6_7_invariants.py:608:                  WHERE J.workspace_id = WS.workspace_id
+apps/charles/shared/phase6_7_invariants.py:613:        violations['orphaned_workspaces'] = [row['workspace_id'] for row in orphaned]
+apps/charles/shared/phase6_7_invariants.py:619:            SELECT workspace_id
+apps/charles/shared/phase6_7_invariants.py:626:        violations['long_running_workspaces'] = [row['workspace_id'] for row in long_running]
+apps/charles/shared/sync_lifecycle.py:30:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/shared/sync_lifecycle.py:153:        # Resolve workspace_id from company_id for logging
+apps/charles/shared/sync_lifecycle.py:154:        workspace_id = get_workspace_id_from_company_id(company_id)
+apps/charles/shared/sync_lifecycle.py:155:        if not workspace_id:
+apps/charles/shared/sync_lifecycle.py:157:            workspace_id = company_id
+apps/charles/shared/sync_lifecycle.py:158:        self.logger = get_logger(service="sync_lifecycle", workspace_id=workspace_id, company_id=company_id)
+apps/charles/shared/observability_interface.py:11:    metrics.increment_counter("sync_started", workspace_id, {"status": "started"})
+apps/charles/shared/observability_interface.py:14:    with tracer.span("workspace_sync", workspace_id):
+apps/charles/shared/observability_interface.py:18:- All instrumentation MUST include workspace_id (required parameter)
+apps/charles/shared/observability_interface.py:33:    All methods MUST include workspace_id for proper multitenancy isolation.
+apps/charles/shared/observability_interface.py:40:        workspace_id: str,
+apps/charles/shared/observability_interface.py:49:            workspace_id: Workspace ID (required for isolation)
+apps/charles/shared/observability_interface.py:60:        workspace_id: str,
+apps/charles/shared/observability_interface.py:69:            workspace_id: Workspace ID (required for isolation)
+apps/charles/shared/observability_interface.py:79:        workspace_id: str,
+apps/charles/shared/observability_interface.py:88:            workspace_id: Workspace ID (required for isolation)
+apps/charles/shared/observability_interface.py:98:    All spans MUST include workspace_id for proper multitenancy isolation.
+apps/charles/shared/observability_interface.py:106:        workspace_id: str,
+apps/charles/shared/observability_interface.py:114:            workspace_id: Workspace ID (required for isolation)
+apps/charles/shared/observability_interface.py:118:            with tracer.span("operation_name", workspace_id, {"attr": "value"}):
+apps/charles/shared/observability_interface.py:139:        workspace_id: str,
+apps/charles/shared/observability_interface.py:150:        workspace_id: str,
+apps/charles/shared/observability_interface.py:160:        workspace_id: str,
+apps/charles/shared/observability_interface.py:178:        workspace_id: str,
+apps/charles/shared/idempotency.py:16:    {operation_type}:ws:{workspace_id}:{processor}:{external_id}
+apps/charles/shared/idempotency.py:68:        manager = IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+apps/charles/shared/idempotency.py:71:        key = generate_idempotency_key_v2("deposit", workspace_id, "stripe", "po_abc123")
+apps/charles/shared/idempotency.py:98:    def __init__(self, db_connection: sqlite3.Connection, company_id: str, service: str = "idempotency", workspace_id: str = None):
+apps/charles/shared/idempotency.py:106:            workspace_id: Workspace ID (REQUIRED per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1)
+apps/charles/shared/idempotency.py:109:            ValueError: If workspace_id is None or empty (fail closed per contract)
+apps/charles/shared/idempotency.py:111:        # CONTRACT v1.1: Fail closed if workspace_id is missing
+apps/charles/shared/idempotency.py:112:        if not workspace_id or (isinstance(workspace_id, str) and workspace_id.strip() == ''):
+apps/charles/shared/idempotency.py:115:                "workspace_id is REQUIRED for IdempotencyManager"
+apps/charles/shared/idempotency.py:120:        self.workspace_id = workspace_id
+apps/charles/shared/idempotency.py:121:        self.logger = get_logger(service=service, workspace_id=workspace_id, company_id=company_id)
+apps/charles/shared/idempotency.py:127:        Phase 2+ schema includes workspace_id for multitenancy isolation.
+apps/charles/shared/idempotency.py:133:                workspace_id TEXT NOT NULL,
+apps/charles/shared/idempotency.py:144:                UNIQUE(workspace_id, processor_type, external_event_id)
+apps/charles/shared/idempotency.py:206:        # Phase 2: Filter by workspace_id for proper data isolation
+apps/charles/shared/idempotency.py:211:            WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:212:        """, (key, self.workspace_id))
+apps/charles/shared/idempotency.py:326:            WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:327:        """, (v2_key, self.workspace_id))
+apps/charles/shared/idempotency.py:345:                WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:346:            """, (legacy_key, self.workspace_id))
+apps/charles/shared/idempotency.py:455:        # Phase 2: Filter by workspace_id
+apps/charles/shared/idempotency.py:461:            WHERE idempotency_key = ? AND workspace_id = ? AND status = 'pending'
+apps/charles/shared/idempotency.py:462:        """, (self._get_timestamp(), key, self.workspace_id))
+apps/charles/shared/idempotency.py:490:            # Phase 2: Include workspace_id (NOT NULL in consolidated DB schema)
+apps/charles/shared/idempotency.py:498:                INSERT INTO idempotency_keys (idempotency_key, workspace_id, operation_type, company_id, status, created_at, processor_type, external_event_id)
+apps/charles/shared/idempotency.py:500:            """, (key, self.workspace_id, operation_type, self.company_id, now, processor_type, external_event_id))
+apps/charles/shared/idempotency.py:513:            # Phase 2: Filter by workspace_id
+apps/charles/shared/idempotency.py:522:                WHERE idempotency_key = ? AND workspace_id = ? AND status = 'failed'
+apps/charles/shared/idempotency.py:523:            """, (now, key, self.workspace_id))
+apps/charles/shared/idempotency.py:560:        # Phase 2: Filter by workspace_id
+apps/charles/shared/idempotency.py:562:            SELECT status FROM idempotency_keys WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:563:        """, (key, self.workspace_id))
+apps/charles/shared/idempotency.py:577:        # Phase 2: Filter by workspace_id
+apps/charles/shared/idempotency.py:584:            WHERE idempotency_key = ? AND workspace_id = ? AND status = 'pending'
+apps/charles/shared/idempotency.py:585:        """, (result_id, result_data_str, now, key, self.workspace_id))
+apps/charles/shared/idempotency.py:612:        # Phase 2: Filter by workspace_id
+apps/charles/shared/idempotency.py:618:            WHERE idempotency_key = ? AND workspace_id = ? AND status = 'pending'
+apps/charles/shared/idempotency.py:619:        """, (error_message, now, key, self.workspace_id))
+apps/charles/shared/idempotency.py:648:        # Phase 2: Filter by workspace_id to only clean this workspace's operations
+apps/charles/shared/idempotency.py:654:            WHERE workspace_id = ? AND status = 'pending' AND created_at < ?
+apps/charles/shared/idempotency.py:655:        """, (self._get_timestamp(), self.workspace_id, threshold_str))
+apps/charles/shared/idempotency.py:674:    workspace_id: str
+apps/charles/shared/idempotency.py:682:        workspace_id: Workspace ID (REQUIRED per CONTRACT v1.1)
+apps/charles/shared/idempotency.py:688:        ValueError: If workspace_id is None or empty (fail closed per contract)
+apps/charles/shared/idempotency.py:690:    return IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+apps/charles/shared/idempotency.py:712:        Use :func:`generate_idempotency_key_v2` instead, which requires workspace_id
+apps/charles/shared/idempotency.py:720:    workspace_id: str,
+apps/charles/shared/idempotency.py:727:    Format: {operation_type}:ws:{workspace_id}:{processor}:{external_id}
+apps/charles/shared/idempotency.py:733:        workspace_id: Workspace ID (canonical scope) - REQUIRED, fails if empty
+apps/charles/shared/idempotency.py:741:        ValueError: If workspace_id is None or empty (fail closed per contract)
+apps/charles/shared/idempotency.py:747:    if not workspace_id or (isinstance(workspace_id, str) and workspace_id.strip() == ''):
+apps/charles/shared/idempotency.py:750:            "workspace_id is REQUIRED for idempotency key generation"
+apps/charles/shared/idempotency.py:759:    return f"{operation_type}:ws:{workspace_id}:{processor}:{external_id}"
+apps/charles/shared/idempotency.py:791:    - v2: {operation}:ws:{workspace_id}:{processor}:{external_id}
+apps/charles/shared/idempotency_guard.py:36:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/shared/idempotency_guard.py:129:            # Phase 5.1: Resolve workspace_id for logging
+apps/charles/shared/idempotency_guard.py:130:            workspace_id = get_workspace_id_from_company_id(company_id) or company_id
+apps/charles/shared/idempotency_guard.py:133:                workspace_id=workspace_id,
+apps/charles/shared/idempotency_guard.py:180:                workspace_id=workspace_id,
+apps/charles/shared/job_queue.py:15:  - Phase 5: Multitenancy (workspace_id required)
+apps/charles/shared/job_queue.py:70:    workspace_id: str
+apps/charles/shared/job_queue.py:105:            workspace_id=row['workspace_id'],
+apps/charles/shared/job_queue.py:173:        workspace_id: str,
+apps/charles/shared/job_queue.py:186:            workspace_id: Workspace identifier (multitenancy isolation)
+apps/charles/shared/job_queue.py:219:        logger = get_logger(service='job_queue', workspace_id=workspace_id)
+apps/charles/shared/job_queue.py:249:            WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:250:        """, [workspace_id]).fetchone()['next_priority']
+apps/charles/shared/job_queue.py:258:                        job_id, workspace_id, status, priority, scheduled_at,
+apps/charles/shared/job_queue.py:264:                    workspace_id,
+apps/charles/shared/job_queue.py:280:                        job_id, workspace_id, status, priority, scheduled_at,
+apps/charles/shared/job_queue.py:285:                    workspace_id,
+apps/charles/shared/job_queue.py:298:            metrics.increment('charles_jobs_total', tags={'workspace_id': workspace_id, 'status': JobStatus.QUEUED.value})
+apps/charles/shared/job_queue.py:303:                f"Job enqueued for workspace {workspace_id}",
+apps/charles/shared/job_queue.py:318:                WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:322:            """, [workspace_id]).fetchone()
+apps/charles/shared/job_queue.py:328:                f"Job enqueue failed: active job already exists for workspace {workspace_id}",
+apps/charles/shared/job_queue.py:329:                workspace_id=workspace_id,
+apps/charles/shared/job_queue.py:335:                f"Job already active for workspace {workspace_id}: {existing_job_id}"
+apps/charles/shared/job_queue.py:375:        logger = get_logger(service='job_queue', workspace_id='system')
+apps/charles/shared/job_queue.py:387:                    SELECT j.job_id, j.workspace_id, j.priority, j.scheduled_at
+apps/charles/shared/job_queue.py:393:                           WHERE workspace_id = j.workspace_id
+apps/charles/shared/job_queue.py:420:                    SELECT j.job_id, j.workspace_id, j.priority, j.scheduled_at
+apps/charles/shared/job_queue.py:425:                           WHERE workspace_id = j.workspace_id
+apps/charles/shared/job_queue.py:460:                            tags={'workspace_id': job.workspace_id})
+apps/charles/shared/job_queue.py:463:            workspace_logger = get_logger(service='job_queue', workspace_id=job.workspace_id)
+apps/charles/shared/job_queue.py:497:        # Get job to retrieve workspace_id for logger
+apps/charles/shared/job_queue.py:502:        logger = get_logger(service='job_queue', workspace_id=job.workspace_id)
+apps/charles/shared/job_queue.py:526:        self._check_concurrency_invariant(job.workspace_id)
+apps/charles/shared/job_queue.py:547:        # Get job to retrieve workspace_id for logger
+apps/charles/shared/job_queue.py:552:        logger = get_logger(service='job_queue', workspace_id=job.workspace_id)
+apps/charles/shared/job_queue.py:573:                        tags={'workspace_id': job.workspace_id, 'status': JobStatus.COMPLETED.value})
+apps/charles/shared/job_queue.py:581:                            tags={'workspace_id': job.workspace_id, 'status': JobStatus.COMPLETED.value})
+apps/charles/shared/job_queue.py:595:            job.workspace_id,
+apps/charles/shared/job_queue.py:612:        # Get job to retrieve workspace_id for logger
+apps/charles/shared/job_queue.py:617:        logger = get_logger(service='job_queue', workspace_id=job.workspace_id)
+apps/charles/shared/job_queue.py:640:                        tags={'workspace_id': job.workspace_id, 'status': JobStatus.FAILED.value})
+apps/charles/shared/job_queue.py:656:            job.workspace_id,
+apps/charles/shared/job_queue.py:713:        # Get failed job details - will use job.workspace_id for logger below
+apps/charles/shared/job_queue.py:723:        logger = get_logger(service='job_queue', workspace_id=job.workspace_id)
+apps/charles/shared/job_queue.py:742:            workspace_id=job.workspace_id,
+apps/charles/shared/job_queue.py:790:        logger = get_logger(service='job_queue', workspace_id='system')
+apps/charles/shared/job_queue.py:799:            SELECT job_id, workspace_id, sync_run_id, retry_count, max_retries, claimed_by
+apps/charles/shared/job_queue.py:814:            workspace_id = job_row['workspace_id']
+apps/charles/shared/job_queue.py:865:                            WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:866:                        """, [workspace_id])  # REMOVED: AND active_sync_run_id = ? condition
+apps/charles/shared/job_queue.py:892:                        workspace_id=workspace_id,
+apps/charles/shared/job_queue.py:937:                            WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:938:                        """, [workspace_id])  # REMOVED: AND active_sync_run_id = ? condition
+apps/charles/shared/job_queue.py:962:                        workspace_id=workspace_id,
+apps/charles/shared/job_queue.py:981:                SELECT L.sync_run_id, L.workspace_id
+apps/charles/shared/job_queue.py:995:            workspace_id = lock_row['workspace_id']
+apps/charles/shared/job_queue.py:1009:                WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:1011:            """, [workspace_id, sync_run_id])
+apps/charles/shared/job_queue.py:1031:                workspace_id=workspace_id
+apps/charles/shared/job_queue.py:1038:                SELECT WS.workspace_id, WS.active_sync_run_id
+apps/charles/shared/job_queue.py:1057:            workspace_id = ws_row['workspace_id']
+apps/charles/shared/job_queue.py:1066:                WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:1069:            """, [workspace_id, sync_run_id])
+apps/charles/shared/job_queue.py:1087:                f"Orphaned workspace state reconciled: workspace_id={workspace_id}",
+apps/charles/shared/job_queue.py:1088:                workspace_id=workspace_id,
+apps/charles/shared/job_queue.py:1096:                SELECT S.sync_run_id, S.workspace_id
+apps/charles/shared/job_queue.py:1115:            workspace_id = sync_row['workspace_id']
+apps/charles/shared/job_queue.py:1133:                WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:1135:            """, [workspace_id, sync_run_id])
+apps/charles/shared/job_queue.py:1145:                workspace_id=workspace_id
+apps/charles/shared/job_queue.py:1162:                SELECT WS.workspace_id, WS.active_sync_run_id
+apps/charles/shared/job_queue.py:1167:                      WHERE J.workspace_id = WS.workspace_id
+apps/charles/shared/job_queue.py:1176:            workspace_id = ws_row['workspace_id']
+apps/charles/shared/job_queue.py:1186:                WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:1188:            """, [workspace_id])
+apps/charles/shared/job_queue.py:1207:                f"Orphaned 'running' workspace reconciled (no active job): workspace_id={workspace_id}",
+apps/charles/shared/job_queue.py:1208:                workspace_id=workspace_id,
+apps/charles/shared/job_queue.py:1306:                SELECT workspace_id, COUNT(*) as count
+apps/charles/shared/job_queue.py:1309:                GROUP BY workspace_id
+apps/charles/shared/job_queue.py:1314:                            tags={'workspace_id': row['workspace_id']})
+apps/charles/shared/job_queue.py:1320:    def _check_concurrency_invariant(self, workspace_id: str):
+apps/charles/shared/job_queue.py:1328:            workspace_id: Workspace to check
+apps/charles/shared/job_queue.py:1337:                WHERE workspace_id = ?
+apps/charles/shared/job_queue.py:1339:            """, [workspace_id, JobStatus.RUNNING.value]).fetchone()['count']
+apps/charles/shared/job_queue.py:1344:                logger = get_logger(service='job_queue', workspace_id=workspace_id)
+apps/charles/shared/job_queue.py:1347:                    f"INVARIANT VIOLATION: {count} RUNNING jobs for workspace {workspace_id}",
+apps/charles/shared/job_queue.py:1348:                    workspace_id=workspace_id,
+apps/charles/shared/job_queue.py:1354:                                tags={'workspace_id': workspace_id})
+apps/charles/shared/metrics.py:255:        # Build Prometheus labels: status="COMPLETED",workspace_id="ws_test"
+apps/charles/shared/structured_logging.py:13:- workspace_id: Workspace identifier (REQUIRED per Multitenancy Contract v1.0)
+apps/charles/shared/structured_logging.py:208:        logger = StructuredLogger(service="module3_qbo_integration", workspace_id="workspace_abc123")
+apps/charles/shared/structured_logging.py:221:        workspace_id: str,
+apps/charles/shared/structured_logging.py:231:            workspace_id: Workspace identifier (REQUIRED per Multitenancy Contract v1.0)
+apps/charles/shared/structured_logging.py:237:        self.workspace_id = workspace_id
+apps/charles/shared/structured_logging.py:238:        self.company_id = company_id or workspace_id  # Fallback for backward compatibility
+apps/charles/shared/structured_logging.py:266:        - log_id, timestamp, environment, severity, event_type, service, workspace_id, company_id, message
+apps/charles/shared/structured_logging.py:277:            "workspace_id": self.workspace_id,
+apps/charles/shared/structured_logging.py:832:def get_logger(service: str, workspace_id: str, company_id: Optional[str] = None, sync_run_id: Optional[str] = None) -> StructuredLogger:
+apps/charles/shared/structured_logging.py:838:        workspace_id: Workspace identifier (REQUIRED per Multitenancy Contract v1.0)
+apps/charles/shared/structured_logging.py:847:        workspace_id=workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:10:- Maps workspace_id → company_id at orchestration boundary
+apps/charles/shared/workspace_sync_orchestrator.py:18:- Migrate sync_runs table from company_id to workspace_id
+apps/charles/shared/workspace_sync_orchestrator.py:56:    workspace_id: str
+apps/charles/shared/workspace_sync_orchestrator.py:92:        orchestrator = WorkspaceSyncOrchestrator(db_connection, workspace_id)
+apps/charles/shared/workspace_sync_orchestrator.py:108:        workspace_id: str,
+apps/charles/shared/workspace_sync_orchestrator.py:116:            workspace_id: Workspace identifier
+apps/charles/shared/workspace_sync_orchestrator.py:120:        self.workspace_id = workspace_id
+apps/charles/shared/workspace_sync_orchestrator.py:121:        self.logger = logger or get_logger(service="workspace_sync_orchestrator", workspace_id=workspace_id)
+apps/charles/shared/workspace_sync_orchestrator.py:131:            INSERT OR IGNORE INTO workspace_sync_state (workspace_id, state, state_updated_at)
+apps/charles/shared/workspace_sync_orchestrator.py:133:        """, (self.workspace_id,))
+apps/charles/shared/workspace_sync_orchestrator.py:171:            JOIN workspaces w ON ws.workspace_id = w.workspace_id
+apps/charles/shared/workspace_sync_orchestrator.py:172:            JOIN licenses l ON w.workspace_id = l.workspace_id
+apps/charles/shared/workspace_sync_orchestrator.py:173:            LEFT JOIN qbo_credentials qc ON w.workspace_id = qc.workspace_id AND qc.status = 'active'
+apps/charles/shared/workspace_sync_orchestrator.py:174:            WHERE ws.workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:175:        """, (self.workspace_id,))
+apps/charles/shared/workspace_sync_orchestrator.py:190:                f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:191:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:203:                    f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:204:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:215:                f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:216:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:226:                f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:227:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:238:                f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:239:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:254:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:256:            """, (self.workspace_id,)).fetchone()['count']
+apps/charles/shared/workspace_sync_orchestrator.py:262:                    f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:263:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:279:                    f"Gate 3b bypassed for workspace {self.workspace_id}: sync_jobs table not found (pre-Phase 6)",
+apps/charles/shared/workspace_sync_orchestrator.py:280:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:288:                    f"Gate 3b failed for workspace {self.workspace_id}: database error: {str(e)}",
+apps/charles/shared/workspace_sync_orchestrator.py:289:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:300:                f"Gate 3b failed for workspace {self.workspace_id}: {str(e)}",
+apps/charles/shared/workspace_sync_orchestrator.py:301:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:314:                    f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:315:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:326:                f"Sync request denied for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:327:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:342:        2. Resolve company_id from workspace_id
+apps/charles/shared/workspace_sync_orchestrator.py:364:        # Resolve company_id from workspace_id (orchestration boundary)
+apps/charles/shared/workspace_sync_orchestrator.py:368:                "SELECT id FROM companies WHERE workspace_id = ?",
+apps/charles/shared/workspace_sync_orchestrator.py:369:                (self.workspace_id,)
+apps/charles/shared/workspace_sync_orchestrator.py:373:                raise ValueError(f"No company found for workspace_id={self.workspace_id}")
+apps/charles/shared/workspace_sync_orchestrator.py:376:            raise ValueError(f"Failed to resolve company_id from workspace_id={self.workspace_id}: {e}")
+apps/charles/shared/workspace_sync_orchestrator.py:386:            WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:387:        """, (now_iso, now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:392:            f"Workspace {self.workspace_id} sync orchestration: transitioning to 'running'",
+apps/charles/shared/workspace_sync_orchestrator.py:393:            workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:407:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:408:            """, (sync_run.sync_run_id, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:413:                f"Workspace {self.workspace_id} sync started: {sync_run.sync_run_id}",
+apps/charles/shared/workspace_sync_orchestrator.py:414:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:423:                self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:437:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:438:            """, (datetime.now(timezone.utc).isoformat(), self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:443:                f"Failed to start sync for workspace {self.workspace_id}: {e}",
+apps/charles/shared/workspace_sync_orchestrator.py:444:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:505:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:507:                  now_iso, now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:511:                f"Workspace {self.workspace_id} sync completed: {sync_run_id}",
+apps/charles/shared/workspace_sync_orchestrator.py:512:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:522:                self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:559:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:561:                  gate_reason, gate_set_at, now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:565:                f"Workspace {self.workspace_id} sync failed: {sync_run_id}",
+apps/charles/shared/workspace_sync_orchestrator.py:566:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:576:                self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:597:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:598:            """, (now_iso, now_iso, terminal_state.value, now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:602:                f"Workspace {self.workspace_id} sync {terminal_state.value}: {sync_run_id}",
+apps/charles/shared/workspace_sync_orchestrator.py:603:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:635:            WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:636:        """, (self.workspace_id,))
+apps/charles/shared/workspace_sync_orchestrator.py:640:            raise ValueError(f"Workspace state not found for workspace_id={self.workspace_id}")
+apps/charles/shared/workspace_sync_orchestrator.py:670:            'workspace_id': self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:705:            WHERE workspace_id = ? AND state = 'gated'
+apps/charles/shared/workspace_sync_orchestrator.py:706:        """, (datetime.now(timezone.utc).isoformat(), self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:714:                f"Gate cleared for workspace {self.workspace_id}: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:715:                workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:737:            WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:738:        """, (reason, now_iso, now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:744:            f"Workspace {self.workspace_id} gated: {reason}",
+apps/charles/shared/workspace_sync_orchestrator.py:745:            workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:782:            WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:784:        """, (now_iso, now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:789:                SELECT state FROM workspace_sync_state WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:790:            """, (self.workspace_id,)).fetchone()
+apps/charles/shared/workspace_sync_orchestrator.py:795:                f"Cannot transition workspace {self.workspace_id} to running: "
+apps/charles/shared/workspace_sync_orchestrator.py:803:            f"Workspace {self.workspace_id} transitioned to 'running' for job {job_id}",
+apps/charles/shared/workspace_sync_orchestrator.py:804:            workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:847:                f"Cannot reconcile workspace {self.workspace_id}: "
+apps/charles/shared/workspace_sync_orchestrator.py:859:                    f"Cannot reconcile workspace {self.workspace_id}: "
+apps/charles/shared/workspace_sync_orchestrator.py:870:                    f"Cannot reconcile workspace {self.workspace_id}: "
+apps/charles/shared/workspace_sync_orchestrator.py:901:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:904:                  now_iso, now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:909:                    f"Workspace {self.workspace_id} reconciled after job {job_id} completion",
+apps/charles/shared/workspace_sync_orchestrator.py:910:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:919:                    f"Workspace {self.workspace_id} already reconciled for job {job_id} (idempotent call)",
+apps/charles/shared/workspace_sync_orchestrator.py:920:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:946:                WHERE workspace_id = ?
+apps/charles/shared/workspace_sync_orchestrator.py:949:                  now_iso, self.workspace_id))
+apps/charles/shared/workspace_sync_orchestrator.py:954:                    f"Workspace {self.workspace_id} gated after job {job_id} failure",
+apps/charles/shared/workspace_sync_orchestrator.py:955:                    workspace_id=self.workspace_id,
+apps/charles/shared/workspace_sync_orchestrator.py:964:                    f"Workspace {self.workspace_id} already reconciled for job {job_id} (idempotent call)",
+apps/charles/shared/workspace_sync_orchestrator.py:965:                    workspace_id=self.workspace_id,
+apps/charles/shared/deposit_stamp.py:299:    def __init__(self, db_connection, workspace_id: str):
+apps/charles/shared/deposit_stamp.py:305:            workspace_id: Workspace identifier
+apps/charles/shared/deposit_stamp.py:308:        self._workspace_id = workspace_id
+apps/charles/shared/deposit_stamp.py:332:            "SELECT deposit_stamp FROM payout_batches WHERE id = ? AND workspace_id = ?",
+apps/charles/shared/deposit_stamp.py:333:            (payout_batch_id, self._workspace_id)
+apps/charles/shared/deposit_stamp.py:348:               WHERE id = ? AND workspace_id = ? AND deposit_stamp IS NULL""",
+apps/charles/shared/deposit_stamp.py:349:            (stamp, payout_batch_id, self._workspace_id)
+apps/charles/shared/deposit_stamp.py:355:            "SELECT deposit_stamp FROM payout_batches WHERE id = ? AND workspace_id = ?",
+apps/charles/shared/deposit_stamp.py:356:            (payout_batch_id, self._workspace_id)
+apps/charles/shared/sync_worker.py:247:        # Logger (system-level, workspace_id set per job)
+apps/charles/shared/sync_worker.py:248:        self.logger = get_logger(service='sync_worker', workspace_id='system')
+apps/charles/shared/sync_worker.py:387:        logger = get_logger(service='sync_worker', workspace_id=job.workspace_id)
+apps/charles/shared/sync_worker.py:394:            workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:428:                        workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:457:                workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:471:                    workspace_id=job.workspace_id
+apps/charles/shared/sync_worker.py:490:                workspace_id=job.workspace_id
+apps/charles/shared/sync_worker.py:529:                    workspace_id=job.workspace_id
+apps/charles/shared/sync_worker.py:541:                workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:578:                    workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:594:                    workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:606:                    workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:623:                    workspace_id=job.workspace_id,
+apps/charles/shared/sync_worker.py:811:        - Item 15: No selective recovery (no workspace_id parameter)
+
+=== company_id ===
+apps/charles/domain/authorize_net_processor.py:81:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/domain/authorize_net_processor.py:152:        company_id: str = "",
+apps/charles/domain/authorize_net_processor.py:163:            company_id: Charles company ID (for canonical model)
+apps/charles/domain/authorize_net_processor.py:169:        self.company_id = company_id
+apps/charles/domain/authorize_net_processor.py:174:        workspace_id = get_workspace_id_from_company_id(company_id) or company_id
+apps/charles/domain/authorize_net_processor.py:179:            company_id=company_id
+apps/charles/domain/authorize_net_processor.py:644:            company_id=self.company_id,
+apps/charles/domain/authorize_net_processor.py:760:            company_id=self.company_id,
+apps/charles/domain/authorize_net_processor.py:1454:            company_id=self.company_id,
+apps/charles/domain/README.md:84:company_conn = db_manager.get_company_connection(company_id)
+apps/charles/domain/sync_manager.py:1193:        company_id: str = None
+apps/charles/domain/sync_manager.py:1204:            company_id: Company ID (for idempotency key generation)
+apps/charles/domain/sync_manager.py:1212:        self.company_id = company_id or workspace_id  # Fallback for backward compatibility
+apps/charles/domain/sync_manager.py:1220:            company_id=self.company_id,
+apps/charles/domain/sync_manager.py:1299:                # Legacy format: payout_sync:{company_id}:{processor_payout_id}
+apps/charles/domain/sync_manager.py:1311:                    company_id=self.company_id,
+apps/charles/domain/retry_coordinator.py:71:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/domain/retry_coordinator.py:89:        company_id: str = "",
+apps/charles/domain/retry_coordinator.py:99:            company_id: Charles company ID (for canonical model)
+apps/charles/domain/retry_coordinator.py:104:        self.company_id = company_id
+apps/charles/domain/retry_coordinator.py:108:        workspace_id = get_workspace_id_from_company_id(company_id) or company_id
+apps/charles/domain/retry_coordinator.py:113:            company_id=company_id
+apps/charles/domain/retry_coordinator.py:241:            company_id=self.company_id,
+apps/charles/domain/payment_matcher.py:565:    company_id: str
+apps/charles/domain/payment_matcher.py:572:    - Dual-read checks legacy key: match_resolve:{company_id}:{review_id}
+apps/charles/domain/payment_matcher.py:586:        company_id: Company ID for idempotency key generation
+apps/charles/domain/payment_matcher.py:630:        company_id=company_id,
+apps/charles/domain/ach_reconciliation.py:152:    def __init__(self, db_connection, workspace_id: str, company_id: str):
+apps/charles/domain/ach_reconciliation.py:159:            company_id: Company ID
+apps/charles/domain/ach_reconciliation.py:163:        self.company_id = company_id
+apps/charles/domain/ach_reconciliation.py:167:            company_id=company_id
+apps/charles/domain/reconciliation_engine.py:197:    company_id: str = ""                   # Charles company ID
+apps/charles/database/module2_sync/qbo_accounting_sync.py:95:    realm_id = qbo_service.company_id
+apps/charles/database/module2_sync/qbo_accounting_sync.py:229:    realm_id = qbo_service.company_id
+apps/charles/database/module2_sync/qbo_accounting_sync.py:383:    company_id = qbo_service.company_id
+apps/charles/database/module2_sync/qbo_accounting_sync.py:386:    sync_manager = get_sync_manager(db_conn, company_id)
+apps/charles/database/module2_sync/qbo_accounting_sync.py:394:        company_id=company_id,
+apps/charles/database/workspace_context.py:105:    company_id: str
+apps/charles/database/workspace_context.py:442:                company_id=row['company_id'],
+apps/charles/database/module2_database.py:120:    def get_company_connection(self, company_id: str) -> sqlite3.Connection:
+apps/charles/database/module2_database.py:127:            company_id: Company UUID (legacy companies table)
+apps/charles/database/module2_database.py:139:        cursor.execute("SELECT workspace_id FROM companies WHERE id = ?", (company_id,))
+apps/charles/database/module2_database.py:144:            raise ValueError(f"Company {company_id} not found in database")
+apps/charles/database/module2_database.py:149:    def create_company_database(self, company_id: str) -> str:
+apps/charles/database/module2_database.py:158:            company_id: Company UUID
+apps/charles/database/module2_database.py:600:    def apply_migrations(self, company_id: str = None, workspace_id: str = None) -> None:
+apps/charles/database/module2_database.py:610:            company_id: Company UUID (deprecated)
+apps/charles/qbo/qbo_adapter.py:149:        company_id: str,
+apps/charles/qbo/qbo_adapter.py:158:            company_id: Company UUID (legacy)
+apps/charles/qbo/qbo_adapter.py:163:        self.company_id = company_id
+apps/charles/qbo/qbo_adapter.py:170:            from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/qbo/qbo_adapter.py:171:            workspace_id = get_workspace_id_from_company_id(company_id)
+apps/charles/qbo/qbo_adapter.py:185:            company_id=company_id,
+apps/charles/qbo/qbo_adapter.py:192:        self.idempotency = get_idempotency_manager(company_conn, company_id, workspace_id=self.workspace_id)
+apps/charles/qbo/qbo_adapter.py:195:        self.sync_manager = get_sync_manager(company_conn, company_id)
+apps/charles/qbo/qbo_adapter.py:230:        Legacy Format: {operation_type}:{company_id}:{external_id}
+apps/charles/qbo/qbo_adapter.py:234:            company_id=self.company_id,
+apps/charles/qbo/qbo_adapter.py:242:        cursor.execute("SELECT qbo_realm_id FROM companies WHERE id = ?", (self.company_id,))
+apps/charles/qbo/qbo_adapter.py:332:        2. processor_config table (AUTHORITATIVE - by workspace_id OR company_id)
+apps/charles/qbo/qbo_adapter.py:355:        # Try by workspace_id first, then fall back to company_id
+apps/charles/qbo/qbo_adapter.py:362:          AND (workspace_id = ? OR (workspace_id IS NULL AND company_id = ?))
+apps/charles/qbo/qbo_adapter.py:365:        """, (processor_type, self.workspace_id, self.company_id))
+apps/charles/qbo/qbo_adapter.py:383:        """, (self.company_id,))
+apps/charles/qbo/qbo_adapter.py:389:            raise ConfigurationError(f"No company found with id {self.company_id}")
+apps/charles/qbo/qbo_adapter.py:399:                f"company_id={self.company_id}. Configuration should be in processor_config. "
+apps/charles/qbo/qbo_adapter.py:415:            f"Company {self.company_id} missing required QBO account configuration. "
+apps/charles/qbo/qbo_adapter.py:1033:        cursor.execute("SELECT qbo_realm_id FROM companies WHERE id = ?", (self.company_id,))
+apps/charles/database/workspace_helpers.py:5:Bridge functions to help transition from company_id-based code to workspace_id-based code.
+apps/charles/database/workspace_helpers.py:10:- company_id is legacy; workspace_id is the canonical identifier
+apps/charles/database/workspace_helpers.py:23:    company_id: Optional[str],
+apps/charles/database/workspace_helpers.py:34:        company_id: Legacy company ID (deprecated)
+apps/charles/database/workspace_helpers.py:46:            company_id="company_abc",
+apps/charles/database/workspace_helpers.py:50:    if workspace_id is None and company_id is None:
+apps/charles/database/workspace_helpers.py:51:        raise ValueError(f"{caller}: Must provide either workspace_id or company_id")
+apps/charles/database/workspace_helpers.py:55:        workspace_id = get_workspace_id_from_company_id(company_id)
+apps/charles/database/workspace_helpers.py:58:            raise ValueError(f"{caller}: Could not resolve workspace_id from company_id={company_id}")
+apps/charles/database/workspace_helpers.py:64:            f"{caller} called with company_id - use workspace_id instead",
+apps/charles/database/workspace_helpers.py:65:            company_id=company_id,
+apps/charles/database/workspace_helpers.py:73:def get_workspace_id_from_company_id(company_id: str, db_path: Optional[str] = None) -> Optional[str]:
+apps/charles/database/workspace_helpers.py:75:    Get workspace_id for a given company_id (legacy bridge function).
+apps/charles/database/workspace_helpers.py:78:    This function allows legacy code using company_id to get the workspace_id.
+apps/charles/database/workspace_helpers.py:81:        company_id: Company UUID (legacy identifier)
+apps/charles/database/workspace_helpers.py:96:            (company_id,)
+apps/charles/database/workspace_helpers.py:104:def get_company_info_with_workspace(company_id: str, db_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
+apps/charles/database/workspace_helpers.py:111:        company_id: Company UUID
+apps/charles/database/workspace_helpers.py:115:        Dict with company_id, company_name, qbo_realm_id, workspace_id or None
+apps/charles/database/workspace_helpers.py:126:            (company_id,)
+apps/charles/database/workspace_helpers.py:133:                'company_id': row['id'],  # Alias for legacy code
+apps/charles/qbo/qbo_service_interface.py:19:    def company_id(self) -> str:
+apps/charles/shared/idempotency.py:22:    {operation_type}:{company_id}:{external_id}
+apps/charles/shared/idempotency.py:68:        manager = IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+apps/charles/shared/idempotency.py:74:        legacy_key = _generate_legacy_key("deposit", company_id, "po_abc123")
+apps/charles/shared/idempotency.py:98:    def __init__(self, db_connection: sqlite3.Connection, company_id: str, service: str = "idempotency", workspace_id: str = None):
+apps/charles/shared/idempotency.py:104:            company_id: Company ID for logging and legacy compatibility
+apps/charles/shared/idempotency.py:119:        self.company_id = company_id
+apps/charles/shared/idempotency.py:121:        self.logger = get_logger(service=service, workspace_id=workspace_id, company_id=company_id)
+apps/charles/shared/idempotency.py:137:                company_id TEXT NOT NULL,
+apps/charles/shared/idempotency.py:498:                INSERT INTO idempotency_keys (idempotency_key, workspace_id, operation_type, company_id, status, created_at, processor_type, external_event_id)
+apps/charles/shared/idempotency.py:500:            """, (key, self.workspace_id, operation_type, self.company_id, now, processor_type, external_event_id))
+apps/charles/shared/idempotency.py:673:    company_id: str,
+apps/charles/shared/idempotency.py:681:        company_id: Company ID for legacy compatibility
+apps/charles/shared/idempotency.py:690:    return IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+apps/charles/shared/idempotency.py:695:    company_id: str,
+apps/charles/shared/idempotency.py:705:        company_id: Company ID (scope)
+apps/charles/shared/idempotency.py:715:    return f"{operation_type}:{company_id}:{external_id}"
+apps/charles/shared/idempotency.py:764:    company_id: str,
+apps/charles/shared/idempotency.py:773:    Format: {operation_type}:{company_id}:{external_id}
+apps/charles/shared/idempotency.py:777:        company_id: Company ID (legacy scope)
+apps/charles/shared/idempotency.py:783:    return f"{operation_type}:{company_id}:{external_id}"
+apps/charles/shared/idempotency.py:792:    - legacy: {operation}:{company_id}:{external_id}
+apps/charles/shared/idempotency_guard.py:36:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/shared/idempotency_guard.py:112:            # Get company_id from self
+apps/charles/shared/idempotency_guard.py:113:            if not hasattr(self, 'company_id'):
+apps/charles/shared/idempotency_guard.py:115:                    f"@require_idempotency decorator requires 'company_id' attribute on {self.__class__.__name__}. "
+apps/charles/shared/idempotency_guard.py:116:                    "Add 'self.company_id' to class __init__."
+apps/charles/shared/idempotency_guard.py:118:            company_id = self.company_id
+apps/charles/shared/idempotency_guard.py:130:            workspace_id = get_workspace_id_from_company_id(company_id) or company_id
+apps/charles/shared/idempotency_guard.py:134:                company_id=company_id
+apps/charles/shared/idempotency_guard.py:197:                    company_id=company_id,
+apps/charles/shared/workspace_sync_orchestrator.py:10:- Maps workspace_id → company_id at orchestration boundary
+apps/charles/shared/workspace_sync_orchestrator.py:18:- Migrate sync_runs table from company_id to workspace_id
+apps/charles/shared/workspace_sync_orchestrator.py:342:        2. Resolve company_id from workspace_id
+apps/charles/shared/workspace_sync_orchestrator.py:344:        4. Create SyncRunManager(db, company_id)
+apps/charles/shared/workspace_sync_orchestrator.py:357:            ValueError: If workspace → company_id resolution fails
+apps/charles/shared/workspace_sync_orchestrator.py:364:        # Resolve company_id from workspace_id (orchestration boundary)
+apps/charles/shared/workspace_sync_orchestrator.py:374:            company_id = row[0]
+apps/charles/shared/workspace_sync_orchestrator.py:376:            raise ValueError(f"Failed to resolve company_id from workspace_id={self.workspace_id}: {e}")
+apps/charles/shared/workspace_sync_orchestrator.py:400:            sync_manager = SyncRunManager(self.conn, company_id)
+apps/charles/shared/workspace_sync_orchestrator.py:416:                company_id=company_id
+apps/charles/shared/sync_lifecycle.py:30:from workspace_helpers import get_workspace_id_from_company_id
+apps/charles/shared/sync_lifecycle.py:105:    company_id: str
+apps/charles/shared/sync_lifecycle.py:126:        manager = SyncRunManager(db_connection, company_id)
+apps/charles/shared/sync_lifecycle.py:143:    def __init__(self, db_connection: sqlite3.Connection, company_id: str):
+apps/charles/shared/sync_lifecycle.py:149:            company_id: Company ID
+apps/charles/shared/sync_lifecycle.py:152:        self.company_id = company_id
+apps/charles/shared/sync_lifecycle.py:153:        # Resolve workspace_id from company_id for logging
+apps/charles/shared/sync_lifecycle.py:154:        workspace_id = get_workspace_id_from_company_id(company_id)
+apps/charles/shared/sync_lifecycle.py:156:            # Fallback to company_id if resolution fails (should not happen in normal operation)
+apps/charles/shared/sync_lifecycle.py:157:            workspace_id = company_id
+apps/charles/shared/sync_lifecycle.py:158:        self.logger = get_logger(service="sync_lifecycle", workspace_id=workspace_id, company_id=company_id)
+apps/charles/shared/sync_lifecycle.py:169:                company_id TEXT NOT NULL,
+apps/charles/shared/sync_lifecycle.py:188:                company_id TEXT PRIMARY KEY,
+apps/charles/shared/sync_lifecycle.py:198:            ON sync_runs(company_id, state)
+apps/charles/shared/sync_lifecycle.py:226:            WHERE company_id = ?
+apps/charles/shared/sync_lifecycle.py:227:        """, (self.company_id,))
+apps/charles/shared/sync_lifecycle.py:243:                    f"Sync already in progress for company {self.company_id}",
+apps/charles/shared/sync_lifecycle.py:252:                INSERT INTO company_sync_locks (company_id, sync_run_id, locked_at)
+apps/charles/shared/sync_lifecycle.py:254:            """, (self.company_id, sync_run_id, now))
+apps/charles/shared/sync_lifecycle.py:267:            WHERE company_id = ? AND sync_run_id = ?
+apps/charles/shared/sync_lifecycle.py:268:        """, (self.company_id, sync_run_id))
+apps/charles/shared/sync_lifecycle.py:330:                f"Sync already in progress for company {self.company_id}. "
+apps/charles/shared/sync_lifecycle.py:338:                sync_run_id, company_id, state, started_at, phase_started_at, initiation_source
+apps/charles/shared/sync_lifecycle.py:340:        """, (sync_run_id, self.company_id, SyncState.INITIATED.value, now_str, now_str, initiation_source))
+apps/charles/shared/sync_lifecycle.py:345:            company_id=self.company_id,
+apps/charles/shared/sync_lifecycle.py:367:            SELECT sync_run_id, company_id, state, started_at, phase_started_at,
+apps/charles/shared/sync_lifecycle.py:388:            company_id=row[1],
+apps/charles/shared/sync_lifecycle.py:786:            WHERE company_id = ? AND state NOT IN ({placeholders})
+apps/charles/shared/sync_lifecycle.py:787:        """, (self.company_id, *terminal_values))
+apps/charles/shared/sync_lifecycle.py:821:def get_sync_manager(db_connection: sqlite3.Connection, company_id: str) -> SyncRunManager:
+apps/charles/shared/sync_lifecycle.py:827:        company_id: Company ID
+apps/charles/shared/sync_lifecycle.py:832:    return SyncRunManager(db_connection, company_id)
+apps/charles/shared/structured_logging.py:14:- company_id: Internal company identifier (maintained for backward compatibility)
+apps/charles/shared/structured_logging.py:222:        company_id: Optional[str] = None,
+apps/charles/shared/structured_logging.py:232:            company_id: Internal company identifier (DEPRECATED, for backward compatibility)
+apps/charles/shared/structured_logging.py:238:        self.company_id = company_id or workspace_id  # Fallback for backward compatibility
+apps/charles/shared/structured_logging.py:266:        - log_id, timestamp, environment, severity, event_type, service, workspace_id, company_id, message
+apps/charles/shared/structured_logging.py:278:            "company_id": self.company_id,
+apps/charles/shared/structured_logging.py:832:def get_logger(service: str, workspace_id: str, company_id: Optional[str] = None, sync_run_id: Optional[str] = None) -> StructuredLogger:
+apps/charles/shared/structured_logging.py:839:        company_id: Internal company identifier (DEPRECATED, for backward compatibility)
+apps/charles/shared/structured_logging.py:848:        company_id=company_id,
+
+=== SyncRunManager ===
+apps/charles/qbo/qbo_adapter.py:115:    SyncRunManager,
+apps/charles/database/module2_sync/qbo_accounting_sync.py:14:- Every sync run acquires a sync_run_id via SyncRunManager
+apps/charles/database/module2_sync/qbo_accounting_sync.py:44:    SyncRunManager,
+apps/charles/database/module2_sync/qbo_accounting_sync.py:357:    - Acquires a sync_run_id via SyncRunManager
+apps/charles/shared/workspace_sync_orchestrator.py:5:the existing SyncRunManager (certified Phase 3 infrastructure, LOCKED).
+apps/charles/shared/workspace_sync_orchestrator.py:15:- Modify sync_lifecycle.py (SyncRunManager is untouched)
+apps/charles/shared/workspace_sync_orchestrator.py:42:from charles.shared.sync_lifecycle import SyncRunManager, SyncRun, SyncState, TERMINAL_STATES
+apps/charles/shared/workspace_sync_orchestrator.py:344:        4. Create SyncRunManager(db, company_id)
+apps/charles/shared/workspace_sync_orchestrator.py:353:            SyncRun instance from SyncRunManager
+apps/charles/shared/workspace_sync_orchestrator.py:398:        # Delegate to SyncRunManager (LOCKED Phase 3 infrastructure)
+apps/charles/shared/workspace_sync_orchestrator.py:400:            sync_manager = SyncRunManager(self.conn, company_id)
+apps/charles/shared/workspace_sync_orchestrator.py:462:            terminal_state: Terminal state from SyncRunManager
+apps/charles/shared/sync_worker.py:7:  - Execute sync via existing SyncRunManager flow
+apps/charles/shared/sync_worker.py:171:      4. Execute sync via SyncRunManager (Phase 3 contract)
+apps/charles/shared/sync_worker.py:369:          4. Start sync (SyncRunManager.start_sync) - creates sync_run
+apps/charles/shared/sync_lifecycle.py:115:class SyncRunManager:
+apps/charles/shared/sync_lifecycle.py:126:        manager = SyncRunManager(db_connection, company_id)
+apps/charles/shared/sync_lifecycle.py:821:def get_sync_manager(db_connection: sqlite3.Connection, company_id: str) -> SyncRunManager:
+apps/charles/shared/sync_lifecycle.py:823:    Factory function to create a SyncRunManager.
+apps/charles/shared/sync_lifecycle.py:830:        Configured SyncRunManager instance
+apps/charles/shared/sync_lifecycle.py:832:    return SyncRunManager(db_connection, company_id)
+apps/charles/shared/job_queue.py:490:            sync_run_id: Sync run identifier (from SyncRunManager.start_sync())
+apps/charles/shared/job_queue.py:493:            - Called after SyncRunManager.start_sync() creates sync_run
+
+=== advisory / lock ===
+apps/charles/domain/sync_manager.py:796:        # Amount mismatch is logged as anomaly but DOES NOT block the match.
+apps/charles/domain/sync_manager.py:802:            # CRITICAL: This does NOT block the match per §4.4 and INV-ANET-06
+apps/charles/domain/sync_manager.py:1103:            # This prevents distant same-amount payments from blocking uniqueness bonus
+apps/charles/qbo/qbo_adapter.py:1784:            # This function MUST be the last operation in this try block
+apps/charles/database/module2_sync/qbo_accounting_sync.py:15:- Single-sync-per-workspace locking is respected
+apps/charles/database/module2_sync/qbo_accounting_sync.py:358:    - Respects single-sync-per-workspace locking
+apps/charles/database/module2_sync/qbo_accounting_sync.py:385:    # --- Lifecycle: Acquire sync_run_id and lock ---
+apps/charles/database/workspace_context.py:5:Per WORKSPACE_CONTEXT_CONTRACT (LOCKED):
+apps/charles/database/workspace_context.py:140:    CRITICAL CONTRACT (LOCKED):
+apps/charles/database/module2_database.py:6:Per CHARLES_MULTITENANCY_CONTRACT v1.0 (LOCKED)
+apps/charles/shared/config.py:202:                "\n\nThis is a PRODUCTION-BLOCKING error. "
+apps/charles/shared/config.py:291:        print("This is a PRODUCTION-BLOCKING error.", file=sys.stderr)
+apps/charles/shared/workspace_sync_orchestrator.py:5:the existing SyncRunManager (certified Phase 3 infrastructure, LOCKED).
+apps/charles/shared/workspace_sync_orchestrator.py:80:    - gated:    Blocked from sync (license invalid, auth failed, etc.)
+apps/charles/shared/workspace_sync_orchestrator.py:248:        # subsequent sync requests cannot bypass it by acquiring the lock first
+apps/charles/shared/workspace_sync_orchestrator.py:362:            raise RuntimeError(f"Sync blocked: {reason}")
+apps/charles/shared/workspace_sync_orchestrator.py:398:        # Delegate to SyncRunManager (LOCKED Phase 3 infrastructure)
+apps/charles/shared/workspace_sync_orchestrator.py:431:            # If lock acquisition failed, it's a concurrency issue - revert to 'ready'
+apps/charles/shared/metrics.py:7:- Non-blocking (< 10 microseconds per call)
+apps/charles/shared/metrics.py:20:from threading import Lock
+apps/charles/shared/metrics.py:44:    Non-blocking metrics collector with in-memory buffering.
+apps/charles/shared/metrics.py:47:    - All methods are non-blocking (< 10 microseconds)
+apps/charles/shared/metrics.py:49:    - Thread-safe (uses lock for buffer updates)
+apps/charles/shared/metrics.py:62:        # In-memory buffers (protected by lock)
+apps/charles/shared/metrics.py:63:        self._lock = Lock()
+apps/charles/shared/metrics.py:80:        Performance: < 10 microseconds (non-blocking)
+apps/charles/shared/metrics.py:89:            with self._lock:
+apps/charles/shared/metrics.py:109:        Performance: < 10 microseconds (non-blocking)
+apps/charles/shared/metrics.py:118:            with self._lock:
+apps/charles/shared/metrics.py:136:        Performance: < 10 microseconds (non-blocking)
+apps/charles/shared/metrics.py:145:            with self._lock:
+apps/charles/shared/metrics.py:172:        with self._lock:
+apps/charles/shared/metrics.py:206:        with self._lock:
+apps/charles/shared/sync_worker.py:374:          9. [Step 2.8] Lock cleanup in finally block
+apps/charles/shared/sync_worker.py:404:        sync_run_id = None  # Track for finally block cleanup
+apps/charles/shared/sync_worker.py:549:            # This ensures workspace unblocked and ready for next sync
+apps/charles/shared/sync_worker.py:633:                # Worker will exit cleanly (finally block ensures cleanup)
+apps/charles/shared/sync_worker.py:637:            # STEP 2.8: LOCK CLEANUP IN FINALLY BLOCK
+apps/charles/shared/sync_worker.py:646:            # No additional lock cleanup needed - database transaction handles it
+apps/charles/shared/sync_worker.py:826:                           stats['locks_reconciled'] + stats['workspaces_reconciled'] +
+apps/charles/shared/sync_worker.py:833:                    f"{stats['locks_reconciled']} locks reconciled, {stats['workspaces_reconciled']} workspaces reconciled, "
+apps/charles/shared/sync_worker.py:838:                    locks_reconciled=stats['locks_reconciled'],
+apps/charles/shared/structured_logging.py:150:    ORPHANED_LOCK_RECONCILED = "orphaned_lock_reconciled"  # Phase 6.5 Revised
+apps/charles/shared/structured_logging.py:154:    # Lock Lifecycle Events (Phase 6.6 - Observability)
+apps/charles/shared/structured_logging.py:155:    LOCK_ACQUIRED = "lock_acquired"
+apps/charles/shared/structured_logging.py:156:    LOCK_RELEASED = "lock_released"
+apps/charles/shared/structured_logging.py:157:    LOCK_ACQUISITION_FAILED = "lock_acquisition_failed"
+apps/charles/shared/structured_logging.py:199:    EXPLAINABILITY_CROSS_WORKSPACE_BLOCKED = "explainability_cross_workspace_blocked"
+apps/charles/shared/deposit_stamp.py:10:IDEMPOTENCY GUARANTEES (LOCKED):
+apps/charles/shared/error_taxonomy.py:55:    ANOMALY = "anomaly"           # Unusual but non-blocking (§5.1)
+apps/charles/shared/job_queue.py:297:            # Phase 6.6: Emit metrics AFTER commit (non-blocking, read-only)
+apps/charles/shared/job_queue.py:780:                    'locks_reconciled': count of orphaned locks deleted,
+apps/charles/shared/job_queue.py:844:                    # Lock cleanup (only if sync_run_id exists)
+apps/charles/shared/job_queue.py:846:                        # Checklist Item 7: Lock cleanup on recovery
+apps/charles/shared/job_queue.py:848:                            DELETE FROM company_sync_locks
+apps/charles/shared/job_queue.py:919:                    # Lock cleanup (only if sync_run_id exists)
+apps/charles/shared/job_queue.py:921:                        # Checklist Item 7: Lock cleanup on recovery
+apps/charles/shared/job_queue.py:923:                            DELETE FROM company_sync_locks
+apps/charles/shared/job_queue.py:973:        locks_reconciled = 0
+apps/charles/shared/job_queue.py:977:        # Phase 2A: Orphaned Lock Reconciliation (Items 19-21)
+apps/charles/shared/job_queue.py:978:        # Checklist Item 19: Orphaned locks discovered by cross-table query
+apps/charles/shared/job_queue.py:980:            orphaned_locks = cursor.execute("""
+apps/charles/shared/job_queue.py:982:                FROM company_sync_locks L
+apps/charles/shared/job_queue.py:991:            orphaned_locks = []
+apps/charles/shared/job_queue.py:993:        for lock_row in orphaned_locks:
+apps/charles/shared/job_queue.py:994:            sync_run_id = lock_row['sync_run_id']
+apps/charles/shared/job_queue.py:995:            workspace_id = lock_row['workspace_id']
+apps/charles/shared/job_queue.py:997:            # Checklist Item 20: Orphaned locks deleted within recovery cycle
+apps/charles/shared/job_queue.py:999:                DELETE FROM company_sync_locks
+apps/charles/shared/job_queue.py:1003:            # Checklist Item 21: Workspace state reset when orphaned lock cleaned up
+apps/charles/shared/job_queue.py:1026:            locks_reconciled += 1
+apps/charles/shared/job_queue.py:1028:                EventType.ORPHANED_LOCK_RECONCILED,
+apps/charles/shared/job_queue.py:1029:                f"Orphaned lock reconciled: sync_run_id={sync_run_id}",
+apps/charles/shared/job_queue.py:1048:                      SELECT 1 FROM company_sync_locks L
+apps/charles/shared/job_queue.py:1105:                      SELECT 1 FROM company_sync_locks L
+apps/charles/shared/job_queue.py:1219:            f"{locks_reconciled} locks reconciled, {workspaces_reconciled} workspaces reconciled, "
+apps/charles/shared/job_queue.py:1223:            locks_reconciled=locks_reconciled,
+apps/charles/shared/job_queue.py:1237:        if locks_reconciled > 0:
+apps/charles/shared/job_queue.py:1238:            metrics.increment('charles_recovery_locks_reconciled_total', value=locks_reconciled)
+apps/charles/shared/job_queue.py:1253:            'locks_reconciled': locks_reconciled,
+apps/charles/shared/job_queue.py:1279:    # Phase 6.6: Metrics Helpers (Read-Only, Non-Blocking)
+apps/charles/shared/job_queue.py:1287:        Non-blocking, failure-tolerant (never raises).
+apps/charles/shared/sync_lifecycle.py:85:# Lock timeout (§7.2)
+apps/charles/shared/sync_lifecycle.py:86:LOCK_TIMEOUT = timedelta(minutes=60)
+apps/charles/shared/sync_lifecycle.py:185:        # Company locks table for concurrency control (§7)
+apps/charles/shared/sync_lifecycle.py:187:            CREATE TABLE IF NOT EXISTS company_sync_locks (
+apps/charles/shared/sync_lifecycle.py:190:                locked_at TEXT NOT NULL,
+apps/charles/shared/sync_lifecycle.py:213:    def _acquire_lock(self, sync_run_id: str) -> bool:
+apps/charles/shared/sync_lifecycle.py:215:        Acquire company lock per §7.1.
+apps/charles/shared/sync_lifecycle.py:218:            True if lock acquired, False if company already has active sync
+apps/charles/shared/sync_lifecycle.py:223:        # Check for existing lock
+apps/charles/shared/sync_lifecycle.py:225:            SELECT sync_run_id, locked_at FROM company_sync_locks
+apps/charles/shared/sync_lifecycle.py:232:            existing_sync_id, locked_at_str = existing
+apps/charles/shared/sync_lifecycle.py:233:            locked_at = self._parse_timestamp(locked_at_str)
+apps/charles/shared/sync_lifecycle.py:235:            # Check if lock is stale (§7.2)
+apps/charles/shared/sync_lifecycle.py:236:            if datetime.now(timezone.utc) - locked_at > LOCK_TIMEOUT:
+apps/charles/shared/sync_lifecycle.py:237:                # Stale lock - release it and mark old sync as failed
+apps/charles/shared/sync_lifecycle.py:238:                self._release_stale_lock(existing_sync_id)
+apps/charles/shared/sync_lifecycle.py:240:                # Active lock exists
+apps/charles/shared/sync_lifecycle.py:249:        # Acquire new lock
+apps/charles/shared/sync_lifecycle.py:252:                INSERT INTO company_sync_locks (company_id, sync_run_id, locked_at)
+apps/charles/shared/sync_lifecycle.py:258:            # Race condition - another sync acquired lock
+apps/charles/shared/sync_lifecycle.py:262:    def _release_lock(self, sync_run_id: str) -> None:
+apps/charles/shared/sync_lifecycle.py:263:        """Release company lock."""
+apps/charles/shared/sync_lifecycle.py:266:            DELETE FROM company_sync_locks
+apps/charles/shared/sync_lifecycle.py:271:    def _release_stale_lock(self, stale_sync_id: str) -> None:
+apps/charles/shared/sync_lifecycle.py:272:        """Release stale lock and mark sync as failed per §8.1."""
+apps/charles/shared/sync_lifecycle.py:296:        # Release lock
+apps/charles/shared/sync_lifecycle.py:298:            DELETE FROM company_sync_locks WHERE sync_run_id = ?
+apps/charles/shared/sync_lifecycle.py:305:            f"Released stale lock for sync {stale_sync_id}",
+apps/charles/shared/sync_lifecycle.py:306:            warning_type="stale_lock_released",
+apps/charles/shared/sync_lifecycle.py:327:        # Acquire lock (§7.1)
+apps/charles/shared/sync_lifecycle.py:328:        if not self._acquire_lock(sync_run_id):
+apps/charles/shared/sync_lifecycle.py:442:            # Terminal state - set completed_at, release lock
+apps/charles/shared/sync_lifecycle.py:448:            self._release_lock(sync_run_id)
+apps/charles/shared/sync_lifecycle.py:801:            # Release any lock
+apps/charles/shared/sync_lifecycle.py:803:                DELETE FROM company_sync_locks WHERE sync_run_id = ?
+
+=== idempotency / dedup ===
+apps/charles/domain/canonical_facts.py:68:    - Idempotent replay (same transaction = same ID = INSERT fails gracefully)
+apps/charles/domain/canonical_facts.py:136:    - CE-07 (Idempotent): Duplicate inserts are safely ignored via INSERT OR IGNORE
+apps/charles/domain/canonical_facts.py:137:    - B4 remediation: DB-level idempotency enforcement
+apps/charles/domain/canonical_facts.py:180:    # CE-07 (Idempotent): Check if already exists BEFORE attempting insert
+apps/charles/domain/canonical_facts.py:181:    # This is B4 remediation - DB-level idempotency via deterministic ID + PRIMARY KEY
+apps/charles/domain/canonical_facts.py:185:            f"[CANONICAL] Idempotent skip: payment {payment.processor_payment_id} already "
+apps/charles/domain/canonical_facts.py:270:    - CE-07 (Idempotent): Duplicate inserts are safely ignored via PRIMARY KEY check
+apps/charles/domain/canonical_facts.py:271:    - B4 remediation: DB-level idempotency enforcement
+apps/charles/domain/canonical_facts.py:302:    # CE-07 (Idempotent): Check if already exists BEFORE attempting insert
+apps/charles/domain/canonical_facts.py:306:            f"[CANONICAL] Idempotent skip: refund {refund.processor_refund_id} already "
+apps/charles/domain/README.md:50:- Ensures idempotency
+apps/charles/domain/README.md:136:## Idempotency
+apps/charles/domain/README.md:138:Module 4 ensures idempotent operation:
+apps/charles/domain/canonical_events.py:16:- CE-07 (Idempotent): Re-canonicalization MUST NOT create duplicates
+apps/charles/domain/canonical_events.py:169:# IDEMPOTENCY KEY GENERATION
+apps/charles/domain/canonical_events.py:172:def generate_canonical_idempotency_key(
+apps/charles/domain/canonical_events.py:179:    Generate a deterministic idempotency key for canonical event creation.
+apps/charles/domain/canonical_events.py:181:    Per CE-07 (Idempotent): Re-canonicalization MUST NOT create duplicates.
+apps/charles/domain/canonical_events.py:183:    The idempotency key is derived from:
+apps/charles/domain/canonical_events.py:196:        SHA256 hash as idempotency key
+apps/charles/domain/canonical_events.py:226:    - Is deterministic and idempotent
+apps/charles/domain/canonical_events.py:254:        - Idempotent replay (same transaction = same ID = INSERT fails gracefully)
+apps/charles/domain/canonical_events.py:293:        2. Checks for idempotency (no duplicate creation)
+apps/charles/domain/canonical_events.py:328:        # Generate idempotency key for duplicate detection
+apps/charles/domain/canonical_events.py:329:        idempotency_key = generate_canonical_idempotency_key(
+apps/charles/domain/canonical_events.py:341:        # CE-07 (Idempotent): Check if already exists using deterministic ID
+apps/charles/domain/canonical_events.py:342:        # This is B4 remediation - DB-level idempotency via PRIMARY KEY
+apps/charles/domain/canonical_events.py:348:                f"[CANONICAL] Idempotent skip: payment {processor_payment_id} already canonicalized "
+apps/charles/domain/canonical_events.py:366:        clean_metadata['idempotency_key'] = idempotency_key
+apps/charles/domain/canonical_events.py:467:        # CE-07 (Idempotent): Check if already exists using deterministic ID
+apps/charles/domain/canonical_events.py:473:                f"[CANONICAL] Idempotent skip: refund {processor_refund_id} already canonicalized "
+apps/charles/domain/canonical_events.py:489:        # Generate idempotency key for metadata (retained for audit trail)
+apps/charles/domain/canonical_events.py:490:        idempotency_key = generate_canonical_idempotency_key(
+apps/charles/domain/canonical_events.py:499:        clean_metadata['idempotency_key'] = idempotency_key
+apps/charles/domain/canonical_events.py:584:        # CE-07 (Idempotent): Check if already exists using deterministic ID
+apps/charles/domain/canonical_events.py:590:                f"[CANONICAL] Idempotent skip: fee {processor_fee_id} already canonicalized "
+apps/charles/domain/canonical_events.py:606:        # Generate idempotency key for metadata (retained for audit trail)
+apps/charles/domain/canonical_events.py:607:        idempotency_key = generate_canonical_idempotency_key(
+apps/charles/domain/canonical_events.py:615:        clean_metadata['idempotency_key'] = idempotency_key
+apps/charles/domain/canonical_events.py:665:        idempotency_key: str,
+apps/charles/domain/canonical_events.py:668:        Check if a canonical event with this idempotency key already exists.
+apps/charles/domain/canonical_events.py:670:        Uses the metadata JSON field to check for the idempotency_key.
+apps/charles/domain/canonical_events.py:674:            idempotency_key: The idempotency key to check
+apps/charles/domain/canonical_events.py:683:              AND json_extract(metadata, '$.idempotency_key') = ?
+apps/charles/domain/canonical_events.py:684:        """, (self.workspace_id, self.processor, idempotency_key))
+apps/charles/domain/canonical_events.py:1016:    'generate_canonical_idempotency_key',
+apps/charles/domain/qbo_accounting_canonicalizer.py:15:- ACF-06 (Idempotent): Re-canonicalization MUST NOT create duplicates
+apps/charles/domain/qbo_accounting_canonicalizer.py:170:    - Is deterministic and idempotent
+apps/charles/domain/qbo_accounting_canonicalizer.py:243:        # Check for idempotency (duplicate detection)
+apps/charles/domain/qbo_accounting_canonicalizer.py:249:                f"[CANONICAL-QBO] Idempotent skip: Payment {qbo_id} already canonicalized "
+apps/charles/domain/qbo_accounting_canonicalizer.py:391:        # Check for idempotency
+apps/charles/domain/qbo_accounting_canonicalizer.py:397:                f"[CANONICAL-QBO] Idempotent skip: {refund_type} {qbo_id} already canonicalized "
+apps/charles/domain/qbo_accounting_canonicalizer.py:537:        # Check for idempotency
+apps/charles/domain/qbo_accounting_canonicalizer.py:543:                f"[CANONICAL-QBO] Idempotent skip: Deposit {qbo_id} already canonicalized "
+apps/charles/domain/sync_manager.py:35:IDEMPOTENCY RULE:
+apps/charles/domain/sync_manager.py:43:RAW EVENT IDEMPOTENCY (Option B Semantics):
+apps/charles/domain/sync_manager.py:47:    - Canonical idempotency (graceful skip) applies only at canonical_facts layer
+apps/charles/domain/sync_manager.py:75:from shared.idempotency import (
+apps/charles/domain/sync_manager.py:76:    IdempotencyManager,
+apps/charles/domain/sync_manager.py:77:    IdempotencyStatus,
+apps/charles/domain/sync_manager.py:78:    IdempotencyResult,
+apps/charles/domain/sync_manager.py:79:    generate_idempotency_key,
+apps/charles/domain/sync_manager.py:80:    generate_idempotency_key_v2,
+apps/charles/domain/sync_manager.py:82:    get_idempotency_manager
+apps/charles/domain/sync_manager.py:1182:    - Ensuring idempotency (no duplicate processing)
+apps/charles/domain/sync_manager.py:1204:            company_id: Company ID (for idempotency key generation)
+apps/charles/domain/sync_manager.py:1216:        # Phase A Compliance (A3): Initialize IdempotencyManager for payout sync
+apps/charles/domain/sync_manager.py:1218:        self.idempotency = get_idempotency_manager(
+apps/charles/domain/sync_manager.py:1285:        # Process each payout with formal idempotency guarantees
+apps/charles/domain/sync_manager.py:1295:                # PHASE A COMPLIANCE (A3): Formal Idempotency Check
+apps/charles/domain/sync_manager.py:1297:                # Generate v2 idempotency key for this payout sync operation
+apps/charles/domain/sync_manager.py:1302:                idempotency_key = generate_idempotency_key_v2(
+apps/charles/domain/sync_manager.py:1315:                # Check idempotency status with dual-read for legacy compatibility
+apps/charles/domain/sync_manager.py:1316:                idem_result = self.idempotency.check_idempotency_dual_read(
+apps/charles/domain/sync_manager.py:1317:                    v2_key=idempotency_key,
+apps/charles/domain/sync_manager.py:1321:                if idem_result.status == IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/domain/sync_manager.py:1325:                        f"(idempotency hit, result_id={idem_result.result_id})"
+apps/charles/domain/sync_manager.py:1330:                if idem_result.status == IdempotencyStatus.EXISTS_PENDING:
+apps/charles/domain/sync_manager.py:1340:                is_retry = (idem_result.status == IdempotencyStatus.EXISTS_FAILED)
+apps/charles/domain/sync_manager.py:1345:                self.idempotency.start_operation(idempotency_key, "payout_sync")
+apps/charles/domain/sync_manager.py:1378:                    # Mark idempotency operation as completed
+apps/charles/domain/sync_manager.py:1379:                    self.idempotency.complete_operation(
+apps/charles/domain/sync_manager.py:1380:                        idempotency_key,
+apps/charles/domain/sync_manager.py:1397:                    # Mark idempotency operation as failed
+apps/charles/domain/sync_manager.py:1398:                    self.idempotency.fail_operation(idempotency_key, str(e))
+apps/charles/domain/sync_manager.py:1418:        authoritative idempotency rule from the module docstring.
+apps/charles/domain/sync_manager.py:1430:        AUTHORITATIVE IDEMPOTENCY CHECK
+apps/charles/domain/sync_manager.py:1605:                    # IDEMPOTENCY PROTECTION: Match Review Creation
+apps/charles/domain/sync_manager.py:1607:                    # Protected by: Payout-level idempotency via IdempotencyManager
+apps/charles/domain/sync_manager.py:1611:                    # - If payout already synced (IdempotencyStatus.EXISTS_COMPLETED),
+apps/charles/domain/sync_manager.py:1668:    # - Are deterministic and idempotent
+apps/charles/domain/sync_manager.py:1688:        - IS deterministic and idempotent
+apps/charles/domain/sync_manager.py:1754:        # It generates the same deterministic ID and handles idempotency.
+apps/charles/domain/sync_manager.py:1809:        - IS deterministic and idempotent
+apps/charles/domain/payment_matcher.py:40:from shared.idempotency import (
+apps/charles/domain/payment_matcher.py:41:    IdempotencyManager,
+apps/charles/domain/payment_matcher.py:42:    IdempotencyStatus,
+apps/charles/domain/payment_matcher.py:43:    generate_idempotency_key,
+apps/charles/domain/payment_matcher.py:44:    generate_idempotency_key_v2,
+apps/charles/domain/payment_matcher.py:338:        IDEMPOTENCY:
+apps/charles/domain/payment_matcher.py:340:        - If yes, returns existing match (idempotent behavior)
+apps/charles/domain/payment_matcher.py:357:        # IDEMPOTENCY CHECK: Already matched?
+apps/charles/domain/payment_matcher.py:372:                self.logger.log_idempotency_hit(
+apps/charles/domain/payment_matcher.py:373:                    idempotency_key=f"match:{canonical_event_id}",
+apps/charles/domain/payment_matcher.py:563:    idempotency_manager: IdempotencyManager,
+apps/charles/domain/payment_matcher.py:570:    This function is IDEMPOTENT per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1:
+apps/charles/domain/payment_matcher.py:571:    - Uses v2 idempotency key: match_resolve:ws:{workspace_id}:{processor}:{review_id}
+apps/charles/domain/payment_matcher.py:584:        idempotency_manager: Idempotency manager for check-before-act
+apps/charles/domain/payment_matcher.py:586:        company_id: Company ID for idempotency key generation
+apps/charles/domain/payment_matcher.py:595:        - was_cached: bool (True if idempotency hit)
+apps/charles/domain/payment_matcher.py:619:    # Generate v2 idempotency key with workspace scope
+apps/charles/domain/payment_matcher.py:620:    # workspace_id comes from the idempotency_manager (already validated at construction)
+apps/charles/domain/payment_matcher.py:621:    idempotency_key = generate_idempotency_key_v2(
+apps/charles/domain/payment_matcher.py:623:        workspace_id=idempotency_manager.workspace_id,
+apps/charles/domain/payment_matcher.py:634:    # IDEMPOTENCY CHECK (v1.1 dual-read for backward compatibility)
+apps/charles/domain/payment_matcher.py:635:    idem_result = idempotency_manager.check_idempotency_dual_read(
+apps/charles/domain/payment_matcher.py:636:        v2_key=idempotency_key,
+apps/charles/domain/payment_matcher.py:640:    if idem_result.status == IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/domain/payment_matcher.py:642:        logger.log_idempotency_hit(
+apps/charles/domain/payment_matcher.py:643:            idempotency_key=idempotency_key,
+apps/charles/domain/payment_matcher.py:665:    if idem_result.status == IdempotencyStatus.EXISTS_PENDING:
+apps/charles/domain/payment_matcher.py:701:    # Start idempotency operation
+apps/charles/domain/payment_matcher.py:702:    idempotency_manager.start_operation(idempotency_key, "match_resolve")
+apps/charles/domain/payment_matcher.py:784:        # Complete idempotency operation
+apps/charles/domain/payment_matcher.py:786:        idempotency_manager.complete_operation(idempotency_key, result_id)
+apps/charles/domain/payment_matcher.py:799:        idempotency_manager.fail_operation(idempotency_key, str(e))
+apps/charles/domain/processors/processor_transactions_ingestion.py:15:- Idempotent operations - safe to re-run
+apps/charles/domain/processors/processor_transactions_ingestion.py:314:    table with normalized data. It is idempotent - safe to re-run.
+apps/charles/domain/processors/processor_transactions_ingestion.py:378:            # Insert with IGNORE for idempotency
+apps/charles/domain/processors/processor_transactions_ingestion.py:419:    Idempotent via INSERT OR IGNORE.
+apps/charles/domain/processors/processor_transactions_ingestion.py:496:    Uses INSERT OR IGNORE for idempotency.
+apps/charles/domain/processors/processor_transactions_ingestion.py:547:        # Duplicate - this is expected for idempotency
+apps/charles/domain/processors/processor_transactions_sync.py:13:- Incremental sync: cursor-based, append-only, idempotent
+apps/charles/domain/replay/orchestrator.py:28:- Idempotency collision: Continue (expected)
+apps/charles/domain/replay/orchestrator.py:503:                            # Log idempotency hit or missing data
+apps/charles/domain/replay/orchestrator.py:505:                                EventType.REPLAY_IDEMPOTENCY_HIT,
+apps/charles/domain/replay/orchestrator.py:522:                                EventType.REPLAY_IDEMPOTENCY_HIT,
+apps/charles/domain/processor_canonicalizer.py:8:- Idempotent: Re-canonicalization MUST NOT create duplicates
+apps/charles/domain/processor_canonicalizer.py:108:        # Check for duplicate (idempotency)
+apps/charles/database/module2_sync/qbo_accounting_sync.py:269:    Idempotent — uses deterministic canonical ID checks before fetching.
+apps/charles/database/module2_sync/qbo_accounting_sync.py:353:    canonical facts in a single DB transaction. Idempotent — re-running
+apps/charles/database/module2_database.py:350:            deposit_stamp TEXT,  -- CHARLES deposit stamp for QBO memo (idempotent)
+apps/charles/database/module2_database.py:420:        This migration is idempotent - safe to run multiple times.
+apps/charles/database/module2_database.py:472:            idempotency_key TEXT UNIQUE,
+apps/charles/database/module2_database.py:546:        This migration is idempotent - safe to run multiple times.
+apps/charles/qbo/qbo_adapter.py:105:from shared.idempotency import (
+apps/charles/qbo/qbo_adapter.py:106:    IdempotencyManager,
+apps/charles/qbo/qbo_adapter.py:107:    IdempotencyStatus,
+apps/charles/qbo/qbo_adapter.py:108:    IdempotencyResult,
+apps/charles/qbo/qbo_adapter.py:109:    get_idempotency_manager,
+apps/charles/qbo/qbo_adapter.py:110:    generate_idempotency_key,
+apps/charles/qbo/qbo_adapter.py:111:    generate_idempotency_key_v2,
+apps/charles/qbo/qbo_adapter.py:189:        # Initialize idempotency manager per IDEMPOTENCY_IMPLEMENTATION_CONTRACT
+apps/charles/qbo/qbo_adapter.py:192:        self.idempotency = get_idempotency_manager(company_conn, company_id, workspace_id=self.workspace_id)
+apps/charles/qbo/qbo_adapter.py:198:        # Cleanup stale pending operations (IDEMPOTENCY §10.1)
+apps/charles/qbo/qbo_adapter.py:199:        stale_idem = self.idempotency.cleanup_stale_pending()
+apps/charles/qbo/qbo_adapter.py:213:    def _get_idempotency_key(self, processor_payout_id: str, processor: str = "stripe") -> str:
+apps/charles/qbo/qbo_adapter.py:215:        Generate v2 idempotency key per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1 §4.1
+apps/charles/qbo/qbo_adapter.py:219:        return generate_idempotency_key_v2(
+apps/charles/qbo/qbo_adapter.py:226:    def _get_legacy_idempotency_key(self, processor_payout_id: str) -> str:
+apps/charles/qbo/qbo_adapter.py:228:        Generate legacy idempotency key for dual-read backward compatibility.
+apps/charles/qbo/qbo_adapter.py:253:        Get existing deposit stamp or create a new one (idempotent).
+apps/charles/qbo/qbo_adapter.py:258:        - Retry, replay, or idempotent execution MUST reuse the exact same stamp
+apps/charles/qbo/qbo_adapter.py:272:            # Check for existing stamp (idempotency)
+apps/charles/qbo/qbo_adapter.py:508:        Check if deposit already exists for this payout (idempotency)
+apps/charles/qbo/qbo_adapter.py:540:        Implements IDEMPOTENCY_IMPLEMENTATION_CONTRACT §13.2:
+apps/charles/qbo/qbo_adapter.py:1221:        idempotency_key: str,
+apps/charles/qbo/qbo_adapter.py:1240:            idempotency_key: Idempotency key for this operation
+apps/charles/qbo/qbo_adapter.py:1262:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1265:            # 1. Mark idempotency operation as completed
+apps/charles/qbo/qbo_adapter.py:1267:                UPDATE idempotency_keys
+apps/charles/qbo/qbo_adapter.py:1272:                WHERE idempotency_key = ? AND status = 'pending'
+apps/charles/qbo/qbo_adapter.py:1280:                idempotency_key
+apps/charles/qbo/qbo_adapter.py:1355:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1375:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1396:        idempotency_key: str,
+apps/charles/qbo/qbo_adapter.py:1420:            idempotency_key: Idempotency key
+apps/charles/qbo/qbo_adapter.py:1444:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1469:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1491:            idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1503:        Implements IDEMPOTENCY_IMPLEMENTATION_CONTRACT §7.1 pattern:
+apps/charles/qbo/qbo_adapter.py:1504:        1. Compute idempotency key
+apps/charles/qbo/qbo_adapter.py:1505:        2. Check idempotency status
+apps/charles/qbo/qbo_adapter.py:1536:        idempotency_key = self._get_idempotency_key(processor_payout_id, processor=processor_type)
+apps/charles/qbo/qbo_adapter.py:1537:        legacy_key = self._get_legacy_idempotency_key(processor_payout_id)
+apps/charles/qbo/qbo_adapter.py:1551:        # IDEMPOTENCY CHECK (§3.2 Check Before Act, v1.1 Dual-Read)
+apps/charles/qbo/qbo_adapter.py:1553:        idempotency_result = self.idempotency.check_idempotency_dual_read(
+apps/charles/qbo/qbo_adapter.py:1554:            v2_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1558:        if idempotency_result.status == IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/qbo/qbo_adapter.py:1560:            existing_deposit_id = idempotency_result.result_id
+apps/charles/qbo/qbo_adapter.py:1564:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1566:                reason="idempotency_hit_completed",
+apps/charles/qbo/qbo_adapter.py:1571:        if idempotency_result.status == IdempotencyStatus.EXISTS_PENDING:
+apps/charles/qbo/qbo_adapter.py:1578:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1590:                self.idempotency.complete_operation(
+apps/charles/qbo/qbo_adapter.py:1591:                    idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1609:                    idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1618:                f"Idempotency key: {idempotency_key}"
+apps/charles/qbo/qbo_adapter.py:1624:        if idempotency_result.status == IdempotencyStatus.EXISTS_FAILED:
+apps/charles/qbo/qbo_adapter.py:1631:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1643:                self.idempotency.complete_operation(
+apps/charles/qbo/qbo_adapter.py:1644:                    idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1662:                    idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1672:        self.idempotency.start_operation(idempotency_key, "deposit")
+apps/charles/qbo/qbo_adapter.py:1678:        # IDEMPOTENCY_IMPLEMENTATION_CONTRACT §3.2: Key must exist before mutation
+apps/charles/qbo/qbo_adapter.py:1679:        assert idempotency_key is not None and idempotency_key != "", \
+apps/charles/qbo/qbo_adapter.py:1680:            "IDEMPOTENCY_IMPLEMENTATION_CONTRACT violated: mutation without idempotency key"
+apps/charles/qbo/qbo_adapter.py:1709:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1713:            # Complete idempotency operation
+apps/charles/qbo/qbo_adapter.py:1714:            self.idempotency.complete_operation(
+apps/charles/qbo/qbo_adapter.py:1715:                idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1746:            # DEPOSIT STAMP GENERATION (IDEMPOTENT)
+apps/charles/qbo/qbo_adapter.py:1774:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1789:                idempotency_key=idempotency_key,
+apps/charles/qbo/qbo_adapter.py:1812:            self.idempotency.fail_operation(idempotency_key, str(e))
+apps/charles/qbo/qbo_adapter.py:1909:                idempotency_key = self._get_idempotency_key(processor_payout_id, processor=processor_type)
+apps/charles/qbo/qbo_adapter.py:1916:                    # Operation in progress (idempotency pending) - skip
+apps/charles/qbo/qbo_adapter.py:1939:                        idempotency_key=idempotency_key
+apps/charles/qbo/qbo_adapter.py:1945:                        idempotency_key=idempotency_key,
+apps/charles/shared/idempotency.py:2:Idempotency Module for Charles
+apps/charles/shared/idempotency.py:4:Implements IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1
+apps/charles/shared/idempotency.py:6:This module provides the single canonical idempotency check function and storage
+apps/charles/shared/idempotency.py:10:- Idempotency is mandatory for all external state changes
+apps/charles/shared/idempotency.py:13:- Idempotency keys are immutable once completed
+apps/charles/shared/idempotency.py:38:class IdempotencyStatus(Enum):
+apps/charles/shared/idempotency.py:40:    Idempotency check outcomes per §6.2
+apps/charles/shared/idempotency.py:49:class IdempotencyResult:
+apps/charles/shared/idempotency.py:51:    Result of idempotency check per §5.2 storage schema
+apps/charles/shared/idempotency.py:53:    status: IdempotencyStatus
+apps/charles/shared/idempotency.py:54:    idempotency_key: str
+apps/charles/shared/idempotency.py:63:class IdempotencyManager:
+apps/charles/shared/idempotency.py:65:    Manages idempotency keys and checks per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1.
+apps/charles/shared/idempotency.py:68:        manager = IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+apps/charles/shared/idempotency.py:71:        key = generate_idempotency_key_v2("deposit", workspace_id, "stripe", "po_abc123")
+apps/charles/shared/idempotency.py:73:        # Check idempotency with dual-read for legacy compatibility
+apps/charles/shared/idempotency.py:75:        result = manager.check_idempotency_dual_read(key, legacy_key)
+apps/charles/shared/idempotency.py:77:        if result.status == IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/shared/idempotency.py:80:        if result.status == IdempotencyStatus.EXISTS_PENDING:
+apps/charles/shared/idempotency.py:83:        if result.status in (IdempotencyStatus.EXISTS_FAILED, IdempotencyStatus.NOT_EXISTS):
+apps/charles/shared/idempotency.py:98:    def __init__(self, db_connection: sqlite3.Connection, company_id: str, service: str = "idempotency", workspace_id: str = None):
+apps/charles/shared/idempotency.py:100:        Initialize idempotency manager.
+apps/charles/shared/idempotency.py:106:            workspace_id: Workspace ID (REQUIRED per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1)
+apps/charles/shared/idempotency.py:114:                "IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1 violated: "
+apps/charles/shared/idempotency.py:115:                "workspace_id is REQUIRED for IdempotencyManager"
+apps/charles/shared/idempotency.py:126:        Ensure idempotency_keys table exists per §5.2 storage schema.
+apps/charles/shared/idempotency.py:131:            CREATE TABLE IF NOT EXISTS idempotency_keys (
+apps/charles/shared/idempotency.py:132:                idempotency_key TEXT PRIMARY KEY,
+apps/charles/shared/idempotency.py:150:            CREATE INDEX IF NOT EXISTS idx_idempotency_status_created
+apps/charles/shared/idempotency.py:151:            ON idempotency_keys(status, created_at)
+apps/charles/shared/idempotency.py:164:    def check_idempotency(self, key: str) -> IdempotencyResult:
+apps/charles/shared/idempotency.py:166:        Check idempotency status for a key.
+apps/charles/shared/idempotency.py:170:        for idempotency are forbidden.
+apps/charles/shared/idempotency.py:173:            key: Idempotency key in format {operation_type}:{scope}:{external_id}
+apps/charles/shared/idempotency.py:176:            IdempotencyResult with status:
+apps/charles/shared/idempotency.py:183:        # CONTRACT ASSERTIONS: IDEMPOTENCY_IMPLEMENTATION_CONTRACT
+apps/charles/shared/idempotency.py:188:            "IDEMPOTENCY_IMPLEMENTATION_CONTRACT §4.1 violated: empty idempotency key"
+apps/charles/shared/idempotency.py:192:            f"IDEMPOTENCY_IMPLEMENTATION_CONTRACT §4.1 violated: key '{key}' not in canonical format {{operation}}:{{scope}}:{{external_id}}"
+apps/charles/shared/idempotency.py:196:            f"IDEMPOTENCY_IMPLEMENTATION_CONTRACT §4.1 violated: key '{key}' must have at least 3 parts"
+apps/charles/shared/idempotency.py:203:            f"IDEMPOTENCY_IMPLEMENTATION_CONTRACT §4.4 violated: key appears derived from internal numeric ID"
+apps/charles/shared/idempotency.py:208:            SELECT idempotency_key, operation_type, status, result_id, result_data,
+apps/charles/shared/idempotency.py:210:            FROM idempotency_keys
+apps/charles/shared/idempotency.py:211:            WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:219:                EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:220:                f"Idempotency check: key not found, safe to proceed",
+apps/charles/shared/idempotency.py:221:                idempotency_key=key,
+apps/charles/shared/idempotency.py:224:            return IdempotencyResult(
+apps/charles/shared/idempotency.py:225:                status=IdempotencyStatus.NOT_EXISTS,
+apps/charles/shared/idempotency.py:226:                idempotency_key=key,
+apps/charles/shared/idempotency.py:250:            self.logger.log_idempotency_hit(
+apps/charles/shared/idempotency.py:251:                idempotency_key=key,
+apps/charles/shared/idempotency.py:254:            return IdempotencyResult(
+apps/charles/shared/idempotency.py:255:                status=IdempotencyStatus.EXISTS_COMPLETED,
+apps/charles/shared/idempotency.py:256:                idempotency_key=key,
+apps/charles/shared/idempotency.py:266:                EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:267:                f"Idempotency check: operation in progress",
+apps/charles/shared/idempotency.py:268:                idempotency_key=key,
+apps/charles/shared/idempotency.py:272:            return IdempotencyResult(
+apps/charles/shared/idempotency.py:273:                status=IdempotencyStatus.EXISTS_PENDING,
+apps/charles/shared/idempotency.py:274:                idempotency_key=key,
+apps/charles/shared/idempotency.py:281:                EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:282:                f"Idempotency check: previous attempt failed, may retry",
+apps/charles/shared/idempotency.py:283:                idempotency_key=key,
+apps/charles/shared/idempotency.py:287:            return IdempotencyResult(
+apps/charles/shared/idempotency.py:288:                status=IdempotencyStatus.EXISTS_FAILED,
+apps/charles/shared/idempotency.py:289:                idempotency_key=key,
+apps/charles/shared/idempotency.py:296:        raise ValueError(f"Unknown idempotency status: {status}")
+apps/charles/shared/idempotency.py:298:    def check_idempotency_dual_read(
+apps/charles/shared/idempotency.py:302:    ) -> IdempotencyResult:
+apps/charles/shared/idempotency.py:304:        Check idempotency with dual-read for backward compatibility.
+apps/charles/shared/idempotency.py:306:        Implements dual-read strategy per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1:
+apps/charles/shared/idempotency.py:318:            IdempotencyResult with status indicating whether operation exists
+apps/charles/shared/idempotency.py:323:            SELECT idempotency_key, operation_type, status, result_id, result_data,
+apps/charles/shared/idempotency.py:325:            FROM idempotency_keys
+apps/charles/shared/idempotency.py:326:            WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:332:                EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:333:                f"Idempotency dual-read: v2 key found",
+apps/charles/shared/idempotency.py:334:                idempotency_key=v2_key,
+apps/charles/shared/idempotency.py:337:            return self._parse_idempotency_row(row, v2_key)
+apps/charles/shared/idempotency.py:342:                SELECT idempotency_key, operation_type, status, result_id, result_data,
+apps/charles/shared/idempotency.py:344:                FROM idempotency_keys
+apps/charles/shared/idempotency.py:345:                WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:352:                    EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:353:                    f"Idempotency dual-read: legacy key found, v2 key not found",
+apps/charles/shared/idempotency.py:359:                return self._parse_idempotency_row(row, legacy_key, was_legacy=True)
+apps/charles/shared/idempotency.py:363:            EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:364:            f"Idempotency dual-read: key not found, safe to proceed",
+apps/charles/shared/idempotency.py:369:        return IdempotencyResult(
+apps/charles/shared/idempotency.py:370:            status=IdempotencyStatus.NOT_EXISTS,
+apps/charles/shared/idempotency.py:371:            idempotency_key=v2_key,
+apps/charles/shared/idempotency.py:375:    def _parse_idempotency_row(
+apps/charles/shared/idempotency.py:380:    ) -> IdempotencyResult:
+apps/charles/shared/idempotency.py:382:        Parse a database row into an IdempotencyResult.
+apps/charles/shared/idempotency.py:390:            IdempotencyResult with appropriate status
+apps/charles/shared/idempotency.py:413:                    EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:414:                    f"Idempotency hit on legacy key",
+apps/charles/shared/idempotency.py:415:                    idempotency_key=key,
+apps/charles/shared/idempotency.py:419:                self.logger.log_idempotency_hit(
+apps/charles/shared/idempotency.py:420:                    idempotency_key=key,
+apps/charles/shared/idempotency.py:423:            return IdempotencyResult(
+apps/charles/shared/idempotency.py:424:                status=IdempotencyStatus.EXISTS_COMPLETED,
+apps/charles/shared/idempotency.py:425:                idempotency_key=key,
+apps/charles/shared/idempotency.py:434:            return IdempotencyResult(
+apps/charles/shared/idempotency.py:435:                status=IdempotencyStatus.EXISTS_PENDING,
+apps/charles/shared/idempotency.py:436:                idempotency_key=key,
+apps/charles/shared/idempotency.py:442:            return IdempotencyResult(
+apps/charles/shared/idempotency.py:443:                status=IdempotencyStatus.EXISTS_FAILED,
+apps/charles/shared/idempotency.py:444:                idempotency_key=key,
+apps/charles/shared/idempotency.py:450:        raise ValueError(f"Unknown idempotency status: {status}")
+apps/charles/shared/idempotency.py:457:            UPDATE idempotency_keys
+apps/charles/shared/idempotency.py:461:            WHERE idempotency_key = ? AND workspace_id = ? AND status = 'pending'
+apps/charles/shared/idempotency.py:468:            idempotency_key=key,
+apps/charles/shared/idempotency.py:474:        Start a new operation by creating a pending idempotency record.
+apps/charles/shared/idempotency.py:479:            key: Idempotency key
+apps/charles/shared/idempotency.py:498:                INSERT INTO idempotency_keys (idempotency_key, workspace_id, operation_type, company_id, status, created_at, processor_type, external_event_id)
+apps/charles/shared/idempotency.py:504:                EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:506:                idempotency_key=key,
+apps/charles/shared/idempotency.py:515:                UPDATE idempotency_keys
+apps/charles/shared/idempotency.py:522:                WHERE idempotency_key = ? AND workspace_id = ? AND status = 'failed'
+apps/charles/shared/idempotency.py:534:                idempotency_key=key,
+apps/charles/shared/idempotency.py:549:            key: Idempotency key
+apps/charles/shared/idempotency.py:554:        # CONTRACT ASSERTION: IDEMPOTENCY_IMPLEMENTATION_CONTRACT §3.4
+apps/charles/shared/idempotency.py:562:            SELECT status FROM idempotency_keys WHERE idempotency_key = ? AND workspace_id = ?
+apps/charles/shared/idempotency.py:568:            # §3.4: Idempotency keys are immutable once completed
+apps/charles/shared/idempotency.py:570:                f"IDEMPOTENCY_IMPLEMENTATION_CONTRACT §3.4 violated: " \
+apps/charles/shared/idempotency.py:571:                f"attempted to modify completed idempotency record '{key}'"
+apps/charles/shared/idempotency.py:579:            UPDATE idempotency_keys
+apps/charles/shared/idempotency.py:584:            WHERE idempotency_key = ? AND workspace_id = ? AND status = 'pending'
+apps/charles/shared/idempotency.py:594:            EventType.IDEMPOTENCY_CHECK,
+apps/charles/shared/idempotency.py:596:            idempotency_key=key,
+apps/charles/shared/idempotency.py:606:            key: Idempotency key
+apps/charles/shared/idempotency.py:614:            UPDATE idempotency_keys
+apps/charles/shared/idempotency.py:618:            WHERE idempotency_key = ? AND workspace_id = ? AND status = 'pending'
+apps/charles/shared/idempotency.py:630:            idempotency_key=key,
+apps/charles/shared/idempotency.py:650:            UPDATE idempotency_keys
+apps/charles/shared/idempotency.py:671:def get_idempotency_manager(
+apps/charles/shared/idempotency.py:675:) -> IdempotencyManager:
+apps/charles/shared/idempotency.py:677:    Factory function to create an IdempotencyManager.
+apps/charles/shared/idempotency.py:685:        Configured IdempotencyManager instance
+apps/charles/shared/idempotency.py:690:    return IdempotencyManager(db_connection, company_id, workspace_id=workspace_id)
+apps/charles/shared/idempotency.py:693:def generate_idempotency_key(
+apps/charles/shared/idempotency.py:699:    Generate canonical idempotency key per §4.1 (DEPRECATED - use generate_idempotency_key_v2).
+apps/charles/shared/idempotency.py:709:        Canonical idempotency key
+apps/charles/shared/idempotency.py:712:        Use :func:`generate_idempotency_key_v2` instead, which requires workspace_id
+apps/charles/shared/idempotency.py:713:        for proper multitenancy isolation per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1.
+apps/charles/shared/idempotency.py:718:def generate_idempotency_key_v2(
+apps/charles/shared/idempotency.py:725:    Generate canonical idempotency key per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1.
+apps/charles/shared/idempotency.py:738:        Canonical v2 idempotency key
+apps/charles/shared/idempotency.py:744:        >>> generate_idempotency_key_v2("deposit", "ws_abc123", "stripe", "po_xyz789")
+apps/charles/shared/idempotency.py:749:            "IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1 violated: "
+apps/charles/shared/idempotency.py:750:            "workspace_id is REQUIRED for idempotency key generation"
+apps/charles/shared/idempotency.py:755:            "IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1 violated: "
+apps/charles/shared/idempotency.py:756:            "processor is REQUIRED for idempotency key generation"
+apps/charles/shared/idempotency.py:768:    Generate legacy idempotency key for dual-read lookup.
+apps/charles/shared/idempotency.py:771:    New operations MUST use generate_idempotency_key_v2.
+apps/charles/shared/idempotency.py:781:        Legacy format idempotency key
+apps/charles/shared/idempotency.py:788:    Detect whether an idempotency key is v2 format.
+apps/charles/shared/idempotency.py:795:        key: Idempotency key to check
+apps/charles/shared/match_confidence_guard.py:291:    This migration is IDEMPOTENT.
+apps/charles/shared/idempotency_guard.py:2:Mandatory Idempotency Guard Decorator
+apps/charles/shared/idempotency_guard.py:4:IDEMPOTENCY_IMPLEMENTATION_CONTRACT Enforcement Layer.
+apps/charles/shared/idempotency_guard.py:6:This module provides a mandatory decorator that enforces idempotency
+apps/charles/shared/idempotency_guard.py:10:    @require_idempotency(operation_type="deposit")
+apps/charles/shared/idempotency_guard.py:12:        # Function receives idempotency context automatically
+apps/charles/shared/idempotency_guard.py:13:        # Idempotency check happens BEFORE this function executes
+apps/charles/shared/idempotency_guard.py:17:1. Idempotency check occurs BEFORE function execution (check-before-act)
+apps/charles/shared/idempotency_guard.py:28:from shared.idempotency import (
+apps/charles/shared/idempotency_guard.py:29:    IdempotencyManager,
+apps/charles/shared/idempotency_guard.py:30:    IdempotencyStatus,
+apps/charles/shared/idempotency_guard.py:31:    IdempotencyResult,
+apps/charles/shared/idempotency_guard.py:32:    generate_idempotency_key_v2,
+apps/charles/shared/idempotency_guard.py:33:    generate_idempotency_key,
+apps/charles/shared/idempotency_guard.py:40:class IdempotencyContext:
+apps/charles/shared/idempotency_guard.py:42:    Context passed to idempotency-guarded functions.
+apps/charles/shared/idempotency_guard.py:44:    Provides access to idempotency state without cluttering function signatures.
+apps/charles/shared/idempotency_guard.py:48:    status: IdempotencyStatus
+apps/charles/shared/idempotency_guard.py:49:    manager: IdempotencyManager
+apps/charles/shared/idempotency_guard.py:53:class IdempotencyGuardError(Exception):
+apps/charles/shared/idempotency_guard.py:54:    """Raised when idempotency guard detects a violation."""
+apps/charles/shared/idempotency_guard.py:58:def require_idempotency(
+apps/charles/shared/idempotency_guard.py:63:    Decorator that enforces mandatory idempotency for side-effect functions.
+apps/charles/shared/idempotency_guard.py:65:    This decorator implements IDEMPOTENCY_IMPLEMENTATION_CONTRACT §3.2:
+apps/charles/shared/idempotency_guard.py:68:    - Centralized logic: idempotency check in one place
+apps/charles/shared/idempotency_guard.py:82:        @require_idempotency(operation_type="deposit")
+apps/charles/shared/idempotency_guard.py:84:            # Idempotency already checked before this executes
+apps/charles/shared/idempotency_guard.py:85:            # Access context via: self._idempotency_context if needed
+apps/charles/shared/idempotency_guard.py:88:        @require_idempotency(
+apps/charles/shared/idempotency_guard.py:96:    1. Function CANNOT execute without idempotency check
+apps/charles/shared/idempotency_guard.py:98:    3. If EXISTS_PENDING: raises IdempotencyGuardError, function never executes
+apps/charles/shared/idempotency_guard.py:103:    This makes idempotency violations IMPOSSIBLE.
+apps/charles/shared/idempotency_guard.py:114:                raise IdempotencyGuardError(
+apps/charles/shared/idempotency_guard.py:115:                    f"@require_idempotency decorator requires 'company_id' attribute on {self.__class__.__name__}. "
+apps/charles/shared/idempotency_guard.py:120:            # Get idempotency manager from self
+apps/charles/shared/idempotency_guard.py:121:            if not hasattr(self, 'idempotency'):
+apps/charles/shared/idempotency_guard.py:122:                raise IdempotencyGuardError(
+apps/charles/shared/idempotency_guard.py:123:                    f"@require_idempotency decorator requires 'idempotency' attribute on {self.__class__.__name__}. "
+apps/charles/shared/idempotency_guard.py:124:                    "Add 'self.idempotency = get_idempotency_manager(...)' to class __init__."
+apps/charles/shared/idempotency_guard.py:126:            idempotency_manager: IdempotencyManager = self.idempotency
+apps/charles/shared/idempotency_guard.py:132:                service="idempotency_guard",
+apps/charles/shared/idempotency_guard.py:138:            # STEP 2: Extract external_id for idempotency key
+apps/charles/shared/idempotency_guard.py:160:                    raise IdempotencyGuardError(
+apps/charles/shared/idempotency_guard.py:168:            # STEP 3: Generate idempotency key (v2 per IDEMPOTENCY_IMPLEMENTATION_CONTRACT v1.1 §4.1)
+apps/charles/shared/idempotency_guard.py:178:            idempotency_key = generate_idempotency_key_v2(
+apps/charles/shared/idempotency_guard.py:186:            # STEP 4: CHECK IDEMPOTENCY (MANDATORY, BEFORE FUNCTION)
+apps/charles/shared/idempotency_guard.py:191:            idem_result: IdempotencyResult = idempotency_manager.check_idempotency(idempotency_key)
+apps/charles/shared/idempotency_guard.py:194:            if idem_result.status == IdempotencyStatus.NOT_EXISTS:
+apps/charles/shared/idempotency_guard.py:195:                legacy_key = generate_idempotency_key(
+apps/charles/shared/idempotency_guard.py:200:                legacy_result = idempotency_manager.check_idempotency(legacy_key)
+apps/charles/shared/idempotency_guard.py:201:                if legacy_result.status == IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/shared/idempotency_guard.py:203:                    idempotency_manager.start_operation(idempotency_key, operation_type)
+apps/charles/shared/idempotency_guard.py:204:                    idempotency_manager.complete_operation(
+apps/charles/shared/idempotency_guard.py:205:                        idempotency_key,
+apps/charles/shared/idempotency_guard.py:212:            if idem_result.status == IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/shared/idempotency_guard.py:213:                logger.log_idempotency_hit(
+apps/charles/shared/idempotency_guard.py:214:                    idempotency_key=idempotency_key,
+apps/charles/shared/idempotency_guard.py:222:            if idem_result.status == IdempotencyStatus.EXISTS_PENDING:
+apps/charles/shared/idempotency_guard.py:225:                    f"Idempotency key: {idempotency_key}"
+apps/charles/shared/idempotency_guard.py:230:                    idempotency_key=idempotency_key,
+apps/charles/shared/idempotency_guard.py:235:                raise IdempotencyGuardError(error_msg)
+apps/charles/shared/idempotency_guard.py:238:            is_retry = (idem_result.status == IdempotencyStatus.EXISTS_FAILED)
+apps/charles/shared/idempotency_guard.py:244:                    idempotency_key=idempotency_key,
+apps/charles/shared/idempotency_guard.py:252:            idempotency_manager.start_operation(idempotency_key, operation_type)
+apps/charles/shared/idempotency_guard.py:255:            context = IdempotencyContext(
+apps/charles/shared/idempotency_guard.py:256:                key=idempotency_key,
+apps/charles/shared/idempotency_guard.py:259:                manager=idempotency_manager,
+apps/charles/shared/idempotency_guard.py:264:            self._idempotency_context = context
+apps/charles/shared/idempotency_guard.py:277:                idempotency_manager.complete_operation(
+apps/charles/shared/idempotency_guard.py:278:                    idempotency_key,
+apps/charles/shared/idempotency_guard.py:293:                idempotency_manager.fail_operation(idempotency_key, str(e))
+apps/charles/shared/idempotency_guard.py:300:                if hasattr(self, '_idempotency_context'):
+apps/charles/shared/idempotency_guard.py:301:                    delattr(self, '_idempotency_context')
+apps/charles/shared/workspace_sync_orchestrator.py:839:            - Idempotent (safe to call multiple times for same job)
+apps/charles/shared/workspace_sync_orchestrator.py:916:                # Workspace already reconciled (idempotency) - log but don't error
+apps/charles/shared/workspace_sync_orchestrator.py:919:                    f"Workspace {self.workspace_id} already reconciled for job {job_id} (idempotent call)",
+apps/charles/shared/workspace_sync_orchestrator.py:961:                # Workspace already reconciled (idempotency) - log but don't error
+apps/charles/shared/workspace_sync_orchestrator.py:964:                    f"Workspace {self.workspace_id} already reconciled for job {job_id} (idempotent call)",
+apps/charles/shared/sync_worker.py:814:            - Idempotent (safe to call multiple times)
+apps/charles/shared/deposit_stamp.py:4:Generates idempotent CHARLES stamps for QBO Deposits per specification:
+apps/charles/shared/deposit_stamp.py:10:IDEMPOTENCY GUARANTEES (LOCKED):
+apps/charles/shared/deposit_stamp.py:13:- Retry, replay, or idempotent execution MUST reuse the exact same stamp
+apps/charles/shared/deposit_stamp.py:291:    Manages deposit stamp generation with idempotency guarantees.
+apps/charles/shared/deposit_stamp.py:296:    - Retry, replay, or idempotent execution MUST reuse the exact same stamp
+apps/charles/shared/deposit_stamp.py:318:        This method implements idempotency:
+apps/charles/shared/deposit_stamp.py:338:            # Return existing stamp (idempotent)
+apps/charles/shared/job_queue.py:140:      - Enqueue jobs (with deduplication check)
+apps/charles/shared/job_queue.py:787:            - Safe to call concurrently (idempotent)
+apps/charles/shared/structured_logging.py:95:    # Idempotency Events
+apps/charles/shared/structured_logging.py:96:    IDEMPOTENCY_CHECK = "idempotency_check"
+apps/charles/shared/structured_logging.py:97:    IDEMPOTENCY_HIT = "idempotency_hit"
+apps/charles/shared/structured_logging.py:190:    REPLAY_IDEMPOTENCY_HIT = "replay_idempotency_hit"
+apps/charles/shared/structured_logging.py:288:        # idempotency_key, qbo_realm_id, qbo_object_type, qbo_object_id, duration_ms, etc.
+apps/charles/shared/structured_logging.py:454:        idempotency_key: str,
+apps/charles/shared/structured_logging.py:463:            idempotency_key=idempotency_key,
+apps/charles/shared/structured_logging.py:472:        idempotency_key: str,
+apps/charles/shared/structured_logging.py:483:            idempotency_key=idempotency_key,
+apps/charles/shared/structured_logging.py:493:        idempotency_key: str,
+apps/charles/shared/structured_logging.py:495:        reason: str = "idempotency_hit",
+apps/charles/shared/structured_logging.py:498:        """Log QBO object creation skipped (idempotency hit)."""
+apps/charles/shared/structured_logging.py:504:            idempotency_key=idempotency_key,
+apps/charles/shared/structured_logging.py:513:        idempotency_key: str,
+apps/charles/shared/structured_logging.py:524:            idempotency_key=idempotency_key,
+apps/charles/shared/structured_logging.py:531:    def log_idempotency_hit(
+apps/charles/shared/structured_logging.py:533:        idempotency_key: str,
+apps/charles/shared/structured_logging.py:537:        """Log idempotency check hit (already processed)."""
+apps/charles/shared/structured_logging.py:539:            EventType.IDEMPOTENCY_HIT,
+apps/charles/shared/structured_logging.py:540:            f"Idempotency hit for key {idempotency_key}, existing result: {existing_result_id}",
+apps/charles/shared/structured_logging.py:541:            idempotency_key=idempotency_key,
+apps/charles/shared/retry_guard.py:26:from shared.idempotency import IdempotencyManager, IdempotencyStatus
+apps/charles/shared/retry_guard.py:58:        idempotency_manager: IdempotencyManager,
+apps/charles/shared/retry_guard.py:66:            idempotency_manager: Idempotency manager for status checks
+apps/charles/shared/retry_guard.py:70:        self.idempotency_manager = idempotency_manager
+apps/charles/shared/retry_guard.py:75:        idempotency_key: str,
+apps/charles/shared/retry_guard.py:89:            idempotency_key: Idempotency key to check
+apps/charles/shared/retry_guard.py:99:        idem_result = self.idempotency_manager.check_idempotency(idempotency_key)
+apps/charles/shared/retry_guard.py:101:        if idem_result.status != IdempotencyStatus.EXISTS_PENDING:
+apps/charles/shared/retry_guard.py:109:            idempotency_key=idempotency_key,
+apps/charles/shared/retry_guard.py:116:            # Operation already completed! Update idempotency status
+apps/charles/shared/retry_guard.py:120:                idempotency_key=idempotency_key,
+apps/charles/shared/retry_guard.py:125:            # Update idempotency status to COMPLETED
+apps/charles/shared/retry_guard.py:126:            self.idempotency_manager.complete_operation(
+apps/charles/shared/retry_guard.py:127:                idempotency_key,
+apps/charles/shared/retry_guard.py:136:            f"Operation truly in progress (PENDING) for key {idempotency_key}. "
+apps/charles/shared/retry_guard.py:144:        idempotency_key: str
+apps/charles/shared/retry_guard.py:149:        Adds a second layer of protection beyond idempotency checks.
+apps/charles/shared/retry_guard.py:157:            idempotency_key: Idempotency key
+apps/charles/shared/retry_guard.py:164:            TerminalStateViolation: If duplicate found but idempotency says safe
+apps/charles/shared/retry_guard.py:170:            idempotency_key=idempotency_key,
+apps/charles/shared/retry_guard.py:177:            # Duplicate exists! This should have been caught by idempotency
+apps/charles/shared/retry_guard.py:178:            idem_result = self.idempotency_manager.check_idempotency(idempotency_key)
+apps/charles/shared/retry_guard.py:180:            if idem_result.status == IdempotencyStatus.NOT_EXISTS:
+apps/charles/shared/retry_guard.py:181:                # CRITICAL: Duplicate exists but idempotency says NOT_EXISTS
+apps/charles/shared/retry_guard.py:185:                    f"for payout {processor_payout_id}, but idempotency status "
+apps/charles/shared/retry_guard.py:194:                idempotency_key=idempotency_key,
+apps/charles/shared/retry_guard.py:198:            # Update idempotency if needed
+apps/charles/shared/retry_guard.py:199:            if idem_result.status != IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/shared/retry_guard.py:200:                self.idempotency_manager.complete_operation(
+apps/charles/shared/retry_guard.py:201:                    idempotency_key,
+apps/charles/shared/retry_guard.py:214:        idempotency_key: str,
+apps/charles/shared/retry_guard.py:227:            idempotency_key: Idempotency key for terminal-state check
+apps/charles/shared/retry_guard.py:238:        idem_result = self.idempotency_manager.check_idempotency(idempotency_key)
+apps/charles/shared/retry_guard.py:240:        if idem_result.status == IdempotencyStatus.EXISTS_COMPLETED:
+apps/charles/shared/retry_guard.py:243:                EventType.IDEMPOTENCY_HIT,
+apps/charles/shared/retry_guard.py:245:                idempotency_key=idempotency_key,
