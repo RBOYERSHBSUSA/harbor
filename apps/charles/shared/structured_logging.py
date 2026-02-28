@@ -221,6 +221,7 @@ class StructuredLogger:
         workspace_id: str,
         company_id: Optional[str] = None,
         sync_run_id: Optional[str] = None,
+        request_id: Optional[str] = None,
         output=sys.stdout
     ):
         """
@@ -231,12 +232,14 @@ class StructuredLogger:
             workspace_id: Workspace identifier (REQUIRED per Multitenancy Contract v1.0)
             company_id: Internal company identifier (DEPRECATED, for backward compatibility)
             sync_run_id: Unique sync execution ID (if sync-related)
+            request_id: Shell-issued request correlation ID (Phase 4D)
             output: Output stream (default: stdout)
         """
         self.service = service
         self.workspace_id = workspace_id
         self.company_id = company_id or workspace_id  # Fallback for backward compatibility
         self.sync_run_id = sync_run_id
+        self.request_id = request_id
         self.output = output
         self.environment = os.getenv("ENVIRONMENT", "dev")
 
@@ -282,6 +285,10 @@ class StructuredLogger:
         # Add sync_run_id if set
         if self.sync_run_id:
             entry["sync_run_id"] = self.sync_run_id
+
+        # Phase 4D: Add request_id if set (shell-issued correlation ID)
+        if self.request_id:
+            entry["request_id"] = self.request_id
 
         # Add all optional fields from kwargs
         # These may include: processor, processor_payout_id, processor_payment_id,
@@ -829,7 +836,13 @@ class StructuredLogger:
         )
 
 
-def get_logger(service: str, workspace_id: str, company_id: Optional[str] = None, sync_run_id: Optional[str] = None) -> StructuredLogger:
+def get_logger(
+    service: str,
+    workspace_id: str,
+    company_id: Optional[str] = None,
+    sync_run_id: Optional[str] = None,
+    request_id: Optional[str] = None,
+) -> StructuredLogger:
     """
     Factory function to create a structured logger.
 
@@ -838,6 +851,7 @@ def get_logger(service: str, workspace_id: str, company_id: Optional[str] = None
         workspace_id: Workspace identifier (REQUIRED per Multitenancy Contract v1.0)
         company_id: Internal company identifier (DEPRECATED, for backward compatibility)
         sync_run_id: Unique sync execution ID (optional)
+        request_id: Shell-issued request correlation ID (Phase 4D, optional)
 
     Returns:
         Configured StructuredLogger instance
@@ -846,5 +860,6 @@ def get_logger(service: str, workspace_id: str, company_id: Optional[str] = None
         service=service,
         workspace_id=workspace_id,
         company_id=company_id,
-        sync_run_id=sync_run_id
+        sync_run_id=sync_run_id,
+        request_id=request_id,
     )

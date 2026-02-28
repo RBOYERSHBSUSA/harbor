@@ -1,0 +1,4 @@
+# DEPRECATED — Phase 4D (INV-4D-4)
+# Charles no longer runs as a standalone service.
+# All Charles execution is mediated by Harbor Shell.
+# Use harbor-shell.service instead.

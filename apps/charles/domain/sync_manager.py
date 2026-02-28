@@ -1171,7 +1171,7 @@ class QBOPaymentMatcher:
         return results
 
 
-class ProcessorSyncManager:
+class SyncManager:
     """
     Manages syncing payment processor data to the company database.
     
@@ -2143,3 +2143,7 @@ class ProcessorSyncManager:
             'total_payments': total_payments,
             'last_sync': last_sync
         }
+
+
+# Alias for backward compatibility
+ProcessorSyncManager = SyncManager

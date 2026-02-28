@@ -285,6 +285,11 @@ class WorkspaceContext:
         """
         Get QBO OAuth credentials for this workspace.
 
+        NON-PRODUCTION: Phase 4D (INV-4D-5) — In production, QBO tokens
+        are retrieved by Shell and injected via WorkspaceExecutionContext.
+        Charles must not read token storage directly in production paths.
+        This method is retained for development and testing tooling only.
+
         Args:
             qbo_app_id: Specific QBO app ID (optional, uses active credential if None)
 

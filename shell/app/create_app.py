@@ -12,9 +12,11 @@ def create_app():
 
     from app.routes import bp
     from app.activation_routes import activation_bp
+    from app.charles_routes import charles_bp
 
     app.register_blueprint(bp)
     app.register_blueprint(activation_bp)
+    app.register_blueprint(charles_bp)
 
     @app.errorhandler(HarborError)
     def handle_harbor_error(e):

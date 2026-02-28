@@ -257,7 +257,12 @@ class SyncWorker:
 
     def run(self):
         """
-        Main worker loop.
+        NON-PRODUCTION: Autonomous poll loop.
+
+        Phase 4D (INV-4D-4, INV-4D-6): This autonomous poll loop is NOT
+        used in production.  Production execution is shell-orchestrated:
+        Shell builds WEC and invokes _execute_job(job, wec) explicitly.
+        This method is retained for development and testing only.
 
         Polls job queue and executes jobs until stopped.
         Handles graceful shutdown on SIGTERM/SIGINT.
@@ -358,9 +363,13 @@ class SyncWorker:
     # Job Execution
     # ========================================================================
 
-    def _execute_job(self, job: SyncJob):
+    def _execute_job(self, job: SyncJob, wec):
         """
         Execute a single job with Phase 6.7.1 remediation logic.
+
+        Phase 4D (INV-4D-6): wec is a required positional parameter.
+        The caller (shell-level orchestration) builds WEC and passes it in.
+        SyncWorker must not retrieve, construct, or look up WEC internally.
 
         Phase 6.7.1 Remediation Workflow:
           1. Start heartbeat thread
@@ -380,7 +389,15 @@ class SyncWorker:
 
         Args:
             job: Job to execute
+            wec: Shell-issued WorkspaceExecutionContext (required)
         """
+        # Phase 4D (INV-4D-6): WEC is mandatory for job execution
+        if wec is None:
+            raise ValueError(
+                "WorkspaceExecutionContext required — "
+                "SyncWorker._execute_job() cannot execute without shell-issued WEC"
+            )
+
         self.current_job = job
 
         # Get workspace-specific logger
